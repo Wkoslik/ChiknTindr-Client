@@ -65,7 +65,7 @@ const Login = (props) => {
             <input type="submit" value="Log In" />
             </form>
             
-            <p>New to ChiknTindr? <Link className="signup-text" to="/auth/signup" handleAuth={props.handleAuth}>Reveal Signup</Link></p>
+            <p>New to ChiknTindr? <Link className="signup-text" to="/auth/signup">Signup here</Link></p>
         </section>
     );
 }

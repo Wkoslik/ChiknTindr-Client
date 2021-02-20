@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Content from './components/Content';
 import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
 
 function App() {
   // current user
@@ -37,6 +38,7 @@ function App() {
           isAuthenticated={isAuthenticated}
           handleAuth={handleAuth}
         />
+        <Footer /> 
       </div>
     </Router>
     );
