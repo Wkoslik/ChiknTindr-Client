@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Header = (props) => {
     let style = {
@@ -6,18 +6,26 @@ const Header = (props) => {
         borderBottom: '3px solid black',
         margin: 0,
         padding: '1em 0'
-    }
+    };
+    
+    let conditionalLinks = props.currentUser ?
+    <nav>
+        <Link className="nav-link" to='/'>Home</Link>{' | '}
+        <Link className="nav-link" to='/profile'>Account</Link>{' | '}
+        <span className="nav-link" onClick={e => props.handleAuth(null)}>logout</span>
+        {/* TODO logout link styling & functionality*/}
+    </nav> :
+    <nav>
+        <Link className="nav-link" to='/'>Home</Link>{' | '}
+        <Link className="nav-link" to='/auth/login'>Login</Link>
+    </nav>
+
     return (
         <header style={style}>
-            <h1>It's a website</h1>
-            <nav>
-            {/* TODO: Conditional link rendering */}
-                <Link to='/'>Home</Link>{ ' | '}
-                <Link to='/auth'>Login or Signup</Link>{ ' | '}
-                <Link to='/profile'>Account</Link>
-            </nav>
+        <h1>Header</h1>
+        {conditionalLinks}
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;

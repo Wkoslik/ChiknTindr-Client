@@ -1,3 +1,6 @@
 #MERN Auth Client
 
-It's a stub! This app will be used as the basis of many decoupled MERN apps to come.
+1. npm i
+2. edit .env
+3. turn on nodemon of server
+4. login/register test account
