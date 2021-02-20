@@ -8,6 +8,7 @@ import Invite from './pages/Invite';
 import Infocard from './pages/Infocard';
 import Notice from './pages/Notice';
 import Result from './pages/Result';
+import About from './pages/About'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const token = localStorage.getItem('jwtToken');
@@ -33,6 +34,7 @@ const Content = (props) => {
         <Route path='/auth' render={(renderProps) => (
             <Auth handleAuth={props.handleAuth} {...renderProps} />
         )} />
+        <Route exact path='/about' component={About} />
         <PrivateRoute 
             path='/profile' 
             component={Profile} 
