@@ -5,6 +5,7 @@ const Preference = (props) => {
       <form>
         {/* TODO: inputting perference */}
       </form>
+      <p>user make choices of preference and click <a href="/invite">here</a> to continue</p>
     </div>
   );
 }
