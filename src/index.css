@@ -11,3 +11,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*! Whitney styling for easy seeing of things */
+
+footer{
+  background-color: chartreuse;
+  height: 25vh;
+  padding: 1rem;
+  border-top: 3px solid black;
+}
+
+footer > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 2rem;
+}
+
+footer a{
+  width: 150px;
+  height: 150px;
+  background-color: blanchedalmond;
+  border-radius: 100%;
+}
+
+.restaurants{
+  display: flex;
+  justify-content: center;
+}
+
+.restaurants button{
+  height: 20%;
+}
+.info-card{
+  width: 20vw;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.info-card img{
+  width: 100%
+}
+
+#money-star{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#info{
+  display: flex;
+}

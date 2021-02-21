@@ -1,3 +1,5 @@
+//About the RESTaurateurs
+
 const About = (props) => {
   return (
     //TODO: if user is at about page, change contents
