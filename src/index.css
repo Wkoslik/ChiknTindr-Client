@@ -7,6 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+nav {
+  display: flex;
+  flex-direction: column;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -34,6 +40,7 @@ footer a{
   background-color: blanchedalmond;
   border-radius: 100%;
 }
+
 
 .restaurants{
   display: flex;
