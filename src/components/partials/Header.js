@@ -1,6 +1,6 @@
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { 
     Toolbar, 
     AppBar, 
@@ -14,13 +14,13 @@ import {
     useMediaQuery
 } from '@material-ui/core';
 import {
-    AccountCircle,
-    NotificationIcon,
-    MoreIcon
+    AccountCircle
 } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
+import NotificationIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
-// import theme from '../../theme/theme';
+import theme from '../../theme/theme';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,7 +43,6 @@ const Header = (props) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const theme = useTheme();
     
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -62,31 +61,24 @@ const Header = (props) => {
     <nav>
         <Button
             variant="contained"
-            href="/"
         >
-            Home
+            <Link className="nav-link" to='/'>Home</Link>
         </Button>
         <Button
             variant="contained"
-            href="/profile"
         >
-            Account
+            <Link className="nav-link" to='/profile'>Account</Link>
         </Button>
         <Button
             variant="contained"
-            href="/about"
         >
-            RESTaurateurs
+            <Link className="nav-link" to='/about'>RESTaurateurs</Link> 
         </Button>
         <Button
             variant="contained"
-            onClick={e => props.handleAuth(null)}
         >
-            Logout
+            <span className="nav-link" onClick={e => props.handleAuth(null)}>logout</span>
         </Button>
-        {/* <Link className="nav-link" to='/'>Home</Link>{' | '} */}
-        {/* <Link className="nav-link" to='/profile'>Account</Link>{' | '} */}
-        {/* <span className="nav-link" onClick={e => props.handleAuth(null)}>logout</span> */}
     </nav> :
     <nav>
         <Button
@@ -154,43 +146,3 @@ const Header = (props) => {
 }
 
 export default Header;
-
-
-{/* <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Photos
-          </Typography>
-          {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar> */}

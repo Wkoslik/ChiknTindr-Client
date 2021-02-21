@@ -26,7 +26,7 @@ const Signup = (props) => {
         }).catch(err => console.log(`😖 error`, err));
     }   
 
-    if (redirect) return <Redirect to='/profile' />
+    if (redirect) return <Redirect to='/preference' />
     return (
         <section>
             <h1>SignUp</h1>

@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     return <Route {...rest} render={(renderProps) => (
         token ?
             <Component {...rest} {...renderProps} /> :
-            <Redirect to='/auth' />
+            <Redirect to='/auth/login' />
     )} />
 }
 
