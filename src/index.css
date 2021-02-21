@@ -34,3 +34,27 @@ footer a{
   background-color: blanchedalmond;
   border-radius: 100%;
 }
+
+.restaurants{
+  display: flex;
+  justify-content: center;
+}
+
+.restaurants button{
+  height: 20%;
+}
+.info-card{
+  width: 20vw;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.info-card img{
+  width: 100%
+}
+
+#money-star{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

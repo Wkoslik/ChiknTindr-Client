@@ -22,13 +22,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const Content = (props) => {
     return (
         //TODO: include handleAuth to restaurant, Preference, Invite, Infocard, Notice, Result
+        //TODO: commented out infocard because that's being rendered within restaurants so props will pass through restaurants to infocard
     <main>
         <h6>Content page</h6>
         <Route exact path='/' component={Home} />
         <Route path='/preference' component={Preference} />
         <Route path='/invite' component={Invite} />
         <Route path='/restaurants' component={Restaurants} />
-        <Route path='/restaurants' component={Infocard} />
+        {/* <Route path='/restaurants' component={Infocard} /> */}
         <Route path='/notification' component={Notice} />
         <Route path='/result' component={Result} />
         <Route path='/auth' render={(renderProps) => (
