@@ -103,14 +103,7 @@ const Invite = (props) => {
                   variant="outlined"
                   value={name}
                   onChange={handleName}
-                />
-                {/* <TextField
-                  id="outlined-password-input"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="outlined"
-                /> */}
+                /> 
                 <TextField
                   required
                   id="outlined-helperText"

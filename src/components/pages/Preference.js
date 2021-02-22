@@ -20,14 +20,17 @@ const Preference = (props) => {
 
   const handleDietary = event => {
     setDietary(event.target.value)
+    // console.log(event.target.value)
   }
   
   const handleRating = event => {
     setRating(event.target.value.toString())
+    // console.log(event.target.value)
   }
 
   const handlePrice = event => {
     setPrice(event.target.value.toString())
+    // console.log(event.target.value)
   }
 
   const handleFormInput = (e) => {
