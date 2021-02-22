@@ -23,13 +23,11 @@ const Preference = (props) => {
   }
   
   const handleRating = event => {
-    setRating(event.target.value)
-    // TODO: make the value into string
+    setRating(event.target.value.toString())
   }
 
   const handlePrice = event => {
-    setPrice(event.target.value)
-    // TODO: make the value into string
+    setPrice(event.target.value.toString())
   }
 
   const handleFormInput = (e) => {
