@@ -171,30 +171,6 @@ const Invite = (props) => {
         </Grid>
       </Grid>
     </div>
-    // <div>
-    //   <h3>Invite Friends Page</h3>
-    //   <form onSubmit={handleSubmit}>
-    //         <div>
-    //             <label htmlFor="name">Name: </label>
-    //             <input 
-    //             type="text" 
-    //             name="name" 
-    //             placeholder="Name goes here"
-    //             onChange={e => setName(e.target.value)}
-    //             />
-    //         </div>
-    //         <div>
-    //             <label htmlFor="email">Email: </label>
-    //             <input
-    //             type="email"
-    //             name="email"
-    //             placeholder="email goes here"
-    //             onChange={e => setEmail(e.target.value)}
-    //             />
-    //         </div>
-    //         <input type="submit" value="Send Invite" />
-    //         </form>
-    // </div>
   );
 }
 export default Invite;
