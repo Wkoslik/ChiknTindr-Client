@@ -280,6 +280,8 @@ const Restaurants = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      maxWidth: 600,
+      margin: "0 auto"
     },
     paper: {
       padding: theme.spacing(2),
@@ -386,12 +388,12 @@ const Restaurants = (props) => {
                 className={classes.root}
                 nextButton={
                   <Button size="small" onClick={handleConfirm}>
-                    <CheckCircleIcon />
+                    <CheckCircleIcon /> This is it
                   </Button>
                 }
                 backButton={
                   <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps}>
-                    <CancelIcon />
+                    <CancelIcon /> Nope. Next.
                   </Button>
                 }
               />
@@ -416,14 +418,6 @@ const Restaurants = (props) => {
         </Grid>
       </ThemeProvider>
     </div>
-    // <div>
-    //   <h3>Restaurants page, user makes a choice here</h3>
-    //   {/* TODO remove styling */}
-    //   <div className="restaurants">
-    //     <Infocard />
-    //   </div>
-    //   <p>user make choices above buttons, then move on to <a href="/notification">notice page</a></p>
-    // </div>
   );
 }
 export default Restaurants;
