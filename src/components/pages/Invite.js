@@ -17,7 +17,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 const Invite = (props) => {
-  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
   const [categoryInput, setCategoryInput] = useState('');
   const [location, setLocation] = useState('');
@@ -29,8 +29,8 @@ const Invite = (props) => {
   })
   const [redirect, setRedirect] = useState(false);
 
-  const handleName = e => {
-    setName(e.target.value)
+  const handleDescription = e => {
+    setDescription(e.target.value)
   };
 
   const handleEmail = e => {
@@ -94,10 +94,11 @@ const Invite = (props) => {
             </FormLabel>
               <div>
                 <TextField
+                //TODO change from friends name to instance description
                   required
                   id="friend-name"
                   label="Friend's Name"
-                  defaultValue="Name"
+                  defaultValue="Dinner Plans Description"
                   variant="outlined"
                   value={name}
                   onChange={handleName}
