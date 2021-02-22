@@ -94,10 +94,9 @@ const Invite = (props) => {
             </FormLabel>
               <div>
                 <TextField
-                //TODO change from friends name to instance description
                   required
-                  id="friend-name"
-                  label="Friend's Name"
+                  id="friend-name" //TODO where else will we need to change this id? 
+                  label="Dinner plan description"
                   defaultValue="Dinner Plans Description"
                   variant="outlined"
                   value={description}
@@ -108,7 +107,7 @@ const Invite = (props) => {
                   id="outlined-helperText"
                   label="Friend's Email"
                   defaultValue="email"
-                  helperText="sending invitation to your friend"
+                  helperText="so we can send your friend an invite"
                   variant="outlined"
                   value={email}
                   onChange={handleEmail}
@@ -154,7 +153,7 @@ const Invite = (props) => {
                       label="Outside Seating"
                     />
                   </FormGroup>
-                  <FormHelperText>Optional text goes here</FormHelperText>
+                  {/* <FormHelperText>Optional text goes here</FormHelperText> */}
                 </FormControl>
               </div>
               <Button variant="contained" color="primary" onClick={handleSubmit}>Invite</Button>
