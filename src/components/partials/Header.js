@@ -23,40 +23,161 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import theme from '../../theme/theme';
 
 const useStyles = makeStyles(theme => ({
-    root: {
+    grow: {
         flexGrow: 1,
     },
     menuButton: {
         marginRight: theme.spacing(2),
     },
     title: {
-        flexGrow: 2,
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+        }
     },
     popMenu: {
         display: "flex",
         flexDirection: "column"
-    }
+    },
+    sectionDesktop: {
+        display: 'none',
+        [theme.breakpoints.up('md')]: {
+            display: 'flex',
+        },
+    },
+    sectionMobile: {
+        display: 'flex',
+        [theme.breakpoints.up('md')]: {
+            display: 'none',
+        },
+    },
 }));
 
 const Header = (props) => {
     const { history } = props;
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     
-    const handleMenu = (event) => {
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    
-    const handleMenuClick = pageURL => {
-        history.push(pageURL);
-        setAnchorEl(null);
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
     };
 
-    const handleButtonClick = pageURL => {
-        history.push(pageURL);
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
     };
     
+    const menuId = 'primary-search-account-menu';
+
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
+
+    const renderMenuLoggedIn = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Menu>
+    );
+
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+
+            <MenuItem>
+            <IconButton aria-label="show 11 new notifications" color="inherit">
+                <Badge badgeContent={11} color="secondary">
+                    <NotificationIcon />
+                </Badge>
+            </IconButton>
+            <p>Notifications</p>
+            </MenuItem>
+            <MenuItem onClick={handleProfileMenuOpen}>
+            <IconButton
+                aria-label="account of current user"
+                aria-controls="primary-search-account-menu"
+                aria-haspopup="true"
+                color="inherit"
+            >
+                <AccountCircle />
+            </IconButton>
+            <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
+
+    const renderMobileMenuLoggedIn = (
+        <Menu
+            anchorEl={mobileMoreAnchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={mobileMenuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMobileMenuOpen}
+            onClose={handleMobileMenuClose}
+        >
+
+            <MenuItem>
+            <IconButton aria-label="show 11 new notifications" color="inherit">
+                <Badge badgeContent={11} color="secondary">
+                    <NotificationIcon />
+                </Badge>
+            </IconButton>
+            <p>Notifications</p>
+            </MenuItem>
+            <MenuItem onClick={handleProfileMenuOpen}>
+            <IconButton
+                aria-label="account of current user"
+                aria-controls="primary-search-account-menu"
+                aria-haspopup="true"
+                color="inherit"
+            >
+                <AccountCircle />
+            </IconButton>
+            <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
+
     let conditionalLinks = props.currentUser ?
     <nav>
         <Button
@@ -79,7 +200,8 @@ const Header = (props) => {
         >
             <span className="nav-link" onClick={e => props.handleAuth(null)}>logout</span>
         </Button>
-    </nav> :
+    </nav>
+    :
     <nav>
         <Button
             variant="contained"
@@ -106,7 +228,7 @@ const Header = (props) => {
     return (
     <div className={classes.root}>
         <ThemeProvider theme={theme}>
-            <AppBar color="primary" position="static">
+            <AppBar elevation={0} color="primary" position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         HEADER
@@ -116,7 +238,7 @@ const Header = (props) => {
                         className={classes.menuButton}
                         color="inherit"
                         aria-label="menu"
-                        onClick={handleMenu}
+                        onClick={renderMenu}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -133,7 +255,7 @@ const Header = (props) => {
                         vertical: "top",
                         horizontal: "right"
                         }}
-                        open={open}
+                        open={isMenuOpen}
                         onClose={() => setAnchorEl(null)}
                     >
                         {conditionalLinks}
