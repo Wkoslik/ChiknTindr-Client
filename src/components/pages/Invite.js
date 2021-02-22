@@ -121,7 +121,7 @@ const Invite = (props) => {
               <div>
                 <TextField
                   id="category"
-                  label="Category"
+                  label="Category" //TODO can we change this to somethign more descriptive than 'category'?
                   variant="outlined"
                   value={categoryInput}
                   onChange={handleCategory}
