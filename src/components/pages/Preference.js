@@ -62,7 +62,7 @@ const Preference = (props) => {
               <FormLabel>
                 Price
               </FormLabel>
-              <Rating name="price-rating" defaultValue={2.5} value={price} onChange={handlePrice} icon={<AttachMoneyIcon />} />
+              <Rating name="price-rating" defaultValue={2.5} value={price} onChange={handlePrice} max={4} icon={<AttachMoneyIcon />} />
               <FormLabel>
                 Dietary Option
               </FormLabel>

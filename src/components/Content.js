@@ -24,7 +24,7 @@ const Content = (props) => {
         //TODO: include handleAuth to restaurant, Preference, Invite, Infocard, Notice, Result
         //TODO: commented out infocard because that's being rendered within restaurants so props will pass through restaurants to infocard
     <main>
-        <h6>Content page</h6>
+        <h5>Content page - Sending message according to what page you're on</h5>
         <Route exact path='/' component={Home} />
         <Route path='/preference' component={Preference} />
         <Route path='/invite' component={Invite} />
