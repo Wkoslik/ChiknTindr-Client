@@ -24,10 +24,12 @@ const Preference = (props) => {
   
   const handleRating = event => {
     setRating(event.target.value)
+    // TODO: make the value into string
   }
 
   const handlePrice = event => {
     setPrice(event.target.value)
+    // TODO: make the value into string
   }
 
   const handleFormInput = (e) => {
@@ -55,15 +57,15 @@ const Preference = (props) => {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <FormControl component="fieldset" >
-              <FormLabel component="rating">
+              <FormLabel>
                 Rating
               </FormLabel>
               <Rating name="rating" defaultValue={2.5} precision={0.5} value={rating} onChange={handleRating} />
-              <FormLabel component="Price">
+              <FormLabel>
                 Price
               </FormLabel>
               <Rating name="price-rating" defaultValue={2.5} value={price} onChange={handlePrice} icon={<AttachMoneyIcon />} />
-              <FormLabel component="DietaryOption">
+              <FormLabel>
                 Dietary Option
               </FormLabel>
               <RadioGroup aria-label="dietary" name="dietary" value={dietary} onChange={handleDietary}>
