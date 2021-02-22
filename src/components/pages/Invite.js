@@ -100,8 +100,8 @@ const Invite = (props) => {
                   label="Friend's Name"
                   defaultValue="Dinner Plans Description"
                   variant="outlined"
-                  value={name}
-                  onChange={handleName}
+                  value={description}
+                  onChange={handleDescription}
                 /> 
                 <TextField
                   required
