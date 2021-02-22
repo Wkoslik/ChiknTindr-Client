@@ -7,13 +7,19 @@ import {
   Button,
   MobileStepper,
   Typography,
-  ThemeProvider
+  ThemeProvider,
+  List,
+  ListItem,
+  ListItemText
 } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
+import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
 const yelpJSON = [
   {
@@ -251,6 +257,7 @@ const yelpJSON = [
 const Restaurants = (props) => {
   
   const [activeStep, setActiveStep] = useState(0);
+  const [expanded, setExpanded] = useState('');
   
   const maxSteps = yelpJSON.length;
   console.log(yelpJSON[2].businesses[0], 'activeStep')
@@ -265,7 +272,9 @@ const Restaurants = (props) => {
     console.log('this restaurant has been resigned, moving on to next restaurant')
   }
 
-
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -276,10 +285,6 @@ const Restaurants = (props) => {
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
-    root: {
-      maxWidth: 400,
-      flexGrow: 1
-    },
     header: {
       display: "flex",
       alignItems: "center",
@@ -288,19 +293,62 @@ const Restaurants = (props) => {
       backgroundColor: theme.palette.background.default
     },
     img: {
-      maxWidth: 400,
       overflow: "hidden",
       display: "block",
       width: "100%"
+    },
+    list: {
+      display: "block",
     }
   }));
+
+  const Accordion = withStyles({
+    root: {
+      border: '1px solid rgba(0, 0, 0, .125)',
+      boxShadow: 'none',
+      '&:not(:last-child)': {
+        borderBottom: 0,
+      },
+      '&:before': {
+        display: 'none',
+      },
+      '&$expanded': {
+        margin: 'auto',
+      },
+    },
+    expanded: {},
+  })(MuiAccordion);
+
+  const AccordionSummary = withStyles({
+    root: {
+      backgroundColor: 'rgba(0, 0, 0, .03)',
+      borderBottom: '1px solid rgba(0, 0, 0, .125)',
+      marginBottom: -1,
+      minHeight: 56,
+      '&$expanded': {
+        minHeight: 56,
+      },
+    },
+    content: {
+      '&$expanded': {
+        margin: '12px 0',
+      },
+    },
+    expanded: {},
+  })(MuiAccordionSummary);
+
+  const AccordionDetails = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(2),
+    },
+  }))(MuiAccordionDetails);
 
   const classes = useStyles();
   const theme = useTheme();
 
   const priceToNumber = yelpJSON[activeStep].businesses[0].price.length
 
-
+  const combineAddress = `${yelpJSON[activeStep].businesses[0].location.address1} ${yelpJSON[activeStep].businesses[0].location.city} ${yelpJSON[activeStep].businesses[0].location.state} ${yelpJSON[activeStep].businesses[0].location.zip_code}`
 
   return (
     <div className={classes.root}>
@@ -346,6 +394,22 @@ const Restaurants = (props) => {
                   </Button>
                 }
               />
+              <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                  <Typography>
+                    More Info
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <List>
+                    <ListItem className={classes.list}>
+                      <ListItemText primary="Address" secondary={combineAddress} />
+                      <ListItemText primary="Phone Number" secondary={yelpJSON[activeStep].businesses[0].phone} />
+                      <ListItemText primary="Reviews" secondary={yelpJSON[activeStep].businesses[0].review_count} />
+                    </ListItem>
+                  </List>
+                </AccordionDetails>
+              </Accordion>
             </Paper>
           </Grid>
         </Grid>
