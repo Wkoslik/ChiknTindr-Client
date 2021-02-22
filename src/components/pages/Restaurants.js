@@ -264,7 +264,8 @@ const Restaurants = (props) => {
 
   const handleConfirm = () => {
     console.log('this restaurant has been selected');
-    // TODO: move on to Notice
+    // TODO: move on to next
+    // TODO: push like to db
   };
 
   const handleNext = () => {

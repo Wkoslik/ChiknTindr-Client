@@ -17,11 +17,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 const Invite = (props) => {
-  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
-  // TODO: add from password verification
-  const [redirect, setRedirect] = useState(false);
-
   const [categoryInput, setCategoryInput] = useState('');
   const [location, setLocation] = useState('');
   const [whereto, setWhereto] = useState({
@@ -30,9 +27,10 @@ const Invite = (props) => {
     DineIn: false,
     OutsideSeating: false
   })
+  const [redirect, setRedirect] = useState(false);
 
-  const handleName = e => {
-    setName(e.target.value)
+  const handleDescription = e => {
+    setDescription(e.target.value)
   };
 
   const handleEmail = e => {
@@ -57,7 +55,7 @@ const Invite = (props) => {
       // TODO Commented out until we get the connection with the DB
       axios.post(
           // `${process.env.REACT_APP_SERVER_URL}/api/signup`,
-          // { name, email }
+          // { name, email, categoryInput, location, whereTo }
           console.log('POST REQ')
       ).then(response => {
           console.log(response.data)
@@ -97,26 +95,19 @@ const Invite = (props) => {
               <div>
                 <TextField
                   required
-                  id="friend-name"
-                  label="Friend's Name"
-                  defaultValue="Name"
+                  id="friend-name" //TODO where else will we need to change this id? 
+                  label="Dinner plan description"
+                  defaultValue="Dinner Plans Description"
                   variant="outlined"
-                  value={name}
-                  onChange={handleName}
-                />
-                {/* <TextField
-                  id="outlined-password-input"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="outlined"
-                /> */}
+                  value={description}
+                  onChange={handleDescription}
+                /> 
                 <TextField
                   required
                   id="outlined-helperText"
                   label="Friend's Email"
                   defaultValue="email"
-                  helperText="sending invitation to your friend"
+                  helperText="so we can send your friend an invite"
                   variant="outlined"
                   value={email}
                   onChange={handleEmail}
@@ -128,7 +119,7 @@ const Invite = (props) => {
               <div>
                 <TextField
                   id="category"
-                  label="Category"
+                  label="Category" //TODO can we change this to somethign more descriptive than 'category'?
                   variant="outlined"
                   value={categoryInput}
                   onChange={handleCategory}
@@ -162,7 +153,7 @@ const Invite = (props) => {
                       label="Outside Seating"
                     />
                   </FormGroup>
-                  <FormHelperText>Optional text goes here</FormHelperText>
+                  {/* <FormHelperText>Optional text goes here</FormHelperText> */}
                 </FormControl>
               </div>
               <Button variant="contained" color="primary" onClick={handleSubmit}>Invite</Button>

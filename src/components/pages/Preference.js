@@ -9,6 +9,7 @@ import {
   FormLabel, 
   Button
 } from '@material-ui/core';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
@@ -20,19 +21,28 @@ const Preference = (props) => {
 
   const handleDietary = event => {
     setDietary(event.target.value)
+    // console.log(event.target.value)
   }
   
   const handleRating = event => {
     setRating(event.target.value.toString())
+    // console.log(event.target.value)
   }
 
   const handlePrice = event => {
     setPrice(event.target.value.toString())
+    // console.log(event.target.value)
   }
 
   const handleFormInput = (e) => {
     e.preventDefault();
-    console.log('getting the data')
+    axios.post(
+      // `${process.env.REACT_APP_SERVER_URL}/preference`,
+      // { rating, price, dietary }
+      console.log('POST REQ -- Saving preferences')
+  ).then(response => {
+      console.log(response.data)
+  }).catch(err => console.log(`😖 error`, err));
   }
 
 
@@ -73,7 +83,7 @@ const Preference = (props) => {
                 <FormControlLabel value="halal" control={<Radio />} label="Halal" />
                 <FormControlLabel value="" control={<Radio />} label="none" />
               </RadioGroup>
-              <Button variant="contained" color="primary" onClick={handleFormInput}>Next</Button>
+              <Button variant="contained" color="primary" onClick={handleFormInput}>Save</Button>
             </FormControl>
           </Paper>
         </Grid>
