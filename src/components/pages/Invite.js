@@ -19,9 +19,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const Invite = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  // TODO: add from password verification
-  const [redirect, setRedirect] = useState(false);
-
   const [categoryInput, setCategoryInput] = useState('');
   const [location, setLocation] = useState('');
   const [whereto, setWhereto] = useState({
@@ -30,6 +27,7 @@ const Invite = (props) => {
     DineIn: false,
     OutsideSeating: false
   })
+  const [redirect, setRedirect] = useState(false);
 
   const handleName = e => {
     setName(e.target.value)
@@ -57,7 +55,7 @@ const Invite = (props) => {
       // TODO Commented out until we get the connection with the DB
       axios.post(
           // `${process.env.REACT_APP_SERVER_URL}/api/signup`,
-          // { name, email }
+          // { name, email, categoryInput, location, whereTo }
           console.log('POST REQ')
       ).then(response => {
           console.log(response.data)
@@ -103,14 +101,7 @@ const Invite = (props) => {
                   variant="outlined"
                   value={name}
                   onChange={handleName}
-                />
-                {/* <TextField
-                  id="outlined-password-input"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="outlined"
-                /> */}
+                /> 
                 <TextField
                   required
                   id="outlined-helperText"
@@ -128,7 +119,7 @@ const Invite = (props) => {
               <div>
                 <TextField
                   id="category"
-                  label="Category"
+                  label="Category" //TODO can we change this to somethign more descriptive than 'category'?
                   variant="outlined"
                   value={categoryInput}
                   onChange={handleCategory}
