@@ -14,7 +14,6 @@ import {
     FormLabel,
     Button,
     TextField,
-    Typography
 } from '@material-ui/core';
 import theme from '../../theme/theme';
 
@@ -118,37 +117,6 @@ const Signup = (props) => {
                     </Grid>
                 </ThemeProvider>
             </div>
-            {/* <h1>SignUp</h1>
-            <form onSubmit={handleSubmit}>
-            <div className="form-elem">
-                <label htmlFor="name">Name: </label>
-                <input 
-                type="text" 
-                name="name" 
-                placeholder="Name goes here"
-                onChange={e => setName(e.target.value)}
-                />
-            </div>
-            <div className="form-elem">
-                <label htmlFor="email">Email: </label>
-                <input
-                type="email"
-                name="email"
-                placeholder="email goes here"
-                onChange={e => setEmail(e.target.value)}
-                />
-            </div>
-            <div className="form-elem">
-                <label htmlFor="password">Password: </label>
-                <input
-                type="password"
-                name="password"
-                placeholder="password goes here"
-                onChange={e => setPassword(e.target.value)}
-                />
-            </div>
-            <input type="submit" value="Signup" />
-            </form> */}
         </section>
     );
 }
