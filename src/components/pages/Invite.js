@@ -54,13 +54,13 @@ const Invite = (props) => {
       console.log('button clicked')
       // TODO Commented out until we get the connection with the DB
       axios.post(
-          // `${process.env.REACT_APP_SERVER_URL}/api/signup`,
-          // { name, email, categoryInput, location, whereTo }
+          `${process.env.REACT_APP_SERVER_URL}/user/invite`,
+          // { description , email, categoryInput, location, whereTo }
           console.log('POST REQ')
       ).then(response => {
-          console.log(response.data)
-          setRedirect(true);
-      }).catch(err => console.log(`😖 error`, err));
+          console.log('response.data')
+          // setRedirect(true);
+      }).catch(err => console.log(`😖 error in invite handlesubmit`, err));
   };
   
   const useStyles = makeStyles((theme) => ({
