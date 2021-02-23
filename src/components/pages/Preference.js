@@ -42,7 +42,6 @@ const Preference = (props) => {
     console.log('handleforminput')
       axios.put(`${process.env.REACT_APP_SERVER_URL}/user/preferences`, { price, dietary })
           .then(response => {
-        console.log(response.data.message)
         
           })
           .catch(err => {
