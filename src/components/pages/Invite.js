@@ -52,14 +52,11 @@ const Invite = (props) => {
   const handleSubmit = e => {
       e.preventDefault();
       console.log('button clicked')
-      // TODO Commented out until we get the connection with the DB
       axios.post(
           `${process.env.REACT_APP_SERVER_URL}/user/invite`,
           { description , email, categoryInput, location, whereto }
-          // console.log('POST REQ')
       ).then(response => {
-          console.log(response.data)
-          // setRedirect(true);
+          setRedirect(true)
       }).catch(err => console.log(`😖 error in invite handlesubmit`, err));
   };
   
@@ -84,6 +81,7 @@ const Invite = (props) => {
 
   const classes = useStyles();
 
+  //TODO Change redirect to list of instances
   if (redirect) return <Redirect to='/restaurants' />
   return (
     <div className={classes.root}>

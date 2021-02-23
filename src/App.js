@@ -23,7 +23,6 @@ function App() {
       localStorage.removeItem('jwtToke');
     }
   }
-//TODO remove footer 
 
   return (
     <Router>
