@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { 
   Grid, 
   Paper, 
@@ -18,6 +18,7 @@ const Preference = (props) => {
   const [rating, setRating] = useState('');
   const [price, setPrice] = useState('');
   const [dietary, setDietary] = useState('');
+  const [messsage, setMessage] = useState('')
 
   const handleDietary = event => {
     setDietary(event.target.value)
@@ -36,13 +37,21 @@ const Preference = (props) => {
 
   const handleFormInput = (e) => {
     e.preventDefault();
-    axios.post(
-      // `${process.env.REACT_APP_SERVER_URL}/preference`,
-      // { rating, price, dietary }
-      console.log('POST REQ -- Saving preferences')
-  ).then(response => {
-      console.log(response.data)
-  }).catch(err => console.log(`😖 error`, err));
+    useEffect(() => {
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/user/preferences`)
+          .then(response => {
+          setMessage(response.data.message)
+          if(message){
+
+            console.log(message);
+          }
+          })
+          .catch(err => {
+          console.log('error  in useEffect', err)
+          setMessage(err.message);
+          props.handleAuth(null);
+          })
+  }, []);
   }
 
 
