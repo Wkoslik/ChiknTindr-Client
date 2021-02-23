@@ -63,7 +63,7 @@ const Signup = (props) => {
 
     const classes = useStyles();
 
-    if (redirect) return <Redirect to='/preference' />
+    if (redirect) return <Redirect to='/preferences' />
     return (
         <section>
             <div className={classes.root}>

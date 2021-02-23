@@ -53,6 +53,7 @@ const Login = (props) => {
     }).catch(setError)
     }
 
+
     // material-ui styles
     const useStyles = makeStyles((theme) => ({
         form: {
@@ -78,7 +79,7 @@ const Login = (props) => {
     
     const classes = useStyles();
 
-    if (redirect) return <Redirect to='/preferences' />
+    if (redirect) return <Redirect to='/invite' />
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}

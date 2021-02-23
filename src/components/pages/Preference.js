@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import {
-  Grid,
-  Paper,
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
+import { 
+  Grid, 
+  Paper, 
+  Radio, 
+  RadioGroup, 
+  FormControl, 
+  FormControlLabel, 
+  FormLabel, 
   Button
 } from '@material-ui/core';
 import axios from 'axios';
@@ -21,8 +21,9 @@ const Preference = (props) => {
   const [messsage, setMessage] = useState('')
 
   const handleDietary = event => {
-    setDietary(event.target.value)
     // console.log(event.target.value)
+    setDietary(event.target.value)
+    console.log(dietary)
   }
 
   const handleRating = event => {
@@ -31,23 +32,23 @@ const Preference = (props) => {
   }
 
   const handlePrice = event => {
-    setPrice(event.target.value.toString())
     // console.log(event.target.value)
+    setPrice(event.target.value.toString())
+    console.log(price)
   }
 
   const handleFormInput = (e) => {
     e.preventDefault();
     console.log('handleforminput')
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/preferences`)
-      .then(response => {
-        console.log("YOU HIT THE REACT SERVER")
-      })
-      .catch(err => {
-        console.log('error  in handleFormInput', err)
-        setMessage(err.message);
-        // props.handleAuth(null);
-      })
-      console.log('Handle form input == TAKE TWO')
+      axios.put(`${process.env.REACT_APP_SERVER_URL}/user/preferences`, { price, dietary })
+          .then(response => {
+        
+          })
+          .catch(err => {
+          console.log('error  in useEffect', err)
+          setMessage(err.message);
+          // props.handleAuth(null);
+          })
   }
 
 
