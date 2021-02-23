@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { 
-  Grid, 
-  Paper, 
-  Radio, 
-  RadioGroup, 
-  FormControl, 
-  FormControlLabel, 
-  FormLabel, 
+import { useEffect, useState } from 'react';
+import {
+  Grid,
+  Paper,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
   Button
 } from '@material-ui/core';
 import axios from 'axios';
@@ -18,12 +18,13 @@ const Preference = (props) => {
   const [rating, setRating] = useState('');
   const [price, setPrice] = useState('');
   const [dietary, setDietary] = useState('');
+  const [messsage, setMessage] = useState('')
 
   const handleDietary = event => {
     setDietary(event.target.value)
     // console.log(event.target.value)
   }
-  
+
   const handleRating = event => {
     setRating(event.target.value.toString())
     // console.log(event.target.value)
@@ -36,13 +37,17 @@ const Preference = (props) => {
 
   const handleFormInput = (e) => {
     e.preventDefault();
-    axios.post(
-      // `${process.env.REACT_APP_SERVER_URL}/preference`,
-      // { rating, price, dietary }
-      console.log('POST REQ -- Saving preferences')
-  ).then(response => {
-      console.log(response.data)
-  }).catch(err => console.log(`😖 error`, err));
+    console.log('handleforminput')
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/preferences`)
+      .then(response => {
+        console.log("YOU HIT THE REACT SERVER")
+      })
+      .catch(err => {
+        console.log('error  in handleFormInput', err)
+        setMessage(err.message);
+        // props.handleAuth(null);
+      })
+      console.log('Handle form input == TAKE TWO')
   }
 
 

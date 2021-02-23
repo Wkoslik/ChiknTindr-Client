@@ -38,7 +38,7 @@ const Login = (props) => {
     }).catch(setError)
     }
 
-    if (redirect) return <Redirect to='/preference' />
+    if (redirect) return <Redirect to='/preferences' />
     return (
         <section>
             {error ? <Error error={error} /> : null}
