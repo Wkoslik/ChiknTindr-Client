@@ -77,6 +77,8 @@ const Invite = (props) => {
     },
     root: {
       flexGrow: 1,
+      maxWidth: 600,
+      margin: "0 auto"
     },
   }));
 
@@ -107,7 +109,7 @@ const Invite = (props) => {
                   id="outlined-helperText"
                   label="Friend's Email"
                   defaultValue="email"
-                  helperText="so we can send your friend an invite"
+                  helperText="Send your friend an invite"
                   variant="outlined"
                   value={email}
                   onChange={handleEmail}
