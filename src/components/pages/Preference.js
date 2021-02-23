@@ -25,7 +25,7 @@ const Preference = (props) => {
     setDietary(event.target.value)
     console.log(dietary)
   }
-  
+
   const handleRating = event => {
     setRating(event.target.value.toString())
     // console.log(event.target.value)
@@ -50,13 +50,14 @@ const Preference = (props) => {
           setMessage(err.message);
           // props.handleAuth(null);
           })
-  
   }
 
 
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      maxWidth: 600,
+      margin: "0 auto"
     },
     paper: {
       padding: theme.spacing(2),

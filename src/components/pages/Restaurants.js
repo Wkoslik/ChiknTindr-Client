@@ -1,5 +1,3 @@
-import Infocard from './Infocard';
-
 import { useState } from 'react';
 import {
   Grid,
@@ -388,12 +386,12 @@ const Restaurants = (props) => {
                 className={classes.root}
                 nextButton={
                   <Button size="small" onClick={handleConfirm}>
-                    <CheckCircleIcon /> This is it
+                    This is it! <CheckCircleIcon />  
                   </Button>
                 }
                 backButton={
                   <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps}>
-                    <CancelIcon /> Nope. Next.
+                    <CancelIcon />  Nope. Next.
                   </Button>
                 }
               />

@@ -288,6 +288,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 import theme from '../../theme/theme';
 
+// --------------------------------------------------------- styles
+
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -317,11 +319,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
     const classes = useStyles();
+    // -------------------------------------------- states
+
     const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorLeftEl, setAnchorLeftEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    // -------------------------------------------- e.handlers
     
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -337,9 +344,12 @@ const Header = (props) => {
     };
     
     const handleMobileMenuOpen = (event) => {
+        console.log(event.currentTarget, 'q123412341234')
         setMobileMoreAnchorEl(event.currentTarget);
     };
     
+    // --------------------------------------------- [logged out] right side menu popup desktop
+
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -351,10 +361,38 @@ const Header = (props) => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link onClick={handleMenuClose} className="nav-link" to='/profile'>Account</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+            <Link onClick={handleMenuClose} className="nav-link" to='/profile'>Account</Link>
+            <Link onClick={handleMenuClose} className="nav-link" to='/auth/login'>Log In</Link>
+            <Link onClick={handleMenuClose} className="nav-link" to="/auth/signup">Sign Up</Link>
         </Menu>
     );
+
+    // --------------------------------------------- [logged out] left side menu popup desktop
+    const menuLeftId = 'left-side-menu';
+    const renderMenuLeft = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+            id={menuLeftId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+            <MenuItem onClick={handleMenuClose}>StartDine</MenuItem>
+            <MenuItem onClick={handleMenuClose}>About</MenuItem>
+            <Link onClick={handleMenuClose} className="nav-link" to='/'>Home</Link>
+            <Link className="nav-link" to='/profile'>Account</Link>
+            <Link className="nav-link" to='/auth/login'>Log In</Link>
+            <Link className="nav-link" to="/auth/signup">Sign Up</Link>
+        </Menu>
+    );
+    // --------------------------------------------- [logged out] right side menu functions mobile
     
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -391,7 +429,10 @@ const Header = (props) => {
 
         </Menu>
     );
-    return (
+    
+    // ternary according to logged in/out
+    
+    let conditionalLinks = props.currentUser ?
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
                 <div className={classes.grow}>
@@ -402,6 +443,9 @@ const Header = (props) => {
                         className={classes.menuButton}
                         color="inherit"
                         aria-label="open drawer"
+                        aria-controls={menuLeftId}
+                        aria-haspopup="true"
+                        onClick={handleProfileMenuOpen}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -440,6 +484,65 @@ const Header = (props) => {
                     </Toolbar>
                     </AppBar>
                     {renderMobileMenu}
+                    {renderMenu}
+                </div>
+            </ThemeProvider>
+        </div>
+    :
+        <div>
+            <p>not logged in</p>
+        </div>
+
+    return (
+        <div className={classes.root}>
+            <ThemeProvider theme={theme}>
+                <div className={classes.grow}>
+                    <AppBar position="static">
+                    <Toolbar>
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="show more"
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                        Material-UI
+                    </Typography>
+                    <div className={classes.grow} />
+                    <div className={classes.sectionDesktop}>
+                        <IconButton aria-label="show 17 new notifications" color="inherit">
+                            <Badge badgeContent={17} color="secondary">
+                            <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    </div>
+                    <div className={classes.sectionMobile}>
+                        <IconButton
+                            aria-label="show more"
+                            aria-controls={mobileMenuId}
+                            aria-haspopup="true"
+                            onClick={handleMobileMenuOpen}
+                            color="inherit"
+                        >
+                            <MoreIcon />
+                        </IconButton>
+                    </div>
+                    </Toolbar>
+                    </AppBar>
+                    {renderMobileMenu}
+                    {renderMenuLeft}
                     {renderMenu}
                 </div>
             </ThemeProvider>
