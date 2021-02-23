@@ -262,7 +262,7 @@ const Restaurants = (props) => {
 
   const handleConfirm = () => {
     console.log('this restaurant has been selected');
-    // TODO: move on to next
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
     // TODO: push like to db
   };
 
