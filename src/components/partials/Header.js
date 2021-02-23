@@ -235,9 +235,7 @@ const Header = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Material-UI
-                    </Typography>
+                    <img src="img/logowhite.svg" style={{maxHeight: "30px"}} />
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
