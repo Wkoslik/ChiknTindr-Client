@@ -327,20 +327,32 @@ const Header = (props) => {
     
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const isLeftMenuOpen = Boolean(anchorLeftEl);
 
-    // -------------------------------------------- e.handlers
+    // -------------------------------------------- e.handlers for right side menu
     
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
     
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-    
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
+    };
+    
+    // -------------------------------------------- e.handlers for the left side menu
+    
+    const handleHamburgerMenuOpen = (event) => {
+        setAnchorLeftEl(event.currentTarget);
+    };
+
+    const handleHamburgerMenuClose = () => {
+        setAnchorLeftEl(null);
+    } 
+    
+    // -------------------------------------------- e.handler for the mobile menu right side
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
     };
     
     const handleMobileMenuOpen = (event) => {
@@ -375,13 +387,13 @@ const Header = (props) => {
     const menuLeftId = 'left-side-menu';
     const renderMenuLeft = (
         <Menu
-            anchorEl={anchorEl}
+            anchorEl={anchorLeftEl}
             anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
             id={menuLeftId}
             keepMounted
             transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
+            open={isLeftMenuOpen}
+            onClose={handleHamburgerMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Home</MenuItem>
             <MenuItem onClick={handleMenuClose}>StartDine</MenuItem>
@@ -445,7 +457,7 @@ const Header = (props) => {
                         aria-label="open drawer"
                         aria-controls={menuLeftId}
                         aria-haspopup="true"
-                        onClick={handleProfileMenuOpen}
+                        onClick={handleHamburgerMenuOpen}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -503,7 +515,10 @@ const Header = (props) => {
                         edge="start"
                         className={classes.menuButton}
                         color="inherit"
-                        aria-label="show more"
+                        aria-label="show links"
+                        aria-controls={menuLeftId}
+                        aira-haspopup="true"
+                        onClick={handleHamburgerMenuOpen}
                     >
                         <MenuIcon />
                     </IconButton>
