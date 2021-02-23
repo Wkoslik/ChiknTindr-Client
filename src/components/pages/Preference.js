@@ -13,12 +13,14 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { Redirect } from 'react-router-dom'
 
 const Preference = (props) => {
   const [rating, setRating] = useState('');
   const [price, setPrice] = useState('');
   const [dietary, setDietary] = useState('');
   const [messsage, setMessage] = useState('')
+  const [redirect, setRedirect] = useState(false);
 
   const handleDietary = event => {
     // console.log(event.target.value)
@@ -42,7 +44,7 @@ const Preference = (props) => {
     console.log('handleforminput')
       axios.put(`${process.env.REACT_APP_SERVER_URL}/user/preferences`, { price, dietary })
           .then(response => {
-        
+            setRedirect(true)
           })
           .catch(err => {
           console.log('error  in useEffect', err)
@@ -68,6 +70,7 @@ const Preference = (props) => {
   const classes = useStyles();
 
 //TODO logo not loading
+if (redirect) return <Redirect to='/invite' /> 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
