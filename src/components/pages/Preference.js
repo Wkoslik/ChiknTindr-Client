@@ -37,21 +37,18 @@ const Preference = (props) => {
 
   const handleFormInput = (e) => {
     e.preventDefault();
-    useEffect(() => {
+    console.log('handleforminput')
       axios.get(`${process.env.REACT_APP_SERVER_URL}/user/preferences`)
           .then(response => {
-          setMessage(response.data.message)
-          if(message){
-
-            console.log(message);
-          }
+        console.log(response.data.message)
+        
           })
           .catch(err => {
           console.log('error  in useEffect', err)
           setMessage(err.message);
           props.handleAuth(null);
           })
-  }, []);
+  
   }
 
 
