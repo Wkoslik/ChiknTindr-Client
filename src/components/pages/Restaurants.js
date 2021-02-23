@@ -257,8 +257,8 @@ const Restaurants = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
   
-  const maxSteps = yelpJSON.length;
-  console.log(yelpJSON[2].businesses[0], 'activeStep')
+  const maxSteps = yelpJSON.length - 1;
+  // console.log(yelpJSON[2].businesses[0], 'activeStep')
 
   const handleConfirm = () => {
     console.log('this restaurant has been selected');
