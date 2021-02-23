@@ -50,16 +50,16 @@ const Invite = (props) => {
   };
 
   const handleSubmit = e => {
-      e.preventDefault();
-      console.log('button clicked')
-      axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/user/invite`,
-          { description , email, categoryInput, location, whereto }
-      ).then(response => {
-          setRedirect(true)
-      }).catch(err => console.log(`😖 error in invite handlesubmit`, err));
+    e.preventDefault();
+    console.log('button clicked')
+    axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/user/invite`,
+      { description, email, categoryInput, location, whereto }
+    ).then(response => {
+      setRedirect(true)
+    }).catch(err => console.log(`😖 error in invite handlesubmit`, err));
   };
-  
+
   const useStyles = makeStyles((theme) => ({
     form: {
       '& .MuiTextField-root': {
@@ -89,8 +89,8 @@ const Invite = (props) => {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <form className={classes.form} noValidate autoComplete="off">
-            <FormLabel>
-              Invite Friend
+              <FormLabel>
+                Invite Friend
             </FormLabel>
               <div>
                 <TextField
@@ -101,7 +101,7 @@ const Invite = (props) => {
                   variant="outlined"
                   value={description}
                   onChange={handleDescription}
-                /> 
+                />
                 <TextField
                   required
                   id="outlined-helperText"
@@ -113,8 +113,8 @@ const Invite = (props) => {
                   onChange={handleEmail}
                 />
               </div>
-            <FormLabel>
-              Options
+              <FormLabel>
+                Options
             </FormLabel>
               <div>
                 <TextField
