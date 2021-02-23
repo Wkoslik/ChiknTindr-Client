@@ -5,7 +5,6 @@ import Profile from './pages/Profile';
 import Restaurants from './pages/Restaurants';
 import Preference from './pages/Preference';
 import Invite from './pages/Invite';
-import Infocard from './pages/Infocard';
 import InstanceList from './pages/InstanceList';
 import Result from './pages/Result';
 import About from './pages/About'
@@ -28,7 +27,6 @@ const Content = (props) => {
         <Route path='/preferences' component={Preference} />
         <Route path='/invite' component={Invite} />
         <Route path='/restaurants' component={Restaurants} />
-        {/* <Route path='/restaurants' component={Infocard} /> */}
         <Route path='/dinnerplans' component={InstanceList} />
         <Route path='/result' component={Result} />
         <Route path='/auth' render={(renderProps) => (
