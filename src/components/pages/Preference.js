@@ -21,8 +21,9 @@ const Preference = (props) => {
   const [messsage, setMessage] = useState('')
 
   const handleDietary = event => {
-    setDietary(event.target.value)
     // console.log(event.target.value)
+    setDietary(event.target.value)
+    console.log(dietary)
   }
   
   const handleRating = event => {
@@ -31,14 +32,15 @@ const Preference = (props) => {
   }
 
   const handlePrice = event => {
-    setPrice(event.target.value.toString())
     // console.log(event.target.value)
+    setPrice(event.target.value.toString())
+    console.log(price)
   }
 
   const handleFormInput = (e) => {
     e.preventDefault();
     console.log('handleforminput')
-      axios.get(`${process.env.REACT_APP_SERVER_URL}/user/preferences`)
+      axios.put(`${process.env.REACT_APP_SERVER_URL}/user/preferences`, { price, dietary })
           .then(response => {
         console.log(response.data.message)
         
@@ -46,7 +48,7 @@ const Preference = (props) => {
           .catch(err => {
           console.log('error  in useEffect', err)
           setMessage(err.message);
-          props.handleAuth(null);
+          // props.handleAuth(null);
           })
   
   }
