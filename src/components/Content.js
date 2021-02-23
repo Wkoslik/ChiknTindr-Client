@@ -6,7 +6,7 @@ import Restaurants from './pages/Restaurants';
 import Preference from './pages/Preference';
 import Invite from './pages/Invite';
 import Infocard from './pages/Infocard';
-import Notice from './pages/Notice';
+import InstanceList from './pages/InstanceList';
 import Result from './pages/Result';
 import About from './pages/About'
 
@@ -24,13 +24,13 @@ const Content = (props) => {
         //TODO: include handleAuth to restaurant, Preference, Invite, Infocard, Notice, Result
         //TODO: commented out infocard because that's being rendered within restaurants so props will pass through restaurants to infocard
     <main>
-        <h6>Content page</h6>
+        <h5>Content page - Sending message according to what page you're on</h5>
         <Route exact path='/' component={Home} />
         <Route path='/preference' component={Preference} />
         <Route path='/invite' component={Invite} />
         <Route path='/restaurants' component={Restaurants} />
         {/* <Route path='/restaurants' component={Infocard} /> */}
-        <Route path='/notification' component={Notice} />
+        <Route path='/dinnerplans' component={InstanceList} />
         <Route path='/result' component={Result} />
         <Route path='/auth' render={(renderProps) => (
             <Auth handleAuth={props.handleAuth} {...renderProps} />
