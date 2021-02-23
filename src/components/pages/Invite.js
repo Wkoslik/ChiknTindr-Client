@@ -82,7 +82,7 @@ const Invite = (props) => {
   const classes = useStyles();
 
   //TODO Change redirect to list of instances
-  if (redirect) return <Redirect to='/restaurants' />
+  if (redirect) return <Redirect to='/dinnerplans' />
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
