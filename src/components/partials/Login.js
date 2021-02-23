@@ -40,7 +40,8 @@ const Login = (props) => {
     const [error, setError] = useState(null);
 
     const handleSubmit = e => {
-        e.preventDefault();
+    e.preventDefault();
+    // console.log('am I hitting the submit?')
 
         axios.post(
             `${process.env.REACT_APP_SERVER_URL}/api/login`,
@@ -79,7 +80,7 @@ const Login = (props) => {
 
     const classes = useStyles();
 
-    if (redirect) return <Redirect to='/invite' />
+    if (redirect) return <Redirect to='/preferences' />
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}
