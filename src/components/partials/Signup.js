@@ -62,7 +62,7 @@ const Signup = (props) => {
     }));
 
     const classes = useStyles();
-
+//TODO logo not loading
     if (redirect) return <Redirect to='/preferences' />
     return (
         <section>

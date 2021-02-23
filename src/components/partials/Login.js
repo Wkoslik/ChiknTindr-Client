@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 // material-ui imports
 import { makeStyles } from '@material-ui/core/styles';
-import { 
+import {
     ThemeProvider,
     Grid,
     Paper,
@@ -43,24 +43,24 @@ const Login = (props) => {
     e.preventDefault();
     // console.log('am I hitting the submit?')
 
-    axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/login`,
-        { email, password }
-    ).then(response => {
-        localStorage.setItem('jwtToken', response.data.token);
-        setAuthToken(response.data.token);
-        props.handleAuth(response.data.user);
-        setRedirect(true);
-    }).catch(setError)
+        axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/api/login`,
+            { email, password }
+        ).then(response => {
+            localStorage.setItem('jwtToken', response.data.token);
+            setAuthToken(response.data.token);
+            props.handleAuth(response.data.user);
+            setRedirect(true);
+        }).catch(setError)
     }
 
-
+//TODO LOGIN PAGE logo not loading
     // material-ui styles
     const useStyles = makeStyles((theme) => ({
         form: {
             '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
+                margin: theme.spacing(1),
+                width: '25ch',
             },
         },
         paper: {
@@ -77,7 +77,7 @@ const Login = (props) => {
             color: "red"
         }
     }));
-    
+
     const classes = useStyles();
 
     if (redirect) return <Redirect to='/preferences' />
@@ -94,7 +94,7 @@ const Login = (props) => {
                                         Login
                                     </FormLabel>
                                     <div>
-                                        {error ? 
+                                        {error ?
                                             <>
                                                 <TextField
                                                     required
@@ -108,7 +108,7 @@ const Login = (props) => {
                                                     helperText="Check email and password again"
                                                     onChange={e => setEmail(e.target.value)}
                                                 />
-                                                <TextField 
+                                                <TextField
                                                     hintText="Password"
                                                     floatingLabelText="Password"
                                                     required
@@ -124,7 +124,7 @@ const Login = (props) => {
                                                     onChange={e => setPassword(e.target.value)}
                                                 />
                                             </>
-                                        :
+                                            :
                                             <>
                                                 <TextField
                                                     required
@@ -136,7 +136,7 @@ const Login = (props) => {
                                                     value={email}
                                                     onChange={e => setEmail(e.target.value)}
                                                 />
-                                                <TextField 
+                                                <TextField
                                                     hintText="Password"
                                                     floatingLabelText="Password"
                                                     required

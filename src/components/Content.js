@@ -5,7 +5,6 @@ import Profile from './pages/Profile';
 import Restaurants from './pages/Restaurants';
 import Preference from './pages/Preference';
 import Invite from './pages/Invite';
-import Infocard from './pages/Infocard';
 import InstanceList from './pages/InstanceList';
 import Result from './pages/Result';
 import About from './pages/About'
@@ -21,16 +20,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const Content = (props) => {
     return (
-        //TODO: include handleAuth to restaurant, Preference, Invite, Infocard, Notice, Result
-        //TODO: commented out infocard because that's being rendered within restaurants so props will pass through restaurants to infocard
+        //TODO: include handleAuth to Invite, Notice, Result
     <main>
         <Route exact path='/' component={Home} />
-        <Route path='/preferences' component={Preference} />
-        <Route path='/invite' component={Invite} />
-        <Route path='/restaurants' component={Restaurants} />
-        {/* <Route path='/restaurants' component={Infocard} /> */}
-        <Route path='/dinnerplans' component={InstanceList} />
-        <Route path='/result' component={Result} />
+        <Route path='/preferences' render={(renderProps) => (
+            <Preference handleAuth={props.handleAuth} {...renderProps} />
+        )}/>
+        <Route path='/invite' render={(renderProps) => (
+            <Invite handleAuth={props.handleAuth} {...renderProps} />
+        )}/>
+        <Route path='/restaurants' render={(renderProps) => (
+            <Restaurants handleAuth={props.handleAuth} {...renderProps} />
+        )}/>
+        <Route path='/dinnerplans' render={(renderProps) => (
+            <InstanceList handleAuth={props.handleAuth} {...renderProps} />
+        )}/>
+        <Route path='/result' render={(renderProps) => (
+            <Result handleAuth={props.handleAuth} {...renderProps} />
+        )}/>
         <Route path='/auth' render={(renderProps) => (
             <Auth handleAuth={props.handleAuth} {...renderProps} />
         )} />
