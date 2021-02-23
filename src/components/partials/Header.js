@@ -374,12 +374,9 @@ const Header = (props) => {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}><Link onClick={handleMenuClose} className="nav-link" to='/profile'>Account</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
-            <Link onClick={handleMenuClose} className="nav-link" to='/profile'>Account</Link>
-            <Link onClick={handleMenuClose} className="nav-link" to='/auth/login'>Log In</Link>
-            <Link onClick={handleMenuClose} className="nav-link" to="/auth/signup">Sign Up</Link>
+            <MenuItem onClick={handleMenuClose}><Link onClick={handleMenuClose} className="nav-link" to='/auth/login'>Log In</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link onClick={handleMenuClose} className="nav-link" to="/auth/signup">Sign Up</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><span className="nav-link" onClick={e => props.handleAuth(null)}>logout</span></MenuItem>
         </Menu>
     );
 
@@ -395,13 +392,9 @@ const Header = (props) => {
             open={isLeftMenuOpen}
             onClose={handleHamburgerMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Home</MenuItem>
-            <MenuItem onClick={handleMenuClose}>StartDine</MenuItem>
-            <MenuItem onClick={handleMenuClose}>About</MenuItem>
-            <Link onClick={handleMenuClose} className="nav-link" to='/'>Home</Link>
-            <Link className="nav-link" to='/profile'>Account</Link>
-            <Link className="nav-link" to='/auth/login'>Log In</Link>
-            <Link className="nav-link" to="/auth/signup">Sign Up</Link>
+            <MenuItem onClick={handleHamburgerMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/'>Home</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/dinnerplans'>Start Dine</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/about'>RESTaurateurs!</Link></MenuItem>
         </Menu>
     );
     // --------------------------------------------- [logged out] right side menu functions mobile
@@ -445,60 +438,8 @@ const Header = (props) => {
     // ternary according to logged in/out
     
     let conditionalLinks = props.currentUser ?
-        <div className={classes.root}>
-            <ThemeProvider theme={theme}>
-                <div className={classes.grow}>
-                    <AppBar position="static">
-                    <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                        aria-controls={menuLeftId}
-                        aria-haspopup="true"
-                        onClick={handleHamburgerMenuOpen}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Material-UI
-                    </Typography>
-                    <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
-                            <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                    </div>
-                    <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </div>
-                    </Toolbar>
-                    </AppBar>
-                    {renderMobileMenu}
-                    {renderMenu}
-                </div>
-            </ThemeProvider>
+        <div>
+            <p>use logged in</p>
         </div>
     :
         <div>
