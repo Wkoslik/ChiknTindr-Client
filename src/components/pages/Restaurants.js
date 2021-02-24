@@ -19,6 +19,8 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
+import theme from '../../theme/theme';
+
 const yelpJSON = [
   {
   "total": 8228,

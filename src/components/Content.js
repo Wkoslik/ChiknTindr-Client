@@ -7,7 +7,8 @@ import Preference from './pages/Preference';
 import Invite from './pages/Invite';
 import InstanceList from './pages/InstanceList';
 import Result from './pages/Result';
-import About from './pages/About'
+import About from './pages/About';
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const token = localStorage.getItem('jwtToken');
