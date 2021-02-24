@@ -23,20 +23,20 @@ const InstanceList = (props) => {
     {
       "name": "Sean",
       "restaurant_is_chosen": true,
-      "match_is_started": true,
-      "match_complete": true
+      "started": true,
+      "completed": true
     },
     {
       "name": "david",
       "restaurant_is_chosen": false,
-      "match_is_started": false,
-      "match_complete": false
+      "started": false,
+      "completed": false
     },
     {
       "name": "Whitney",
       "restaurant_is_chosen": false,
-      "match_is_started": true,
-      "match_complete": false
+      "started": true,
+      "completed": false
     },
     {
       "name": "Young",
@@ -49,8 +49,9 @@ const InstanceList = (props) => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plans`)
       .then(response => {
-        setMessage(response.message)
-        console.log(messsage)
+        let plans = response.data.userInstances
+        // console.log(response.data.userInstances)
+        setDinnerPlans(plans)
       })
       .catch(err => {
         setMessage(err)
@@ -58,7 +59,7 @@ const InstanceList = (props) => {
       })
   }, [])
 
-
+  console.log(dinnerPlans)
   // ------------------------------------------- e.handlers
 
   const buttonHandlerView = e => {
@@ -89,9 +90,9 @@ const InstanceList = (props) => {
   // ---------------------------------------- mapping JSON
 
   let creatingList =
-    instanceJSON.map((list, i) => {
-      let placeText = `Dinner with ${list.name}`;
-      if (list.match_is_started && list.match_complete) {
+    dinnerPlans.map((list, i) => {
+      let placeText = `${list.name}`;
+      if (list.started && list.complete) {
         return (
           <ListItem key={i}>
             <ListItemText primary={placeText} />
@@ -99,7 +100,7 @@ const InstanceList = (props) => {
           </ListItem>
         )
       }
-      else if (!list.match_is_started) {
+      else if (!list.started) {
         return (
           <ListItem key={i}>
             <ListItemText primary={placeText} />
@@ -107,7 +108,7 @@ const InstanceList = (props) => {
           </ListItem>
         )
       }
-      else if (list.match_is_started && !list.match_complete) {
+      else if (list.started && !list.complete) {
         return (
           <ListItem key={i}>
             <ListItemText primary={placeText} />
