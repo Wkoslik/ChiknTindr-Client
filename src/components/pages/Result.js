@@ -251,7 +251,6 @@ const Result = (props) => {
 
   let gettingCategoryTitles = 
     yelpEndPointJSON[0].categories.map((category, i) => {
-      console.log(category.title, "what is this?")
       categoryTitles.push(category.title)
     })
 
@@ -260,6 +259,65 @@ const Result = (props) => {
   const combineYelpCounts = 
     `${yelpEndPointJSON[0].review_count} reviews`
 
+  // getting the operation hours
+
+  console.log(yelpEndPointJSON[0].hours[0].open, "before map")
+
+  let gettingHours =
+    yelpEndPointJSON[0].hours[0].open.map((detail, i) => {
+
+      let workStart
+      if (parseInt(detail.start) > 1200) {
+        let intoNum = parseInt(detail.start) - 1200;
+        let intoStr = intoNum.toString();
+        let hours = intoStr.substr(0, intoStr.length -2)
+        let mins = intoStr.substr(intoStr.length -2, intoStr.length);
+        workStart = `${hours} : ${mins} PM`
+      } else {
+        let hours = detail.start.substr(0, detail.start.length -2)
+        let mins = detail.start.substr(detail.start.length -2, detail.start.length);
+        workStart = `${hours} : ${mins} AM` 
+      };
+
+      let workEnd
+      if (parseInt(detail.end) > 1200) {
+        let intoNum = parseInt(detail.end) - 1200;
+        let intoStr = intoNum.toString();
+        let hours = intoStr.substr(0, intoStr.length -2)
+        let mins = intoStr.substr(intoStr.length -2, intoStr.length);
+        workEnd = `${hours} : ${mins} PM`
+      } else {
+        let hours = detail.end.substr(0, detail.start.length -2)
+        let mins = detail.end.substr(detail.end.length -2, detail.end.length);
+        workEnd = `${hours} : ${mins} AM` 
+      };
+      
+      let workDay
+      if (detail.day == 0) {
+        workDay = "Monday"
+      } else if (detail.day == 1) {
+        workDay = "Tuesday"
+      } else if (detail.day == 2) {
+        workDay = "Wednesday"
+      } else if (detail.day == 3) {
+        workDay = "Thursday"
+      } else if (detail.day == 4) {
+        workDay = "Friday"
+      } else if (detail.day == 5) {
+        workDay = "Saturday"
+      } else if (detail.day == 6) {
+        workDay = "Sunday"
+      };
+
+      let displayTime = `${workStart} ~ ${workEnd}`
+
+      return (
+        <ListItemText id="hours-of-op" primary={workDay} secondary={displayTime} />
+      )
+    })
+    
+    // Yelplink
+  let yelpLink = <a className="yelplink" href={yelpEndPointJSON[0].url} target="_blank" rel="noopener noreferrer">See this restaurant on Yelp</a>
 
   return (
     <div className={classes.root}>
@@ -324,8 +382,8 @@ const Result = (props) => {
                           <ListItemText primary="Address" secondary={combineAddress} />
                           <ListItemText primary="Phone Number" secondary={yelpEndPointJSON[0].display_phone} />
                           <ListItemText primary="Yelp review counts" secondary={combineYelpCounts} />
-                          <ListItemText primary="Hours of operation" />
-                          <ListItemText primary="Link to yelp page" />
+                          <ListItemText primary="Hours of operation" secondary={gettingHours} />
+                          <ListItemText primary="Link to yelp page" secondary={yelpLink} />
                         </ListItem>
                       </List>
                     </AccordionDetails>
@@ -337,12 +395,21 @@ const Result = (props) => {
         </Grid>
       </ThemeProvider>
     </div>
-    //   <p>more info</p>
-    //   <p>address</p>
-    //   <p>Phone number</p>
-    //   <p>reviews</p>
     //   <p>link to yelp page</p>
     //   <p>hours of operation</p>
   );
 }
 export default Result;
+
+
+
+// coming back users (after log in redirect to =? )
+// -Profile page
+//  -dinner plans
+//  -invite - preference
+//  -see friends (stretch goal)
+
+// tonight
+// landing page (profile)
+// home page
+// friends list page (stretch)
