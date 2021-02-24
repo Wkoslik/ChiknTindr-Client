@@ -12,8 +12,12 @@ import {
 } from '@material-ui/core';
 
 import theme from '../../theme/theme';
+import axios from 'axios';
+import { useState, useEffect } from 'react'
 
 const InstanceList = (props) => {
+  const [messsage, setMessage] = useState('')
+  const [dinnerPlans, setDinnerPlans] = useState([])
 
   const instanceJSON = [
     {
@@ -42,7 +46,20 @@ const InstanceList = (props) => {
     },
   ]
 
-// ------------------------------------------- e.handlers
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plans`)
+      .then(response => {
+        setMessage(response.message)
+        console.log(messsage)
+      })
+      .catch(err => {
+        setMessage(err)
+        console.log(messsage)
+      })
+  }, [])
+
+
+  // ------------------------------------------- e.handlers
 
   const buttonHandlerView = e => {
     console.log("View button clicked")
@@ -51,17 +68,27 @@ const InstanceList = (props) => {
 
   const buttonHandlerStart = e => {
     console.log("Start button clicked")
-    // creatingList();
+    e.preventDefault()
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/test/nouser2`)
+      .then(response => {
+        console.log(`⭐️⭐️⭐️⭐️`)
+      })
+      .catch(err => {
+        console.log('error  in useEffect', err)
+        setMessage(err.message);
+        // props.handleAuth(null);
+      })
+
   }
 
   const buttonHandlerFinish = e => {
     console.log("Finish button clicked")
     // creatingList();
   }
-  
+
   // ---------------------------------------- mapping JSON
 
-  let creatingList = 
+  let creatingList =
     instanceJSON.map((list, i) => {
       let placeText = `Dinner with ${list.name}`;
       if (list.match_is_started && list.match_complete) {
@@ -87,15 +114,15 @@ const InstanceList = (props) => {
             <Button variant="contained" color="primary" onClick={buttonHandlerFinish}>Finish Matching</Button>
           </ListItem>
         )
-      } 
+      }
     })
 
   // material-ui styles
   const useStyles = makeStyles((theme) => ({
     form: {
       '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
+        margin: theme.spacing(1),
+        width: '25ch',
       },
     },
     paper: {
@@ -118,7 +145,7 @@ const InstanceList = (props) => {
       margin: "0 auto"
     }
   }));
-  
+
   const classes = useStyles();
 
   return (

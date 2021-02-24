@@ -80,7 +80,7 @@ const Login = (props) => {
 
     const classes = useStyles();
 
-    if (redirect) return <Redirect to='/invite' /> //TODO change to route to /invite
+    if (redirect) return <Redirect to='/plans' /> //TODO change to route to /invite
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}
