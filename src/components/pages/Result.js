@@ -13,8 +13,6 @@ import {
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CancelIcon from '@material-ui/icons/Cancel';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
@@ -395,8 +393,6 @@ const Result = (props) => {
         </Grid>
       </ThemeProvider>
     </div>
-    //   <p>link to yelp page</p>
-    //   <p>hours of operation</p>
   );
 }
 export default Result;

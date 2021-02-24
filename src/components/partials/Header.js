@@ -124,7 +124,7 @@ const Header = (props) => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleMenuClose} className="nav-link" to='/profile'>Account</Link></MenuItem>
+            <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleMenuClose} className="nav-link" to='/profile'>Profile</Link></MenuItem>
             <MenuItem className={classes.dropdown} onClick={handleMenuClose}><span className="nav-link" onClick={e => props.handleAuth(null)}>logout</span></MenuItem>
         </Menu>
     );
@@ -160,7 +160,7 @@ const Header = (props) => {
             onClose={handleHamburgerMenuClose}
         >
             <MenuItem className={classes.dropdown} onClick={handleHamburgerMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/'>Home</Link></MenuItem>
-            <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/dinnerplans'>Start Dine</Link></MenuItem>
+            <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/dinnerplans'>Dine Status</Link></MenuItem>
             <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/about'>RESTaurateurs!</Link></MenuItem>
         </Menu>
     );
