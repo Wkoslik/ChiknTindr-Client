@@ -14,29 +14,31 @@ import {
 import theme from '../../theme/theme';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 
 const InstanceList = (props) => {
   const [messsage, setMessage] = useState('')
   const [dinnerPlans, setDinnerPlans] = useState([])
+  const [redirect, setRedirect] = useState(false)
 
   const instanceJSON = [
     {
       "name": "Sean",
       "restaurant_is_chosen": true,
-      "match_is_started": true,
-      "match_complete": true
+      "started": true,
+      "completed": true
     },
     {
       "name": "david",
       "restaurant_is_chosen": false,
-      "match_is_started": false,
-      "match_complete": false
+      "started": false,
+      "completed": false
     },
     {
       "name": "Whitney",
       "restaurant_is_chosen": false,
-      "match_is_started": true,
-      "match_complete": false
+      "started": true,
+      "completed": false
     },
     {
       "name": "Young",
@@ -49,15 +51,15 @@ const InstanceList = (props) => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plans`)
       .then(response => {
-        setMessage(response.message)
-        console.log(messsage)
+        let plans = response.data.userInstances
+        console.log(response.data.userInstances)
+        setDinnerPlans(plans)
       })
       .catch(err => {
         setMessage(err)
-        console.log(messsage)
+        console.log(err)
       })
   }, [])
-
 
   // ------------------------------------------- e.handlers
 
@@ -69,12 +71,14 @@ const InstanceList = (props) => {
   const buttonHandlerStart = e => {
     console.log("Start button clicked")
     e.preventDefault()
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/test/nouser2`)
+    let instance = e.currentTarget.value
+    console.log(e.currentTarget.value)
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance })
       .then(response => {
-        console.log(`⭐️⭐️⭐️⭐️`)
+        console.log(`⭐️⭐️⭐️⭐️`, response)
       })
       .catch(err => {
-        console.log('error  in useEffect', err)
+        console.log('error in trying to start the game', err)
         setMessage(err.message);
         // props.handleAuth(null);
       })
@@ -89,29 +93,29 @@ const InstanceList = (props) => {
   // ---------------------------------------- mapping JSON
 
   let creatingList =
-    instanceJSON.map((list, i) => {
-      let placeText = `Dinner with ${list.name}`;
-      if (list.match_is_started && list.match_complete) {
+    dinnerPlans.map((list, i) => {
+      let placeText = `${list.name}`;
+      if (list.started && list.complete) {
         return (
-          <ListItem key={i}>
+          <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="" onClick={buttonHandlerView}>View Restaurant</Button>
+            <Button variant="contained" color="" value={list.instance} onClick={buttonHandlerView}>View Restaurant</Button>
           </ListItem>
         )
       }
-      else if (!list.match_is_started) {
+      else if (!list.started) {
         return (
-          <ListItem key={i}>
+          <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="secondary" onClick={buttonHandlerStart}>Start Matching</Button>
+            <Button variant="contained" color="secondary" value={list.instance} onClick={buttonHandlerStart}>Start Matching</Button>
           </ListItem>
         )
       }
-      else if (list.match_is_started && !list.match_complete) {
+      else if (list.started && !list.complete) {
         return (
-          <ListItem key={i}>
+          <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="primary" onClick={buttonHandlerFinish}>Finish Matching</Button>
+            <Button variant="contained" color="primary" value={list.instance} onClick={buttonHandlerFinish}>Finish Matching</Button>
           </ListItem>
         )
       }
@@ -147,7 +151,7 @@ const InstanceList = (props) => {
   }));
 
   const classes = useStyles();
-
+  if (redirect) return <Redirect to='/restaurants' /> 
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
