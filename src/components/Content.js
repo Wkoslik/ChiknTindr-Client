@@ -32,7 +32,7 @@ const Content = (props) => {
         <Route path='/restaurants' render={(renderProps) => (
             <Restaurants handleAuth={props.handleAuth} {...renderProps} />
         )}/>
-        <Route path='/dinnerplans' render={(renderProps) => (
+        <Route path='/plans' render={(renderProps) => (
             <InstanceList handleAuth={props.handleAuth} {...renderProps} />
         )}/>
         <Route path='/result' render={(renderProps) => (
