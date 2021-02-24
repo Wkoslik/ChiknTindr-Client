@@ -64,7 +64,7 @@ const Profile = (props) => {
                                     See all of your munching plans!
                                     {/* TODO: add user info here */}
                                 </Typography>
-                                <Button variant="contained" color="primary"><Link className="nav-link" to="/dinnerplans">Dine Status</Link></Button>
+                                <Button variant="contained" color="primary"><Link className="nav-link" to="/plans">Dine Status</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>
@@ -74,7 +74,7 @@ const Profile = (props) => {
                                 <Typography>
                                     Start your munching here!
                                 </Typography>
-                                <Button variant="contained" color="primary"><Link className="nav-link" to="/preference">Start Dine</Link></Button>
+                                <Button variant="contained" color="primary"><Link className="nav-link" to="/preferences">Start Dine</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>

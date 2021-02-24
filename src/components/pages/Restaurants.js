@@ -271,6 +271,7 @@ const Restaurants = (props) => {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log('this restaurant has been resigned, moving on to next restaurant')
+    //TODO push dislike to db
   }
 
   const handleChange = (panel) => (event, newExpanded) => {
