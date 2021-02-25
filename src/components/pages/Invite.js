@@ -11,10 +11,13 @@ import {
   FormGroup,
   FormControl,
   FormControlLabel,
-  FormHelperText,
-  Switch
+  Switch,
+  ThemeProvider,
+  Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import theme from '../../theme/theme';
+
 
 const Invite = (props) => {
   const [description, setDescription] = useState('');
@@ -69,14 +72,35 @@ const Invite = (props) => {
     },
     paper: {
       padding: theme.spacing(2),
-      textAlign: 'center',
       color: theme.palette.text.secondary,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center'
     },
     root: {
       flexGrow: 1,
       maxWidth: 600,
-      margin: "0 auto"
+      margin: "auto",
+      paddingTop: "10vh",
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
+      height: "100%",
     },
+    title: {
+      fontFamily: "Paytone One",
+      fontSize: "2em",
+      color: "#ED1C24",
+      marginBottom: "1em"
+    },
+    formTitle: {
+      paddingTop: '1.5em',
+      marginBottom: '1em'
+    },
+    startInvite:{
+      marginTop: '1.5em',
+      marginBottom: '2em'
+    }
   }));
 
   const classes = useStyles();
@@ -85,82 +109,86 @@ const Invite = (props) => {
   if (redirect) return <Redirect to='/plans' />
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <form className={classes.form} noValidate autoComplete="off">
-              <FormLabel>
-                Invite Friend
-            </FormLabel>
-              <div>
-                <TextField
-                  required
-                  id="friend-name" //TODO where else will we need to change this id? 
-                  label="Dinner plan description"
-                  defaultValue="Dinner Plans Description"
-                  variant="outlined"
-                  value={description}
-                  onChange={handleDescription}
-                />
-                <TextField
-                  required
-                  id="outlined-helperText"
-                  label="Friend's Email"
-                  defaultValue="email"
-                  helperText="Send your friend an invite"
-                  variant="outlined"
-                  value={email}
-                  onChange={handleEmail}
-                />
-              </div>
-              <FormLabel>
-                Options
-            </FormLabel>
-              <div>
-                <TextField
-                  id="category"
-                  label="Category" //TODO can we change this to somethign more descriptive than 'category'?
-                  variant="outlined"
-                  value={categoryInput}
-                  onChange={handleCategory}
-                />
-                <TextField
-                  id="location"
-                  label="Location"
-                  variant="outlined"
-                  value={location}
-                  onChange={handleLocation}
-                />
-              </div>
-              <div>
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Eat Where?</FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={<Switch checked={whereto.Delivery} onChange={handleWhereto} name="Delivery" />}
-                      label="Delivery"
-                    />
-                    <FormControlLabel
-                      control={<Switch checked={whereto.Takeout} onChange={handleWhereto} name="Takeout" />}
-                      label="Take Out"
-                    />
-                    <FormControlLabel
-                      control={<Switch checked={whereto.DineIn} onChange={handleWhereto} name="DineIn" />}
-                      label="Dine In"
-                    />
-                    <FormControlLabel
-                      control={<Switch checked={whereto.OutsideSeating} onChange={handleWhereto} name="OutsideSeating" />}
-                      label="Outside Seating"
-                    />
-                  </FormGroup>
-                  {/* <FormHelperText>Optional text goes here</FormHelperText> */}
-                </FormControl>
-              </div>
-              <Button variant="contained" color="primary" onClick={handleSubmit}>Invite</Button>
-            </form>
-          </Paper>
+      <ThemeProvider theme={theme}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.title} variant="h5">
+                <strong>Invitations</strong>
+              </Typography>
+              <form className={classes.form} noValidate autoComplete="off">
+                <FormLabel className={classes.formTitle}>
+                  <strong>Invite Friend</strong>
+                </FormLabel>
+                <div>
+                  <TextField
+                    required
+                    id="friend-name" //TODO where else will we need to change this id? 
+                    label="Dine plan description"
+                    defaultValue="Dinner Plans Description"
+                    variant="outlined"
+                    value={description}
+                    onChange={handleDescription}
+                  />
+                  <TextField
+                    required
+                    id="outlined-helperText"
+                    label="Friend's Email"
+                    defaultValue="email"
+                    helperText="Send your friend an invite"
+                    variant="outlined"
+                    value={email}
+                    onChange={handleEmail}
+                  />
+                </div>
+                <FormLabel className={classes.formTitle}>
+                  <strong>Options</strong>
+                </FormLabel>
+                <div>
+                  <TextField
+                    id="category"
+                    label="Dine plan detailed option"
+                    variant="outlined"
+                    value={categoryInput}
+                    onChange={handleCategory}
+                  />
+                  <TextField
+                    id="location"
+                    label="Dine plan location"
+                    variant="outlined"
+                    value={location}
+                    onChange={handleLocation}
+                  />
+                </div>
+                <div>
+                  <FormControl component="fieldset">
+                    <FormLabel component="legend" className={classes.formTitle}><strong>Eat Where?</strong></FormLabel>
+                    <FormGroup>
+                      <FormControlLabel
+                        control={<Switch checked={whereto.Delivery} onChange={handleWhereto} name="Delivery" />}
+                        label="Delivery"
+                      />
+                      <FormControlLabel
+                        control={<Switch checked={whereto.Takeout} onChange={handleWhereto} name="Takeout" />}
+                        label="Take Out"
+                      />
+                      <FormControlLabel
+                        control={<Switch checked={whereto.DineIn} onChange={handleWhereto} name="DineIn" />}
+                        label="Dine In"
+                      />
+                      <FormControlLabel
+                        control={<Switch checked={whereto.OutsideSeating} onChange={handleWhereto} name="OutsideSeating" />}
+                        label="Outside Seating"
+                      />
+                    </FormGroup>
+                  </FormControl>
+                </div>
+                <Button className={classes.startInvite} variant="contained" color="secondary" onClick={handleSubmit}>Invite</Button>
+              </form>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </ThemeProvider>
     </div>
   );
 }
