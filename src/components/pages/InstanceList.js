@@ -140,6 +140,8 @@ const InstanceList = (props) => {
       maxWidth: 600,
       margin: "0 auto",
       paddingTop: "10vh",
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
       height: "100%",
     },
     formtitle: {

@@ -12,6 +12,7 @@ import {
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import theme from '../../theme/theme';
+import { fontWeight } from '@material-ui/system';
 
 const Profile = (props) => {
     const [message, setMessage] = useState('Loading msg ...');
@@ -32,12 +33,36 @@ const Profile = (props) => {
         root: {
             flexGrow: 1,
             maxWidth: 600,
-            margin: "0 auto"
+            margin: "auto",
+            paddingTop: "10vh",
+            paddingLeft: '5vw',
+            paddingRight: '5vw',
+            height: "100%",
         },
         paper: {
             padding: theme.spacing(2),
             textAlign: 'center',
             color: theme.palette.text.secondary,
+        },
+        paper1: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+            color: theme.palette.text.secondary,
+            height: '15vh',
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+            marginBottom: '1em'
+        },
+        title: {
+            fontFamily: "Paytone One",
+            fontSize: "1.5em",
+            color: "#ED1C24",
+        },
+        sometext: {
+            marginTop: '4vh',
+            marginBottom: '2vh',
+            fontWeight: 500
         }
     }));
     const classes = useStyles();
@@ -49,32 +74,32 @@ const Profile = (props) => {
             <ThemeProvider theme={theme}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper} elevation={0} >
                             <Paper square elevation={0} className={classes.title}>
-                                <Typography>
+                                <Typography className={classes.title}>
                                     Welcome to ChiknTindr!
                                 </Typography>
-                            </Paper>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>
-                            <Paper square elevation={0} >
-                                <Typography>
-                                    See all of your munching plans!
                                     {/* TODO: add user info here */}
-                                </Typography>
-                                <Button variant="contained" color="primary"><Link className="nav-link" to="/dinnerplans">Dine Status</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper1}>
                             <Paper square elevation={0} >
-                                <Typography>
+                                <Typography className={classes.sometext}>
+                                    See all of your munching plans!
+                                </Typography>
+                                <Button variant="contained" color="secondary"><Link className="nav-link2" to="/plans">Dine Status</Link></Button>
+                            </Paper>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper1}>
+                            <Paper square elevation={0} >
+                                <Typography className={classes.sometext}>
                                     Start your munching here!
                                 </Typography>
-                                <Button variant="contained" color="primary"><Link className="nav-link" to="/preferences">Start Dine</Link></Button>
+                                <Button variant="contained" color="secondary"><Link className="nav-link2" to="/preferences">Start Dine</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>

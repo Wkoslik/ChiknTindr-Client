@@ -20,7 +20,10 @@ const About = (props) => {
       maxWidth: 600,
       margin: "auto",
       paddingTop: '11vh',
-      height: '100%'
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
+      height: '100%',
+      paddingBottom: '3em'
     },
     paper: {
         padding: theme.spacing(2),
@@ -57,7 +60,6 @@ const About = (props) => {
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
         <Grid container spacing={3} >
-          {/* TODO: title should embedded on the beneath background */}
           <Grid item xs={12}>
             <Paper className={classes.paper} elevation={0}>
               <Paper square elevation={0} className={classes.title}>
@@ -72,29 +74,29 @@ const About = (props) => {
               <Grid container spacing={2}>
                 <Grid item>
                   <ButtonBase className={classes.image}>
-                    <img src="https://ca.slack-edge.com/T0351JZQ0-U01GJ7CJ4TW-763c30cac9ec-512" style={{"maxWidth": "100px"}}/>
+                    <img src="/img/Whitney.jpg" style={{"maxWidth": "100px"}}/>
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={12} sm container>
                   <Grid item xs container direction="column" spacing={2}>
                     <Grid item xs>
                       <Typography gutterBottom variant="subtitle1">
-                        Whitney Koslik <span id="position">- Full Stack Lead</span>
+                        <strong>Whitney Koslik</strong> <span id="position">- Full Stack Lead</span>
                       </Typography>
                       <Typography variant="body2" gutterBottom>
                         As an avid rock climber  and kombucha brewer, Whitney brought her passion for creative problem solving and full stack development as the Technical Lead for The RESTaurateurs. With over a decade of experience in the Hotel Industry and focused in program management for loyalty strategy, Whitney brings a unique, user-centric approach focused on creating web applications that enhance a users experience with a brand.                      </Typography>
                     </Grid>
                     <Grid item>
-                      <Button href="https://drive.google.com/file/d/1_D_gYI5VxJftwaiSkUvhnBSXhTtQzs3I/view" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://drive.google.com/file/d/1_D_gYI5VxJftwaiSkUvhnBSXhTtQzs3I/view" target="_blank" rel="noopener noreferrer">
                         resume
                       </Button>
-                      <Button href="https://www.linkedin.com/in/wkoslik/" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://www.linkedin.com/in/wkoslik/" target="_blank" rel="noopener noreferrer">
                         LinkedIn
                       </Button>
-                      <Button href="https://github.com/Wkoslik" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://github.com/Wkoslik" target="_blank" rel="noopener noreferrer">
                         github
                       </Button>
-                      <Button href="https://www.whitneykoslik.com" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://www.whitneykoslik.com" target="_blank" rel="noopener noreferrer">
                         Portfolio
                       </Button>
                     </Grid>
@@ -110,7 +112,7 @@ const About = (props) => {
                 <Grid item>
                   <ButtonBase className={classes.image}>
                     <Typography>
-                      <img src="https://ca.slack-edge.com/T0351JZQ0-U01GQM3NBUH-080ccfa2ef15-512" style={{"maxWidth": "100px"}}/>
+                      <img src="/img/Young.jpg" style={{"maxWidth": "100px"}}/>
                     </Typography>
                   </ButtonBase>
                 </Grid>
@@ -118,7 +120,7 @@ const About = (props) => {
                   <Grid item xs container direction="column" spacing={2}>
                     <Grid item xs>
                       <Typography gutterBottom variant="subtitle1">
-                        Youngsang Kim <span id="position">- Frontend</span>
+                        <strong>Youngsang Kim</strong> <span id="position">- Frontend</span>
                       </Typography>
                       <Typography variant="body2" gutterBottom>
                       Just another full-stack developer / graphic designer.
@@ -127,16 +129,16 @@ Most importantly, living another happy day.
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Button href="https://drive.google.com/file/d/1ludrrUAsFFopnH-OxWjIMLWrGdu_Vb29/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://drive.google.com/file/d/1ludrrUAsFFopnH-OxWjIMLWrGdu_Vb29/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                         resume
                       </Button>
-                      <Button href="https://www.linkedin.com/in/youngsang-kim/" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://www.linkedin.com/in/youngsang-kim/" target="_blank" rel="noopener noreferrer">
                         LinkedIn
                       </Button>
-                      <Button href="https://github.com/kys3923" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://github.com/kys3923" target="_blank" rel="noopener noreferrer">
                         github
                       </Button>
-                      <Button href="https://www.designykim.com/" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://www.designykim.com/" target="_blank" rel="noopener noreferrer">
                         Portfolio
                       </Button>
                     </Grid>
@@ -151,7 +153,7 @@ Most importantly, living another happy day.
                 <Grid item>
                   <ButtonBase className={classes.image}>
                     <Typography>
-                      <img src="https://ca.slack-edge.com/T0351JZQ0-U01FU3D36EP-ea4209b5cef3-512" style={{"maxWidth": "100px"}}/>
+                      <img src="/img/Sean_revised.jpg" style={{"maxWidth": "100px"}}/>
                     </Typography>
                   </ButtonBase>
                 </Grid>
@@ -159,7 +161,7 @@ Most importantly, living another happy day.
                   <Grid item xs container direction="column" spacing={2}>
                     <Grid item xs>
                       <Typography gutterBottom variant="subtitle1">
-                        Sean Feiner <span id="position">- Backend</span>
+                        <strong>Sean Feiner</strong> <span id="position">- Backend</span>
                       </Typography>
                       <Typography variant="body2" gutterBottom>
                       I am a full stack developer and software engineer based in Brooklyn, New York. I have also served outside the tech industry as an educator, writer, curator, and artist with a passion for emergent art and music technologies and the cultures and platforms they generate. As a digital and performative creative my expertise is developed through research, dynamic and agile problem solving, and project development and management between academic, music, nightlife, and tech industries. I have 10 years of experience curating and producing digital, performance, and mixed-media installation art. I am passionate about music cultures and the way in which technology and distribution platforms intersect with particular communities. 
@@ -167,13 +169,13 @@ I am currently interested in modern web full stack application frameworks includ
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Button href="https://drive.google.com/file/d/1T1objZL39vIcPBFEmb0qhPwVEg1jw3QC/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://drive.google.com/file/d/1T1objZL39vIcPBFEmb0qhPwVEg1jw3QC/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                         resume
                       </Button>
-                      <Button href="https://www.linkedin.com/in/seanmichael-feiner/" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://www.linkedin.com/in/seanmichael-feiner/" target="_blank" rel="noopener noreferrer">
                         LinkedIn
                       </Button>
-                      <Button href="https://github.com/sameghosts" target="_blank" rel="noopener noreferrer">
+                      <Button color="secondary" href="https://github.com/sameghosts" target="_blank" rel="noopener noreferrer">
                         github
                       </Button>
                     </Grid>

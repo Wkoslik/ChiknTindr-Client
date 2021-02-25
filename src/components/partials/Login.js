@@ -76,6 +76,8 @@ const Login = (props) => {
             margin: "auto",
             paddingTop: "10vh",
             height: "100%",
+            paddingLeft: '5vw',
+            paddingRight: '5vw',
         },
         formtitle: {
             fontFamily: "Paytone One",
@@ -93,7 +95,7 @@ const Login = (props) => {
 
     const classes = useStyles();
 
-    if (redirect) return <Redirect to='/plans' /> //TODO change to route to /invite
+    if (redirect) return <Redirect to='/profile' /> 
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}
