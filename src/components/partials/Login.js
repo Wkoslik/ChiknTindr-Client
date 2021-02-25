@@ -167,7 +167,6 @@ const Login = (props) => {
                                     </div>
                                     <Button variant="contained" color="secondary" type="submit">Log In</Button>
                                 </form>
-                                {/* margin bottom */}
                                 <Typography className={classes.linkSignUp}> 
                                     New to ChiknTindr? <Link className="signup-text" to="/auth/signup">Signup here</Link>
                                 </Typography>

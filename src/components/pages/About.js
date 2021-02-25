@@ -19,7 +19,7 @@ const About = (props) => {
       flexGrow: 1,
       maxWidth: 600,
       margin: "auto",
-      paddingTop: '10vh',
+      paddingTop: '11vh',
       height: '100%'
     },
     paper: {
@@ -44,6 +44,11 @@ const About = (props) => {
       maxWidth: '100%',
       maxHeight: '100%',
     },
+    aboutTitle: {
+      fontFamily: "Paytone One",
+      fontSize: "2em",
+      color: "#ED1C24",
+    }
   }));
 
   const classes = useStyles();
@@ -54,9 +59,9 @@ const About = (props) => {
         <Grid container spacing={3} >
           {/* TODO: title should embedded on the beneath background */}
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={0}>
               <Paper square elevation={0} className={classes.title}>
-                <Typography>
+                <Typography className={classes.aboutTitle}>
                   Meet the RESTaurateurs!
                 </Typography>
               </Paper>
