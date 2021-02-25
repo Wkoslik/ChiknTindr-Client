@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import {
   Grid,
   Paper,
@@ -11,7 +12,7 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -26,11 +27,10 @@ import { RestoreRounded } from '@material-ui/icons';
 const Restaurants = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
-
+  const [redirect, setRedirect] = useState(false)
   const [instanceId, setInstanceId] = useState('')
   const [restaurants, setRestaurants] = useState([])
 
-  console.log(props)
 
   useEffect(() => {
     setInstanceId(props.location.instanceId)
@@ -56,8 +56,14 @@ const Restaurants = (props) => {
         console.log(`route worked vote confirm! 👻 👻 👻`)
         console.log(response)
       })
+      .catch(err =>{
+        console.log(err.message)
+      })
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(activeStep === maxSteps){
+      setRedirect(true)
+    }
     // TODO: push like to db - false true axios call
     // hit same pipeline  push the vote
   };
@@ -75,9 +81,15 @@ const Restaurants = (props) => {
         console.log(`route worked vote nope! 🥵 🥵 🥵`)
         console.log(response)
       })
+      .catch(err =>{
+        console.log(err.message)
+      })
     // hit same pipeline  push the vote
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(activeStep === maxSteps){
+      setRedirect(true)
+    }
     console.log('this restaurant has been resigned, moving on to next restaurant')
   }
 
@@ -89,12 +101,24 @@ const Restaurants = (props) => {
     root: {
       flexGrow: 1,
       maxWidth: 600,
-      margin: "0 auto"
+      margin: "auto",
+      paddingTop: "10vh",
+      height: "100%",
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
     },
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      marginBottom: '1.5em'
+    },
+    paper2: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      marginBottom: '1.5em',
+      marginTop: '-2.5em'
     },
     header: {
       display: "flex",
@@ -106,11 +130,23 @@ const Restaurants = (props) => {
     img: {
       overflow: "hidden",
       display: "block",
-      width: "100%"
+      width: "100%",
+      position: "relative",
+      objectFit: 'cover',
+      height: "500px"
     },
     list: {
       display: "block",
-    }
+    },
+    title: {
+      fontFamily: "Paytone One",
+      fontSize: "1.5em",
+      color: "#ED1C24",
+      marginTop: ".25em"
+    },
+    lastGrid: {
+      marginBottom: "2em"
+    },
   }));
 
   const Accordion = withStyles({
@@ -155,7 +191,10 @@ const Restaurants = (props) => {
   }))(MuiAccordionDetails);
 
   const classes = useStyles();
-  const theme = useTheme();
+
+
+if (redirect) return <Redirect to='/plans' />
+
 
 if(restaurants.length === 0){
   return(
@@ -169,15 +208,27 @@ if(restaurants.length === 0){
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
         <Grid container spacing={3}>
+          <Grid className={classes.firstGrid} item xs={12}>
+              <Paper className={classes.paper} elevation={0} >
+                  <Paper square elevation={0} className={classes.title}>
+                      <Typography className={classes.title}>
+                        Select your restaurant
+                      </Typography>
+                  </Paper>
+              </Paper>
+            </Grid>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper2}>
               <Paper square elevation={0} className={classes.header}>
                 <Typography>
-                  {restaurants[activeStep].name}
+                  <strong>{restaurants[activeStep].name}</strong>
+
                 </Typography>
               </Paper>
               <img
                 className={classes.img}
+
+
                 src={restaurants[activeStep].imageUrl}
                 alt={restaurants[activeStep].name}
               />
@@ -197,18 +248,33 @@ if(restaurants.length === 0){
                 steps={maxSteps}
                 position="static"
                 activeStep={activeStep}
-                className={classes.root}
+                className={classes.root2}
                 nextButton={
-                  <Button size="small" value={restaurants[activeStep]._id} onClick={handleConfirm}>
-                    This is it! <CheckCircleIcon />
+
+                  <Button variant="contained" value={restaurants[activeStep]._id} color="secondary" size="medium" onClick={handleConfirm}>
+                    Select&nbsp;&nbsp;<CheckCircleIcon />  
                   </Button>
-                }
+                } 
                 backButton={
-                  <Button size="small" value={restaurants[activeStep]._id}  onClick={handleNext} disabled={activeStep === maxSteps}>
-                    <CancelIcon />  Nope. Next.
+                  <Button variant="contained" value={restaurants[activeStep]._id} size="medium" color="primary" onClick={handleNext} >
+                    <CancelIcon />&nbsp;&nbsp;Next
                   </Button>
                 }
               />
+              </Paper>
+            <Paper className={classes.lastGrid}>
+              {/* <List>
+                <ListItem className={classes.list}>
+                  <ListItemText primary="Categories" secondary={categoryDetail} />
+                  <ListItemText primary="Ratings" secondary={
+                    <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
+                  } />
+                  <ListItemText primary="Price" secondary={
+                    <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
+                  } />
+                </ListItem>
+              </List> */}
+                  {/* TODO: commented out list above */}
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                   <Typography>
@@ -235,4 +301,3 @@ if(restaurants.length === 0){
 }
 
 export default Restaurants;
-
