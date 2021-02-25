@@ -10,7 +10,7 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -281,7 +281,11 @@ const Restaurants = (props) => {
     root: {
       flexGrow: 1,
       maxWidth: 600,
-      margin: "0 auto"
+      margin: "auto",
+      paddingTop: "10vh",
+      height: "100%",
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
     },
     paper: {
       padding: theme.spacing(2),
@@ -298,11 +302,19 @@ const Restaurants = (props) => {
     img: {
       overflow: "hidden",
       display: "block",
-      width: "100%"
+      width: "100%",
+      position: "relative",
+      objectFit: 'cover',
+      height: "500px"
     },
     list: {
       display: "block",
-    }
+    },
+    title: {
+      fontFamily: "Paytone One",
+      fontSize: "1.5em",
+      color: "#ED1C24",
+    },
   }));
 
   const Accordion = withStyles({
@@ -347,7 +359,6 @@ const Restaurants = (props) => {
   }))(MuiAccordionDetails);
 
   const classes = useStyles();
-  const theme = useTheme();
 
   const priceToNumber = yelpJSON[activeStep].businesses[0].price.length
 
@@ -357,6 +368,15 @@ const Restaurants = (props) => {
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
         <Grid container spacing={3}>
+          <Grid className={classes.firstGrid} item xs={12}>
+              <Paper className={classes.paper} elevation={0} >
+                  <Paper square elevation={0} className={classes.title}>
+                      <Typography className={classes.title}>
+                        Select your restaurant
+                      </Typography>
+                  </Paper>
+              </Paper>
+            </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Paper square elevation={0} className={classes.header}>
@@ -369,23 +389,12 @@ const Restaurants = (props) => {
                 src={yelpJSON[activeStep].businesses[0].image_url}
                 alt={yelpJSON[activeStep].businesses[0].name}
               />
-              <Paper square elevation={0} className={classes.header}>
-                <Typography>
-                  Category: {yelpJSON[activeStep].businesses[0].categories[0].title}
-                </Typography>
-              </Paper>
-              <Paper square elevation={0} className={classes.header}>
-                <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
-              </Paper>
-              <Paper square elevation={0} className={classes.header}>
-                <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
-              </Paper>
               <MobileStepper
                 variant="dots"
                 steps={maxSteps}
                 position="static"
                 activeStep={activeStep}
-                className={classes.root}
+                className={classes.root2}
                 nextButton={
                   <Button size="small" onClick={handleConfirm}>
                     This is it! <CheckCircleIcon />  
@@ -397,6 +406,18 @@ const Restaurants = (props) => {
                   </Button>
                 }
               />
+              <Paper square elevation={0} className={classes.header}>
+                <Typography>
+                  Category: {yelpJSON[activeStep].businesses[0].categories[0].title}
+                </Typography>
+              </Paper>
+              <Paper square elevation={0} className={classes.header}>
+                <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
+              </Paper>
+              <Paper square elevation={0} className={classes.header}>
+                <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
+              </Paper>
+            
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                   <Typography>
