@@ -160,7 +160,7 @@ const Header = (props) => {
             onClose={handleHamburgerMenuClose}
         >
             <MenuItem className={classes.dropdown} onClick={handleHamburgerMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/'>Home</Link></MenuItem>
-            <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/dinnerplans'>Dine Status</Link></MenuItem>
+            <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/plans'>Dine Status</Link></MenuItem>
             <MenuItem className={classes.dropdown} onClick={handleMenuClose}><Link onClick={handleHamburgerMenuClose} className="nav-link" to='/about'>RESTaurateurs!</Link></MenuItem>
         </Menu>
     );
@@ -222,7 +222,7 @@ const Header = (props) => {
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
                 <div className={classes.grow}>
-                    <AppBar position="static">
+                    <AppBar>
                     <Toolbar>
                     <IconButton
                         edge="start"

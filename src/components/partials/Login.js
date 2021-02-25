@@ -16,6 +16,7 @@ import {
 } from '@material-ui/core';
 
 import theme from '../../theme/theme';
+import { NoEncryption } from '@material-ui/icons';
 
 // TODO move into own file
 // I will make ternary state to handle this using material-ui. don't need to make another file. - Young
@@ -61,6 +62,7 @@ const Login = (props) => {
             '& .MuiTextField-root': {
                 margin: theme.spacing(1),
                 width: '25ch',
+                marginTop: '2em'
             },
         },
         paper: {
@@ -71,29 +73,42 @@ const Login = (props) => {
         root: {
             flexGrow: 1,
             maxWidth: 600,
-            margin: "0 auto"
+            margin: "auto",
+            paddingTop: "10vh",
+            height: "100%",
+            paddingLeft: '5vw',
+            paddingRight: '5vw',
         },
         formtitle: {
-            color: "red"
+            fontFamily: "Paytone One",
+            fontSize: "2em",
+            color: "#ED1C24",
+        },
+        formEntry: {
+            marginBottom: '2em'
+        },
+        linkSignUp: {
+            marginTop: '2em',
+            marginBottom: '1em',
         }
     }));
 
     const classes = useStyles();
 
-    if (redirect) return <Redirect to='/invite' /> //TODO change to route to /invite
+    if (redirect) return <Redirect to='/profile' /> 
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}
             <div className={classes.root}>
                 <ThemeProvider theme={theme}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} direction="column" justify="center" alignItems="center">
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
                                 <form onSubmit={handleSubmit} className={classes.form} noValidate>
                                     <FormLabel className={classes.formtitle}>
                                         Login
                                     </FormLabel>
-                                    <div>
+                                    <div className={classes.formEntry}>
                                         {error ?
                                             <>
                                                 <TextField
@@ -152,9 +167,9 @@ const Login = (props) => {
                                             </>
                                         }
                                     </div>
-                                    <Button variant="contained" color="primary" type="submit">Log In</Button>
+                                    <Button variant="contained" color="secondary" type="submit">Log In</Button>
                                 </form>
-                                <Typography className={classes.linkSignUp}>
+                                <Typography className={classes.linkSignUp}> 
                                     New to ChiknTindr? <Link className="signup-text" to="/auth/signup">Signup here</Link>
                                 </Typography>
                             </Paper>

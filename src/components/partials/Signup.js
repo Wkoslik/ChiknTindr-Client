@@ -42,8 +42,9 @@ const Signup = (props) => {
     const useStyles = makeStyles((theme) => ({
         form: {
             '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
+                margin: theme.spacing(1),
+                width: '25ch',
+                marginTop: '2em',
             },
         },
         paper: {
@@ -54,10 +55,22 @@ const Signup = (props) => {
         root: {
             flexGrow: 1,
             maxWidth: 600,
-            margin: "0 auto"
+            margin: "auto",
+            paddingTop: "10vh",
+            paddingLeft: '5vw',
+            paddingRight: '5vw',
+            height: "100%",
         },
         formtitle: {
-            color: "red"
+            fontFamily: "Paytone One",
+            fontSize: "2em",
+            color: "#ED1C24",
+        },
+        formEntry: {
+            marginBottom: '2em'
+        },
+        linkButton: {
+            marginBottom: '1em'
         }
     }));
 
@@ -75,7 +88,7 @@ const Signup = (props) => {
                                     <FormLabel className={classes.formtitle}>
                                         SignUp
                                     </FormLabel>
-                                    <div>
+                                    <div className={classes.formEntry}>
                                         <TextField
                                             required
                                             id="name"
@@ -110,7 +123,7 @@ const Signup = (props) => {
                                             onChange={e => setPassword(e.target.value)}
                                         />
                                     </div>
-                                    <Button variant="contained" color="primary" type="submit">SignUp</Button>
+                                    <Button className={classes.linkButton} variant="contained" color="secondary" type="submit">SignUp</Button>
                                 </form>
                             </Paper>
                         </Grid>
