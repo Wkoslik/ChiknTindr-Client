@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import {
   Grid,
   Paper,
@@ -20,256 +22,74 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
 import theme from '../../theme/theme';
-
-const yelpJSON = [
-  {
-  "total": 8228,
-  "businesses": [
-    {
-      "rating": 4,
-      "price": "$",
-      "phone": "+14152520800",
-      "id": "E8RJkjfdcwgtyoPMjQ_Olg",
-      "alias": "four-barrel-coffee-san-francisco",
-      "is_closed": false,
-      "categories": [
-        {
-          "alias": "coffee",
-          "title": "Coffee & Tea"
-        }
-      ],
-      "review_count": 1738,
-      "name": "Four Barrel Coffee",
-      "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
-      "coordinates": {
-        "latitude": 37.7670169511878,
-        "longitude": -122.42184275
-      },
-      "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
-      "location": {
-        "city": "San Francisco",
-        "country": "US",
-        "address2": "",
-        "address3": "",
-        "state": "CA",
-        "address1": "375 Valencia St",
-        "zip_code": "94103"
-      },
-      "distance": 1604.23,
-      "transactions": ["pickup", "delivery"]
-    },
-    
-    // yelp JSON searched array data
-  ],
-  "region": {
-    "center": {
-      "latitude": 37.767413217936834,
-      "longitude": -122.42820739746094
-    }
-  }
-},
-{
-  "total": 8228,
-  "businesses": [
-    {
-      "rating": 4,
-      "price": "$",
-      "phone": "+14152520800",
-      "id": "E8RJkjfdcwgtyoPMjQ_Olg",
-      "alias": "four-barrel-coffee-san-francisco",
-      "is_closed": false,
-      "categories": [
-        {
-          "alias": "coffee",
-          "title": "Coffee & Tea"
-        }
-      ],
-      "review_count": 1738,
-      "name": "Four Barrel Coffee2",
-      "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
-      "coordinates": {
-        "latitude": 37.7670169511878,
-        "longitude": -122.42184275
-      },
-      "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
-      "location": {
-        "city": "San Francisco",
-        "country": "US",
-        "address2": "",
-        "address3": "",
-        "state": "CA",
-        "address1": "375 Valencia St",
-        "zip_code": "94103"
-      },
-      "distance": 1604.23,
-      "transactions": ["pickup", "delivery"]
-    },
-    
-    // yelp JSON searched array data
-  ],
-  "region": {
-    "center": {
-      "latitude": 37.767413217936834,
-      "longitude": -122.42820739746094
-    }
-  }
-},
-{
-  "total": 8228,
-  "businesses": [
-    {
-      "rating": 4,
-      "price": "$",
-      "phone": "+14152520800",
-      "id": "E8RJkjfdcwgtyoPMjQ_Olg",
-      "alias": "four-barrel-coffee-san-francisco",
-      "is_closed": false,
-      "categories": [
-        {
-          "alias": "coffee",
-          "title": "Coffee & Tea"
-        }
-      ],
-      "review_count": 1738,
-      "name": "Four Barrel Coffee3",
-      "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
-      "coordinates": {
-        "latitude": 37.7670169511878,
-        "longitude": -122.42184275
-      },
-      "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
-      "location": {
-        "city": "San Francisco",
-        "country": "US",
-        "address2": "",
-        "address3": "",
-        "state": "CA",
-        "address1": "375 Valencia St",
-        "zip_code": "94103"
-      },
-      "distance": 1604.23,
-      "transactions": ["pickup", "delivery"]
-    },
-    
-    // yelp JSON searched array data
-  ],
-  "region": {
-    "center": {
-      "latitude": 37.767413217936834,
-      "longitude": -122.42820739746094
-    }
-  }
-},
-{
-  "total": 8228,
-  "businesses": [
-    {
-      "rating": 4,
-      "price": "$",
-      "phone": "+14152520800",
-      "id": "E8RJkjfdcwgtyoPMjQ_Olg",
-      "alias": "four-barrel-coffee-san-francisco",
-      "is_closed": false,
-      "categories": [
-        {
-          "alias": "coffee",
-          "title": "Coffee & Tea"
-        }
-      ],
-      "review_count": 1738,
-      "name": "Four Barrel Coffee4",
-      "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
-      "coordinates": {
-        "latitude": 37.7670169511878,
-        "longitude": -122.42184275
-      },
-      "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
-      "location": {
-        "city": "San Francisco",
-        "country": "US",
-        "address2": "",
-        "address3": "",
-        "state": "CA",
-        "address1": "375 Valencia St",
-        "zip_code": "94103"
-      },
-      "distance": 1604.23,
-      "transactions": ["pickup", "delivery"]
-    },
-    
-    // yelp JSON searched array data
-  ],
-  "region": {
-    "center": {
-      "latitude": 37.767413217936834,
-      "longitude": -122.42820739746094
-    }
-  }
-},
-{
-  "total": 8228,
-  "businesses": [
-    {
-      "rating": 4,
-      "price": "$",
-      "phone": "+14152520800",
-      "id": "E8RJkjfdcwgtyoPMjQ_Olg",
-      "alias": "four-barrel-coffee-san-francisco",
-      "is_closed": false,
-      "categories": [
-        {
-          "alias": "coffee",
-          "title": "Coffee & Tea"
-        }
-      ],
-      "review_count": 1738,
-      "name": "Four Barrel Coffee5",
-      "url": "https://www.yelp.com/biz/four-barrel-coffee-san-francisco",
-      "coordinates": {
-        "latitude": 37.7670169511878,
-        "longitude": -122.42184275
-      },
-      "image_url": "http://s3-media2.fl.yelpcdn.com/bphoto/MmgtASP3l_t4tPCL1iAsCg/o.jpg",
-      "location": {
-        "city": "San Francisco",
-        "country": "US",
-        "address2": "",
-        "address3": "",
-        "state": "CA",
-        "address1": "375 Valencia St",
-        "zip_code": "94103"
-      },
-      "distance": 1604.23,
-      "transactions": ["pickup", "delivery"]
-    },
-    
-    // yelp JSON searched array data
-  ],
-  "region": {
-    "center": {
-      "latitude": 37.767413217936834,
-      "longitude": -122.42820739746094
-    }
-  }
-}
-];
+import { RestoreRounded } from '@material-ui/icons';
 
 const Restaurants = (props) => {
-  
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
-  
-  const maxSteps = yelpJSON.length - 1;
-  // console.log(yelpJSON[2].businesses[0], 'activeStep')
+  const [redirect, setRedirect] = useState(false)
+  const [instanceId, setInstanceId] = useState('')
+  const [restaurants, setRestaurants] = useState([])
 
-  const handleConfirm = () => {
+
+  useEffect(() => {
+    setInstanceId(props.location.instanceId)
+    console.log(props.location.instanceId, 'INSTANCEID')
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/game/restaurants/${props.location.instanceId}`)
+      .then(response => {
+        console.log('🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰', response.data)
+        setRestaurants(response.data.restaurants)
+      })
+      .catch(err =>{
+        console.log('There was an error in useeffect in restaurant.js 🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡')
+      })
+  }, [])
+
+  let maxSteps = restaurants.length - 1;
+
+  const handleConfirm = e => {
+    let val = e.currentTarget.value
+    console.log(val)
+    let boolvote = true
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val, vote: boolvote})
+      .then(response => {
+        console.log(`route worked vote confirm! 👻 👻 👻`)
+        console.log(response)
+      })
+      .catch(err =>{
+        console.log(err.message)
+      })
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // TODO: push like to db
+    if(activeStep === maxSteps){
+      setRedirect(true)
+    }
+    // TODO: push like to db - false true axios call
+    // hit same pipeline  push the vote
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    // let val2 = ''
+    let val2 = e.currentTarget.value
+    // console.log(val2)
+    let boolvote = false
+    //TODO push dislike to db axios call
+    // TODO: push no to db - false
+
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val2, vote: boolvote})
+      .then(response => {
+        console.log(`route worked vote nope! 🥵 🥵 🥵`)
+        console.log(response)
+      })
+      .catch(err =>{
+        console.log(err.message)
+      })
+    // hit same pipeline  push the vote
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(activeStep === maxSteps){
+      setRedirect(true)
+    }
     console.log('this restaurant has been resigned, moving on to next restaurant')
   }
 
@@ -372,12 +192,18 @@ const Restaurants = (props) => {
 
   const classes = useStyles();
 
-  // const priceToNumber = yelpJSON[activeStep].businesses[0].price.length
 
-  // const combineAddress = `${yelpJSON[activeStep].businesses[0].location.address1} ${yelpJSON[activeStep].businesses[0].location.city} ${yelpJSON[activeStep].businesses[0].location.state} ${yelpJSON[activeStep].businesses[0].location.zip_code}`
+if (redirect) return <Redirect to='/plans' />
 
-  // const categoryDetail = yelpJSON[activeStep].businesses[0].categories[0].title;
 
+if(restaurants.length === 0){
+  return(
+    <span>Loading...</span>
+  )
+}else {
+  const priceToNumber = restaurants[activeStep].price.length
+
+  const combineAddress = `${restaurants[activeStep].location[0].address1} ${restaurants[activeStep].location[0].city} ${restaurants[activeStep].location[0].state} ${restaurants[activeStep].location[0].zip_code}`
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
@@ -396,13 +222,27 @@ const Restaurants = (props) => {
               <Paper square elevation={0} className={classes.header}>
                 <Typography>
                   <strong>{restaurants[activeStep].name}</strong>
+
                 </Typography>
               </Paper>
               <img
                 className={classes.img}
-                src={restaurants[activeStep].image_url}
+
+
+                src={restaurants[activeStep].imageUrl}
                 alt={restaurants[activeStep].name}
               />
+              <Paper square elevation={0} className={classes.header}>
+                <Typography>
+                  Category: {restaurants[activeStep].categories[0].title}
+                </Typography>
+              </Paper>
+              {/* <Paper square elevation={0} className={classes.header}>
+                <Rating name="rating" defaultValue={restaurants[activeStep].rating} precision={0.5} readOnly />
+              </Paper> //TODO fix rating */}
+              <Paper square elevation={0} className={classes.header}>
+                <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
+              </Paper>
               <MobileStepper
                 variant="dots"
                 steps={maxSteps}
@@ -410,12 +250,13 @@ const Restaurants = (props) => {
                 activeStep={activeStep}
                 className={classes.root2}
                 nextButton={
+
                   <Button variant="contained" value={restaurants[activeStep]._id} color="secondary" size="medium" onClick={handleConfirm}>
                     Select&nbsp;&nbsp;<CheckCircleIcon />  
                   </Button>
                 } 
                 backButton={
-                  <Button variant="contained" value={restaurants[activeStep]._id} size="medium" color="primary" onClick={handleNext} disabled={activeStep === maxSteps}>
+                  <Button variant="contained" value={restaurants[activeStep]._id} size="medium" color="primary" onClick={handleNext} >
                     <CancelIcon />&nbsp;&nbsp;Next
                   </Button>
                 }
@@ -434,7 +275,6 @@ const Restaurants = (props) => {
                 </ListItem>
               </List> */}
                   {/* TODO: commented out list above */}
-            
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                   <Typography>
@@ -446,8 +286,7 @@ const Restaurants = (props) => {
                     <ListItem className={classes.list}>
                       <ListItemText primary="Address" secondary={combineAddress} />
                       <ListItemText primary="Phone Number" secondary={restaurants[activeStep].number} />
-                      {/* <ListItemText primary="Reviews" secondary={yelpJSON[activeStep].businesses[0].review_count} /> */}
-                      {/* TODO: commented out reviews above */}
+                      {/* <ListItemText primary="Reviews" secondary={restaurants[activeStep].review_count} /> //TODO fix review count */}
                     </ListItem>
                   </List>
                 </AccordionDetails>
@@ -459,4 +298,6 @@ const Restaurants = (props) => {
     </div>
   );
 }
+}
+
 export default Restaurants;
