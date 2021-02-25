@@ -14,12 +14,16 @@ import {
 import theme from '../../theme/theme';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+import Restaurants from './Restaurants'
 
 const InstanceList = (props) => {
   const [messsage, setMessage] = useState('')
   const [dinnerPlans, setDinnerPlans] = useState([])
   const [redirect, setRedirect] = useState(false)
+  const [instanceDetails, setInstanceDetails] = useState({})
+  const [test, setTest] = useState('This is a props test')
+  const [instanceId, setInstanceId] = useState('')
 
   const instanceJSON = [
     {
@@ -74,7 +78,6 @@ const InstanceList = (props) => {
     // console.log(e)
     console.log(e.target)
     console.log(e.currentTarget)
-    
     let instance = e.currentTarget.value
     let objectId = e.currentTarget.getAttribute('value2')
     console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
@@ -82,6 +85,9 @@ const InstanceList = (props) => {
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
         console.log(`⭐️⭐️⭐️⭐️`, response)
+        setInstanceDetails(response.data)
+        //TODO axios.patch to update userinstance model to have started be true
+        setRedirect(true)
       })
       .catch(err => {
         console.log('error in trying to start the game', err)
@@ -90,6 +96,7 @@ const InstanceList = (props) => {
       })
 
   }
+  console.log(instanceDetails, '💰💰💰💰💰💰💰')
 
   const buttonHandlerFinish = e => {
     console.log("Finish button clicked")
@@ -97,7 +104,7 @@ const InstanceList = (props) => {
   }
 
   // ---------------------------------------- mapping JSON
-
+  
   let creatingList =
     dinnerPlans.map((list, i) => {
       let placeText = `${list.name}`;
@@ -157,7 +164,14 @@ const InstanceList = (props) => {
   }));
 
   const classes = useStyles();
-  if (redirect) return <Redirect to='/restaurants' /> 
+  if (redirect) return <Redirect to={{pathname:'/restaurants', instanceId: instanceId}}
+  // render={(props) => {
+  //   // let instance = instanceDetails.find(({ created }) => created == props.match.params.id)
+  //   // props = { ...instance, ...props }
+  //   return <Restaurants instanceDetails={instanceDetails} propsTest={test} {...props} />
+  // }} 
+
+  />
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
