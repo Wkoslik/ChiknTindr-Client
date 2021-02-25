@@ -72,11 +72,32 @@ const InstanceList = (props) => {
       })
 
   }
-  console.log(instanceDetails, '💰💰💰💰💰💰💰')
+  
 
   const buttonHandlerFinish = e => {
     console.log("Finish button clicked")
-    // creatingList();
+    e.preventDefault()
+    // console.log(e)
+    console.log(e.target)
+    console.log(e.currentTarget)
+    let instance = e.currentTarget.value
+    setInstanceId(instance)
+    let objectId = e.currentTarget.getAttribute('value2')
+    setInstanceId(instance)
+    console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
+    console.log(e.currentTarget.value)
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
+      .then(response => {
+        console.log(`⭐️⭐️⭐️⭐️`, response)
+        setInstanceDetails(response.data)
+        //TODO axios.patch to update userinstance model to have started be true
+        setRedirect(true)
+      })
+      .catch(err => {
+        console.log('error in trying to start the game', err)
+        setMessage(err.message);
+        // props.handleAuth(null);
+      })
   }
 
   // ---------------------------------------- mapping JSON
