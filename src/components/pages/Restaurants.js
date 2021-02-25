@@ -291,6 +291,14 @@ const Restaurants = (props) => {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      marginBottom: '1.5em'
+    },
+    paper2: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      marginBottom: '1.5em',
+      marginTop: '-2.5em'
     },
     header: {
       display: "flex",
@@ -314,6 +322,10 @@ const Restaurants = (props) => {
       fontFamily: "Paytone One",
       fontSize: "1.5em",
       color: "#ED1C24",
+      marginTop: ".25em"
+    },
+    lastGrid: {
+      marginBottom: "2em"
     },
   }));
 
@@ -360,9 +372,11 @@ const Restaurants = (props) => {
 
   const classes = useStyles();
 
-  const priceToNumber = yelpJSON[activeStep].businesses[0].price.length
+  // const priceToNumber = yelpJSON[activeStep].businesses[0].price.length
 
-  const combineAddress = `${yelpJSON[activeStep].businesses[0].location.address1} ${yelpJSON[activeStep].businesses[0].location.city} ${yelpJSON[activeStep].businesses[0].location.state} ${yelpJSON[activeStep].businesses[0].location.zip_code}`
+  // const combineAddress = `${yelpJSON[activeStep].businesses[0].location.address1} ${yelpJSON[activeStep].businesses[0].location.city} ${yelpJSON[activeStep].businesses[0].location.state} ${yelpJSON[activeStep].businesses[0].location.zip_code}`
+
+  // const categoryDetail = yelpJSON[activeStep].businesses[0].categories[0].title;
 
   return (
     <div className={classes.root}>
@@ -378,16 +392,16 @@ const Restaurants = (props) => {
               </Paper>
             </Grid>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper2}>
               <Paper square elevation={0} className={classes.header}>
                 <Typography>
-                  {yelpJSON[activeStep].businesses[0].name}
+                  <strong>{restaurants[activeStep].name}</strong>
                 </Typography>
               </Paper>
               <img
                 className={classes.img}
-                src={yelpJSON[activeStep].businesses[0].image_url}
-                alt={yelpJSON[activeStep].businesses[0].name}
+                src={restaurants[activeStep].image_url}
+                alt={restaurants[activeStep].name}
               />
               <MobileStepper
                 variant="dots"
@@ -396,27 +410,30 @@ const Restaurants = (props) => {
                 activeStep={activeStep}
                 className={classes.root2}
                 nextButton={
-                  <Button size="small" onClick={handleConfirm}>
-                    This is it! <CheckCircleIcon />  
+                  <Button variant="contained" value={restaurants[activeStep]._id} color="secondary" size="medium" onClick={handleConfirm}>
+                    Select&nbsp;&nbsp;<CheckCircleIcon />  
                   </Button>
                 } 
                 backButton={
-                  <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps}>
-                    <CancelIcon />  Nope. Next.
+                  <Button variant="contained" value={restaurants[activeStep]._id} size="medium" color="primary" onClick={handleNext} disabled={activeStep === maxSteps}>
+                    <CancelIcon />&nbsp;&nbsp;Next
                   </Button>
                 }
               />
-              <Paper square elevation={0} className={classes.header}>
-                <Typography>
-                  Category: {yelpJSON[activeStep].businesses[0].categories[0].title}
-                </Typography>
               </Paper>
-              <Paper square elevation={0} className={classes.header}>
-                <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
-              </Paper>
-              <Paper square elevation={0} className={classes.header}>
-                <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
-              </Paper>
+            <Paper className={classes.lastGrid}>
+              {/* <List>
+                <ListItem className={classes.list}>
+                  <ListItemText primary="Categories" secondary={categoryDetail} />
+                  <ListItemText primary="Ratings" secondary={
+                    <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
+                  } />
+                  <ListItemText primary="Price" secondary={
+                    <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
+                  } />
+                </ListItem>
+              </List> */}
+                  {/* TODO: commented out list above */}
             
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
@@ -428,8 +445,9 @@ const Restaurants = (props) => {
                   <List>
                     <ListItem className={classes.list}>
                       <ListItemText primary="Address" secondary={combineAddress} />
-                      <ListItemText primary="Phone Number" secondary={yelpJSON[activeStep].businesses[0].phone} />
-                      <ListItemText primary="Reviews" secondary={yelpJSON[activeStep].businesses[0].review_count} />
+                      <ListItemText primary="Phone Number" secondary={restaurants[activeStep].number} />
+                      {/* <ListItemText primary="Reviews" secondary={yelpJSON[activeStep].businesses[0].review_count} /> */}
+                      {/* TODO: commented out reviews above */}
                     </ListItem>
                   </List>
                 </AccordionDetails>
@@ -442,4 +460,3 @@ const Restaurants = (props) => {
   );
 }
 export default Restaurants;
-

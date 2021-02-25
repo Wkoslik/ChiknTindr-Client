@@ -377,7 +377,7 @@ const Result = (props) => {
             <Paper className={classes.paper}>
               <Paper square elevation={0} className={classes.header}>
                 <Typography>
-                  {yelpEndPointJSON[0].name}
+                  <strong>{yelpEndPointJSON[0].name}</strong>
                 </Typography>
               </Paper>
                 <img
