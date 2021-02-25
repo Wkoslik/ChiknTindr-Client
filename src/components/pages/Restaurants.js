@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import {
   Grid,
   Paper,
@@ -26,11 +27,10 @@ import { RestoreRounded } from '@material-ui/icons';
 const Restaurants = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
-
+  const [redirect, setRedirect] = useState(false)
   const [instanceId, setInstanceId] = useState('')
   const [restaurants, setRestaurants] = useState([])
 
-  console.log(props)
 
   useEffect(() => {
     setInstanceId(props.location.instanceId)
@@ -61,6 +61,9 @@ const Restaurants = (props) => {
       })
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(activeStep === maxSteps){
+      setRedirect(true)
+    }
     // TODO: push like to db - false true axios call
     // hit same pipeline  push the vote
   };
@@ -84,6 +87,9 @@ const Restaurants = (props) => {
     // hit same pipeline  push the vote
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if(activeStep === maxSteps){
+      setRedirect(true)
+    }
     console.log('this restaurant has been resigned, moving on to next restaurant')
   }
 
@@ -174,6 +180,9 @@ const Restaurants = (props) => {
 
   const classes = useStyles();
 
+  if (redirect) return <Redirect to='/plans' />
+
+
 if(restaurants.length === 0){
   return(
     <span>Loading...</span>
@@ -230,7 +239,7 @@ if(restaurants.length === 0){
                   </Button>
                 } 
                 backButton={
-                  <Button size="small" value={restaurants[activeStep]._id}  onClick={handleNext} disabled={activeStep === maxSteps}>
+                  <Button size="small" value={restaurants[activeStep]._id}  onClick={handleNext} >
                     <CancelIcon />  Nope. Next.
                   </Button>
                 }
