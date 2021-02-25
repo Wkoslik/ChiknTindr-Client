@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {
     Grid,
@@ -40,7 +41,7 @@ const Home = (props) => {
                             <Box fontWeight={900} style={{ color: "white", marginBottom: "4rem" }}>MATCH, <br></br>Enjoy your meal</Box>
                         </Typography>
                     </Grid>
-                    <Button color="secondary" variant="contained" size="large" href="/auth/login">to login/signup</Button>
+                    <Button color="secondary" variant="contained" size="large" ><Link to="/auth/login">to login/signup</Link></Button>
                 </Grid>
             </ThemeProvider>
         </div>
