@@ -74,7 +74,7 @@ const Profile = (props) => {
                                 <Typography>
                                     Start your munching here!
                                 </Typography>
-                                <Button variant="contained" color="primary"><Link className="nav-link" to="/preference">Start Dine</Link></Button>
+                                <Button variant="contained" color="primary"><Link className="nav-link" to="/preferences">Start Dine</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>

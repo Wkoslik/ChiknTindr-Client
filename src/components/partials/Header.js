@@ -222,7 +222,7 @@ const Header = (props) => {
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
                 <div className={classes.grow}>
-                    <AppBar position="static">
+                    <AppBar>
                     <Toolbar>
                     <IconButton
                         edge="start"
@@ -235,7 +235,7 @@ const Header = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <img src="img/logowhite.png" style={{maxHeight: "30px"}} />
+                    <img src="/img/Logowhite.png" style={{maxHeight: "30px"}} />
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 17 new notifications" color="inherit">

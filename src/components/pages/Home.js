@@ -1,8 +1,48 @@
+import { makeStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {
+    Grid,
+    Typography,
+    Button,
+    ThemeProvider,
+    Box
+} from '@material-ui/core';
+
+import theme from '../../theme/theme';
+
 const Home = (props) => {
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            margin: "auto",
+            height: "100vh",
+            backgroundImage: `url(${"img/landingbackground.jpg"})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            
+        },
+        home_container: {
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            alignContent: "center",
+        },
+    }));
+
+    const classes = useStyles();
+
     return (
-        <div>
-            <h1>HOMEPAGE</h1>
-            <p>user click <a href="/auth/login">here</a> to login and start</p>
+        <div className={classes.root}>
+            <ThemeProvider theme={theme}>
+                <Grid container className={classes.home_container}>
+                    <Grid item xs={12}>
+                        <Typography variant="h1" align="center" className="classes.welcome">
+                            <Box fontWeight={900} style={{ color: "white", marginBottom: "4rem" }}>MATCH, <br></br>Enjoy your meal</Box>
+                        </Typography>
+                    </Grid>
+                    <Button color="secondary" variant="contained" size="large" href="/auth/login">to login/signup</Button>
+                </Grid>
+            </ThemeProvider>
         </div>
     )
 }
