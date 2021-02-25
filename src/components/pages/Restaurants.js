@@ -56,6 +56,9 @@ const Restaurants = (props) => {
         console.log(`route worked vote confirm! 👻 👻 👻`)
         console.log(response)
       })
+      .catch(err =>{
+        console.log(err.message)
+      })
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     // TODO: push like to db - false true axios call
@@ -74,6 +77,9 @@ const Restaurants = (props) => {
       .then(response => {
         console.log(`route worked vote nope! 🥵 🥵 🥵`)
         console.log(response)
+      })
+      .catch(err =>{
+        console.log(err.message)
       })
     // hit same pipeline  push the vote
 
