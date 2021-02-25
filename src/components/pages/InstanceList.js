@@ -25,32 +25,6 @@ const InstanceList = (props) => {
   const [test, setTest] = useState('This is a props test')
   const [instanceId, setInstanceId] = useState('')
 
-  const instanceJSON = [
-    {
-      "name": "Sean",
-      "restaurant_is_chosen": true,
-      "started": true,
-      "completed": true
-    },
-    {
-      "name": "david",
-      "restaurant_is_chosen": false,
-      "started": false,
-      "completed": false
-    },
-    {
-      "name": "Whitney",
-      "restaurant_is_chosen": false,
-      "started": true,
-      "completed": false
-    },
-    {
-      "name": "Young",
-      "restaurant_is_chosen": false,
-      "match_is_started": true,
-      "match_complete": false
-    },
-  ]
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plans`)
@@ -79,6 +53,7 @@ const InstanceList = (props) => {
     console.log(e.target)
     console.log(e.currentTarget)
     let instance = e.currentTarget.value
+    setInstanceId(instance)
     let objectId = e.currentTarget.getAttribute('value2')
     console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
     console.log(e.currentTarget.value)
@@ -174,6 +149,8 @@ const InstanceList = (props) => {
       marginBottom: "1em"
     }
   }));
+
+
 
   const classes = useStyles();
   if (redirect) return <Redirect to={{pathname:'/restaurants', instanceId: instanceId}}

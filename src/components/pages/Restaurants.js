@@ -30,12 +30,18 @@ const Restaurants = (props) => {
   const [instanceId, setInstanceId] = useState('')
   const [restaurants, setRestaurants] = useState([])
 
+  console.log(props)
+
   useEffect(() => {
     setInstanceId(props.location.instanceId)
+    console.log(props.location.instanceId, 'INSTANCEID')
     axios.get(`${process.env.REACT_APP_SERVER_URL}/game/restaurants/${props.location.instanceId}`)
       .then(response => {
         console.log('🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰🥰', response.data)
         setRestaurants(response.data.restaurants)
+      })
+      .catch(err =>{
+        console.log('There was an error in useeffect in restaurant.js 🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡')
       })
   }, [])
 
