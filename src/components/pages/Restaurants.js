@@ -47,17 +47,21 @@ const Restaurants = (props) => {
 
   let maxSteps = restaurants.length - 1;
 
-  const handleConfirm = () => {
+  const handleConfirm = e => {
+    let val = e.currentTarget.value
+    console.log(val)
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // TODO: push like to db - false true
+    // TODO: push like to db - false true axios call
     // hit same pipeline  push the vote
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log('this restaurant has been resigned, moving on to next restaurant')
-    //TODO push dislike to db
+    let val2 = e.currentTarget.value
+    console.log(val2)
+    //TODO push dislike to db axios call
     // TODO: push no to db - false
     // hit same pipeline  push the vote
   }
@@ -180,12 +184,12 @@ if(restaurants.length === 0){
                 activeStep={activeStep}
                 className={classes.root}
                 nextButton={
-                  <Button size="small" onClick={handleConfirm}>
+                  <Button size="small" value={restaurants[activeStep]._id} onClick={handleConfirm}>
                     This is it! <CheckCircleIcon />
                   </Button>
                 }
                 backButton={
-                  <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps}>
+                  <Button size="small" value={restaurants[activeStep]._id}  onClick={handleNext} disabled={activeStep === maxSteps}>
                     <CancelIcon />  Nope. Next.
                   </Button>
                 }
