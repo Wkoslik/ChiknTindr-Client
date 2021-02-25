@@ -91,6 +91,7 @@ const Profile = (props) => {
                                 <Typography className={classes.sometext}>
                                     See all of your munching plans!
                                 </Typography>
+
                                 <Button variant="contained" color="secondary"><Link className="nav-link2" to="/plans">Dine Status</Link></Button>
                             </Paper>
                         </Paper>
