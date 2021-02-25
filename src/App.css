@@ -10,3 +10,26 @@
   margin-right: 1rem;
   color:black;
 }
+
+.nav-link2 {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  color:white;
+}
+
+.signup-text {
+  text-decoration: none;
+  color: #FBB03B;
+}
+
+.signup-text:hover {
+  color: #ED1C24;
+}
+
+#position {
+  color: gray;
+  font-style: italic;
+}
+
+/* FBB03B - yellow, ED1C24 - red, 39B54A - green */

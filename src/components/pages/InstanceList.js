@@ -140,6 +140,7 @@ const InstanceList = (props) => {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
         width: '25ch',
+        marginTop: '2em'
       },
     },
     paper: {
@@ -150,7 +151,11 @@ const InstanceList = (props) => {
     root: {
       flexGrow: 1,
       maxWidth: 600,
-      margin: "0 auto"
+      margin: "0 auto",
+      paddingTop: "10vh",
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
+      height: "100%",
     },
     formtitle: {
       color: "red"
@@ -159,7 +164,14 @@ const InstanceList = (props) => {
       width: '100%',
       maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
-      margin: "0 auto"
+      margin: "0 auto",
+      paddingBottom: "2em"
+    },
+    title: {
+      fontFamily: "Paytone One",
+      fontSize: "2em",
+      color: "#ED1C24",
+      marginBottom: "1em"
     }
   }));
 
@@ -178,7 +190,7 @@ const InstanceList = (props) => {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Typography>
+              <Typography className={classes.title}>
                 Dinner Plans
               </Typography>
               <List className={classes.list}>
