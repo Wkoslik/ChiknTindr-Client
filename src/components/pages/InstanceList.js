@@ -75,9 +75,14 @@ const InstanceList = (props) => {
   const buttonHandlerStart = e => {
     console.log("Start button clicked")
     e.preventDefault()
-    setInstanceId(e.currentTarget.value)
+    // console.log(e)
+    console.log(e.target)
+    console.log(e.currentTarget)
+    let instance = e.currentTarget.value
+    let objectId = e.currentTarget.getAttribute('value2')
+    console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
     console.log(e.currentTarget.value)
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instanceId })
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
         console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
@@ -107,7 +112,7 @@ const InstanceList = (props) => {
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="" value={list.instance} onClick={buttonHandlerView}>View Restaurant</Button>
+            <Button variant="contained" color="" value2={list._id} value={list.instance} onClick={buttonHandlerView}>View Restaurant</Button>
           </ListItem>
         )
       }
@@ -115,7 +120,7 @@ const InstanceList = (props) => {
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="secondary" value={list.instance} onClick={buttonHandlerStart}>Start Matching</Button>
+            <Button variant="contained" color="secondary" value2={list._id} value={list.instance} onClick={buttonHandlerStart}>Start Matching</Button>
           </ListItem>
         )
       }
@@ -123,7 +128,7 @@ const InstanceList = (props) => {
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="primary" value={list.instance} onClick={buttonHandlerFinish}>Finish Matching</Button>
+            <Button variant="contained" color="primary" value2={list._id} value={list.instance} onClick={buttonHandlerFinish}>Finish Matching</Button>
           </ListItem>
         )
       }
