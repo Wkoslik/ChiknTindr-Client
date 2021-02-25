@@ -80,6 +80,7 @@ const InstanceList = (props) => {
     console.log(e.currentTarget)
     let instance = e.currentTarget.value
     let objectId = e.currentTarget.getAttribute('value2')
+    setInstanceId(instance)
     console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
     console.log(e.currentTarget.value)
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
