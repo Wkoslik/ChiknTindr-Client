@@ -24,13 +24,14 @@ const InstanceList = (props) => {
   const [instanceDetails, setInstanceDetails] = useState({})
   const [test, setTest] = useState('This is a props test')
   const [instanceId, setInstanceId] = useState('')
-
+  const [currentUser, setCurrentUser] = useState(props.currentUser.email)
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plans`)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plansnew`)
       .then(response => {
-        let plans = response.data.userInstances
-        console.log(response.data.userInstances)
+        console.log('💄💄💄💄💄💄💄💄', response)
+        let plans = response.data
+        // console.log(response.data.userInstances)
         setDinnerPlans(plans)
       })
       .catch(err => {
@@ -49,7 +50,7 @@ const InstanceList = (props) => {
   const buttonHandlerStart = e => {
     console.log("Start button clicked")
     e.preventDefault()
-    // console.log(e)
+    console.log(e)
     console.log(e.target)
     console.log(e.currentTarget)
     let instance = e.currentTarget.value
@@ -100,17 +101,18 @@ const InstanceList = (props) => {
       })
   }
 
-  // ---------------------------------------- mapping JSON
   
+  // ---------------------------------------- mapping JSON
+
   let creatingList =
     dinnerPlans.map((list, i) => {
-      console.log(list)
+      // console.log(list)
       let placeText = `${list.name}`;
-      if (list.started && list.complete) {
+      if (list.complete) {
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="" value2={list._id} value={list.instance} onClick={buttonHandlerView}>View Restaurant</Button>
+            <Button variant="contained" color="" value2={list._id} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
           </ListItem>
         )
       }
@@ -122,13 +124,22 @@ const InstanceList = (props) => {
           </ListItem>
         )
       }
-      else if (list.started && !list.complete) {
+      else if (list.started) {
+        if(currentUser === list.creator && !list.creatorFinished || currentUser ===list.player && !list.playerFinished){
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
             <Button variant="contained" color="primary" value2={list._id} value={list.instance} onClick={buttonHandlerFinish}>Finish Matching</Button>
           </ListItem>
         )
+      } else {
+        return (
+          <ListItem key={list.instance}>
+            <ListItemText primary={placeText} />
+            <Button variant="contained" color="primary" value2={list._id} value={list.instance} onClick={buttonHandlerFinish}>Waiting on your friend</Button>
+          </ListItem>
+        )
+      }
       }
     })
 
@@ -203,5 +214,7 @@ const InstanceList = (props) => {
     </div>
   );
 }
+
+
 export default InstanceList;
 
