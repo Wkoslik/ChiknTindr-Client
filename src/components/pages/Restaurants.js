@@ -50,6 +50,12 @@ const Restaurants = (props) => {
   const handleConfirm = e => {
     let val = e.currentTarget.value
     console.log(val)
+    let boolvote = true
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val, vote: boolvote})
+      .then(response => {
+        console.log(`route worked vote confirm! 👻 👻 👻`)
+        console.log(response)
+      })
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     // TODO: push like to db - false true axios call
@@ -57,13 +63,22 @@ const Restaurants = (props) => {
   };
 
   const handleNext = (e) => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    console.log('this restaurant has been resigned, moving on to next restaurant')
+    // let val2 = ''
     let val2 = e.currentTarget.value
-    console.log(val2)
+    // console.log(val2)
+    let boolvote = false
     //TODO push dislike to db axios call
     // TODO: push no to db - false
+
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val2, vote: boolvote})
+      .then(response => {
+        console.log(`route worked vote nope! 🥵 🥵 🥵`)
+        console.log(response)
+      })
     // hit same pipeline  push the vote
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    console.log('this restaurant has been resigned, moving on to next restaurant')
   }
 
   const handleChange = (panel) => (event, newExpanded) => {
