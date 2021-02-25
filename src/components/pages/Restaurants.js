@@ -45,7 +45,7 @@ const Restaurants = (props) => {
     let val = e.currentTarget.value
     console.log(val)
     let boolvote = true
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/restaurants/${props.location.instanceId}`, {instanceId: instanceId, restId: val2, vote: boolvote})
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val, vote: boolvote})
       .then(response => {
         console.log(`route worked vote confirm! 👻 👻 👻`)
         console.log(response)
@@ -57,13 +57,14 @@ const Restaurants = (props) => {
   };
 
   const handleNext = (e) => {
+    // let val2 = ''
     let val2 = e.currentTarget.value
-    console.log(val2)
+    // console.log(val2)
     let boolvote = false
     //TODO push dislike to db axios call
     // TODO: push no to db - false
 
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/restaurants/${props.location.instanceId}`, {instanceId: instanceId, restId: val2, vote: boolvote})
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val2, vote: boolvote})
       .then(response => {
         console.log(`route worked vote nope! 🥵 🥵 🥵`)
         console.log(response)
