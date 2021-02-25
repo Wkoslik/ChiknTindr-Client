@@ -16,6 +16,7 @@ import { fontWeight } from '@material-ui/system';
 
 const Profile = (props) => {
     const [message, setMessage] = useState('Loading msg ...');
+    console.log(props)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/api/private`)
@@ -70,7 +71,7 @@ const Profile = (props) => {
     const classes = useStyles();
 
 
-    if (!props.currentUser) return <Redirect to='/auth/login' />
+    if (!props.currentUser) return <Redirect to='/' />
     return (
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
@@ -92,7 +93,7 @@ const Profile = (props) => {
                                     See all of your munching plans!
                                 </Typography>
 
-                                <Button variant="contained" color="secondary"><Link className="nav-link2" to="/plans">Dine Status</Link></Button>
+                                <Button variant="contained" color="secondary"><Link className="nav-link2" to="/plans" currentUser={props.currentUser}>Dine Status</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>
@@ -102,7 +103,7 @@ const Profile = (props) => {
                                 <Typography className={classes.sometext}>
                                     Start your munching here!
                                 </Typography>
-                                <Button variant="contained" color="secondary"><Link className="nav-link2" to="/preferences">Start Dine</Link></Button>
+                                <Button variant="contained" color="secondary"><Link className="nav-link2" to="/preferences" currentUser={props.currentUser}>Start Dine</Link></Button>
                             </Paper>
                         </Paper>
                     </Grid>

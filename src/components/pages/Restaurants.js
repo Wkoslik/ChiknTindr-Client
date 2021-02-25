@@ -192,7 +192,7 @@ const Restaurants = (props) => {
 
   const classes = useStyles();
 
-
+if (!props.currentUser) return <Redirect to='/' />
 if (redirect) return <Redirect to='/plans' />
 
 

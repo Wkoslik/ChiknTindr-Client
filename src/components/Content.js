@@ -25,19 +25,19 @@ const Content = (props) => {
     <main>
         <Route exact path='/' component={Home} />
         <Route path='/preferences' render={(renderProps) => (
-            <Preference handleAuth={props.handleAuth} {...renderProps} />
+            <Preference handleAuth={props.handleAuth} currentUser={props.currentUser} {...renderProps} />
         )}/>
         <Route path='/invite' render={(renderProps) => (
-            <Invite handleAuth={props.handleAuth} {...renderProps} />
+            <Invite handleAuth={props.handleAuth} currentUser={props.currentUser} {...renderProps} />
         )}/>
         <Route path='/restaurants' render={(renderProps) => (
-            <Restaurants handleAuth={props.handleAuth} {...renderProps} />
+            <Restaurants handleAuth={props.handleAuth} currentUser={props.currentUser} {...renderProps} />
         )}/>
         <Route path='/plans' render={(renderProps) => (
-            <InstanceList handleAuth={props.handleAuth} {...renderProps} />
+            <InstanceList handleAuth={props.handleAuth} currentUser={props.currentUser} {...renderProps} />
         )}/>
         <Route path='/result' render={(renderProps) => (
-            <Result handleAuth={props.handleAuth} {...renderProps} />
+            <Result handleAuth={props.handleAuth} currentUser={props.currentUser} {...renderProps} />
         )}/>
         <Route path='/auth' render={(renderProps) => (
             <Auth handleAuth={props.handleAuth} {...renderProps} />
