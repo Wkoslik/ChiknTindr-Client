@@ -104,6 +104,7 @@ const InstanceList = (props) => {
   
   let creatingList =
     dinnerPlans.map((list, i) => {
+      console.log(list)
       let placeText = `${list.name}`;
       if (list.started && list.complete) {
         return (
