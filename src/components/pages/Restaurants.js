@@ -259,18 +259,27 @@ const Restaurants = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
   
+  //TODO: States to help the game 
+  //TODO: userStatus: track if user is creator or player
+    // current restaurant? / restaurant id
+    // gameid 
+  
+    // components and what needs to be rendered can be logic'd out from userstatus state for ease
   const maxSteps = yelpJSON.length - 1;
   // console.log(yelpJSON[2].businesses[0], 'activeStep')
 
   const handleConfirm = () => {
     console.log('this restaurant has been selected');
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // TODO: push like to db
+    // TODO: push like to db - false true
+    // hit same pipeline  push the vote
   };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log('this restaurant has been resigned, moving on to next restaurant')
+    // TODO: push no to db - false
+    // hit same pipeline  push the vote
   }
 
   const handleChange = (panel) => (event, newExpanded) => {
