@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Grid,
   Paper,
@@ -140,9 +140,16 @@ const Result = (props) => {
   // --------------------------------------------------------------- set states
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
+  const [redirect, setRedirect] = useState(false)
+  const [instanceDetails, setInstanceDetails] = useState({})
+  const [instanceId, setInstanceId] = useState('')
+  const [currentUser, setCurrentUser] = useState('')
+
+  useEffect(() =>{
+    console.log('hi!')
+  }, [])
 
   const maxSteps = yelpEndPointJSON[0].photos.length;
-
   // --------------------------------------------------------------- e. handlers
 
   const handleNext = () => {

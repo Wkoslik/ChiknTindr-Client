@@ -24,9 +24,10 @@ const InstanceList = (props) => {
   const [instanceDetails, setInstanceDetails] = useState({})
   const [test, setTest] = useState('This is a props test')
   const [instanceId, setInstanceId] = useState('')
-  const [currentUser, setCurrentUser] = useState(props.currentUser.email)
+  const [currentUser, setCurrentUser] = useState('')
 
   useEffect(() => {
+    setCurrentUser(props.currentUser.email)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plansnew`)
       .then(response => {
         console.log('💄💄💄💄💄💄💄💄', response)
@@ -87,7 +88,8 @@ const InstanceList = (props) => {
     setInstanceId(instance)
     console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
     console.log(e.currentTarget.value)
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
+    //TODO adjust this route so it doesn't add restaurants
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/resume`, { _id: instance, objectId: objectId })
       .then(response => {
         console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
@@ -136,7 +138,7 @@ const InstanceList = (props) => {
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="primary" value2={list._id} value={list.instance} onClick={buttonHandlerFinish}>Waiting on your friend</Button>
+            <Button variant="contained" color="primary" value2={list._id} value={list.instance}>Waiting on your friend</Button>
           </ListItem>
         )
       }
@@ -187,6 +189,7 @@ const InstanceList = (props) => {
 
 
   const classes = useStyles();
+  if (!props.currentUser) return <Redirect to='/' />
   if (redirect) return <Redirect to={{pathname:'/restaurants', instanceId: instanceId}}
   // render={(props) => {
   //   // let instance = instanceDetails.find(({ created }) => created == props.match.params.id)
