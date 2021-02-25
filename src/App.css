@@ -32,4 +32,22 @@
   font-style: italic;
 }
 
+.chosen-restaurant {
+  color: #FBB03B;
+  font-size: 2rem;
+}
+
+#hours-of-op {
+  padding-left: 1em;
+}
+
+.yelplink {
+  text-decoration: none;
+  color: #FBB03B;
+}
+
+.yelplink:hover {
+  color: #ED1C24;
+}
+
 /* FBB03B - yellow, ED1C24 - red, 39B54A - green */

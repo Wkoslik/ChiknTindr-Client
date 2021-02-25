@@ -62,7 +62,9 @@ const Profile = (props) => {
         sometext: {
             marginTop: '4vh',
             marginBottom: '2vh',
-            fontWeight: 500
+            fontWeight: 500,
+            fontSize: '1.25em',
+            color: 'gray'
         }
     }));
     const classes = useStyles();

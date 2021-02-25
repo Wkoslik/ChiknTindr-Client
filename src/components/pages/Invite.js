@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from '../../theme/theme';
+import { letterSpacing } from '@material-ui/system';
 
 
 const Invite = (props) => {
@@ -91,7 +92,8 @@ const Invite = (props) => {
       fontFamily: "Paytone One",
       fontSize: "2em",
       color: "#ED1C24",
-      marginBottom: "1em"
+      marginBottom: "1em",
+      letterSpacing: 1.5
     },
     formTitle: {
       paddingTop: '1.5em',

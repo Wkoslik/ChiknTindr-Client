@@ -19,7 +19,7 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
-import theme from '../../theme/theme';
+import themeMain from '../../theme/theme';
 
 const yelpEndPointJSON = [
   {
@@ -164,12 +164,17 @@ const Result = (props) => {
     root: {
       flexGrow: 1,
       maxWidth: 600,
-      margin: "0 auto"
+      margin: "auto",
+      paddingTop: "10vh",
+      height: "100%",
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
     },
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      marginBottom: '1.5em'
     },
     header: {
       display: "flex",
@@ -181,10 +186,35 @@ const Result = (props) => {
     img: {
       overflow: "hidden",
       display: "block",
-      width: "100%"
+      width: "100%",
+      position: "relative",
+      objectFit: 'cover',
+      height: "500px"
     },
     list: {
       display: "block",
+    },
+    title: {
+      fontFamily: "Paytone One",
+      fontSize: "1.5em",
+      color: "#ED1C24",
+    },
+    title2: {
+      color: 'gray'
+    },
+    firstButton: {
+      marginTop: '2em',
+      marginBottom: '1em'
+    },
+    firstGrid: {
+      marginTop: '0'
+    },
+    restGrid: {
+      marginBottom: '1em',
+      marginTop: '-3em'
+    },
+    lastGrid: {
+
     }
   }));
 
@@ -230,7 +260,6 @@ const Result = (props) => {
   }))(MuiAccordionDetails);
 
   const classes = useStyles();
-  const theme = useTheme();
 
   console.log(yelpEndPointJSON[0], "getting the JSON");
 
@@ -317,17 +346,31 @@ const Result = (props) => {
     // Yelplink
   let yelpLink = <a className="yelplink" href={yelpEndPointJSON[0].url} target="_blank" rel="noopener noreferrer">See this restaurant on Yelp</a>
 
+  // phonecall
+
+  let phoneNum = `tel:${yelpEndPointJSON[0].phone}`
+
   return (
     <div className={classes.root}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeMain}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <Paper square elevation={0} className={classes.title}>
+          <Grid className={classes.firstGrid} item xs={12}>
+            <Paper className={classes.paper} elevation={0} >
+                <Paper square elevation={0} className={classes.title}>
+                    <Typography className={classes.title}>
+                      Congratulations!
+                    </Typography>
+                </Paper>
+            </Paper>
+          </Grid>
+          <Grid className={classes.restGrid} item xs={12}>
+            <Paper elevation={0} className={classes.paper}>
+              <Paper square elevation={0} className={classes.title2}>
                 <Typography>
-                  You and Your friend has matched to <strong>{yelpEndPointJSON[0].name} !</strong>
+                  You and Your friend has matched to <br /> <span className="chosen-restaurant"><strong>{yelpEndPointJSON[0].name} !</strong></span>
+                  {/* TODO: get user, and friend name above */}
                 </Typography>
-                <Button color="primary"> Click here to make a call for reservation</Button>
+                <Button href={phoneNum} className={classes.firstButton} color="secondary" variant="contained"> Call for reservation</Button>
                 {/* TODO: add phone calling function */}
               </Paper>
             </Paper>
@@ -337,26 +380,26 @@ const Result = (props) => {
                   {yelpEndPointJSON[0].name}
                 </Typography>
               </Paper>
-              <img
-                className={classes.img}
-                src={yelpEndPointJSON[0].photos[activeStep]}
-                alt={yelpEndPointJSON[0].name}
-              />
+                <img
+                  className={classes.img}
+                  src={yelpEndPointJSON[0].photos[activeStep]}
+                  alt={yelpEndPointJSON[0].name}
+                />
               <MobileStepper
                 variant="dots"
                 steps={maxSteps}
                 position="static"
                 activeStep={activeStep}
-                className={classes.root}
+                className={classes.root2}
                 nextButton={
-                  <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>Next</Button>
+                  <Button color="primary" size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>Next</Button>
                 }
                 backButton={
-                  <Button size="small" onClick={handlePrev} disabled={activeStep === 0}>Prev</Button>
+                  <Button color="primary" size="small" onClick={handlePrev} disabled={activeStep === 0}>Prev</Button>
                 }
               />
             </Paper>
-            <Paper square>
+            <Paper className={classes.lastGrid}>
               <List>
                 <ListItem className={classes.list}>
                   <ListItemText primary="Categories" secondary={titleString}></ListItemText>
