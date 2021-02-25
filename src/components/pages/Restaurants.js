@@ -111,6 +111,14 @@ const Restaurants = (props) => {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      marginBottom: '1.5em'
+    },
+    paper2: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      marginBottom: '1.5em',
+      marginTop: '-2.5em'
     },
     header: {
       display: "flex",
@@ -134,6 +142,10 @@ const Restaurants = (props) => {
       fontFamily: "Paytone One",
       fontSize: "1.5em",
       color: "#ED1C24",
+      marginTop: ".25em"
+    },
+    lastGrid: {
+      marginBottom: "2em"
     },
   }));
 
@@ -180,7 +192,8 @@ const Restaurants = (props) => {
 
   const classes = useStyles();
 
-  if (redirect) return <Redirect to='/plans' />
+
+if (redirect) return <Redirect to='/plans' />
 
 
 if(restaurants.length === 0){
@@ -205,14 +218,17 @@ if(restaurants.length === 0){
               </Paper>
             </Grid>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper2}>
               <Paper square elevation={0} className={classes.header}>
                 <Typography>
-                  {restaurants[activeStep].name}
+                  <strong>{restaurants[activeStep].name}</strong>
+
                 </Typography>
               </Paper>
               <img
                 className={classes.img}
+
+
                 src={restaurants[activeStep].imageUrl}
                 alt={restaurants[activeStep].name}
               />
@@ -234,28 +250,31 @@ if(restaurants.length === 0){
                 activeStep={activeStep}
                 className={classes.root2}
                 nextButton={
-                  <Button size="small" value={restaurants[activeStep]._id} onClick={handleConfirm}>
-                    This is it! <CheckCircleIcon />
+
+                  <Button variant="contained" value={restaurants[activeStep]._id} color="secondary" size="medium" onClick={handleConfirm}>
+                    Select&nbsp;&nbsp;<CheckCircleIcon />  
                   </Button>
                 } 
                 backButton={
-                  <Button size="small" value={restaurants[activeStep]._id}  onClick={handleNext} >
-                    <CancelIcon />  Nope. Next.
+                  <Button variant="contained" value={restaurants[activeStep]._id} size="medium" color="primary" onClick={handleNext} >
+                    <CancelIcon />&nbsp;&nbsp;Next
                   </Button>
                 }
               />
-              {/* <Paper square elevation={0} className={classes.header}>
-                <Typography>
-                  Category: {restaurants[activeStep].categories[0].title}
-                </Typography>
-              </Paper> */}
-              {/* <Paper square elevation={0} className={classes.header}> */}
-                {/* <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly /> */}
-              {/* </Paper> */}
-              {/* <Paper square elevation={0} className={classes.header}> */}
-                {/* <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly /> */}
-              {/* </Paper> */}
-            
+              </Paper>
+            <Paper className={classes.lastGrid}>
+              {/* <List>
+                <ListItem className={classes.list}>
+                  <ListItemText primary="Categories" secondary={categoryDetail} />
+                  <ListItemText primary="Ratings" secondary={
+                    <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
+                  } />
+                  <ListItemText primary="Price" secondary={
+                    <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
+                  } />
+                </ListItem>
+              </List> */}
+                  {/* TODO: commented out list above */}
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                   <Typography>
@@ -282,4 +301,3 @@ if(restaurants.length === 0){
 }
 
 export default Restaurants;
-
