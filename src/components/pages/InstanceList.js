@@ -88,7 +88,8 @@ const InstanceList = (props) => {
     setInstanceId(instance)
     console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
     console.log(e.currentTarget.value)
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
+    //TODO adjust this route so it doesn't add restaurants
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/resume`, { _id: instance, objectId: objectId })
       .then(response => {
         console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
