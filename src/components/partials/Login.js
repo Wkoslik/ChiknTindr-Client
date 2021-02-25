@@ -80,7 +80,7 @@ const Login = (props) => {
         formtitle: {
             fontFamily: "Paytone One",
             fontSize: "2em",
-            color: "red",
+            color: "#ED1C24",
         },
         formEntry: {
             marginBottom: '2em'

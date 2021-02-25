@@ -18,12 +18,16 @@ const About = (props) => {
     root: {
       flexGrow: 1,
       maxWidth: 600,
-      margin: "0 auto"
+      margin: "auto",
+      paddingTop: '10vh',
+      height: '100%'
     },
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        maxWidth: 500,
+        margin: 'auto'
     },
     paperBio: {
       padding: theme.spacing(2),
