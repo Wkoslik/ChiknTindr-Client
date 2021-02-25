@@ -17,7 +17,7 @@ import { fontWeight } from '@material-ui/system';
 const Profile = (props) => {
     const [message, setMessage] = useState('Loading msg ...');
     console.log(props)
-    
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/api/private`)
             .then(response => {
@@ -71,7 +71,7 @@ const Profile = (props) => {
     const classes = useStyles();
 
 
-    if (!props.currentUser) return <Redirect to='/auth/login' />
+    if (!props.currentUser) return <Redirect to='/' />
     return (
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
