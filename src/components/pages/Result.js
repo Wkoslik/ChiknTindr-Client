@@ -10,7 +10,7 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import MuiAccordion from '@material-ui/core/Accordion';

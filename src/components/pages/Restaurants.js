@@ -399,7 +399,7 @@ const Restaurants = (props) => {
                   <Button size="small" onClick={handleConfirm}>
                     This is it! <CheckCircleIcon />  
                   </Button>
-                }
+                } 
                 backButton={
                   <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps}>
                     <CancelIcon />  Nope. Next.
