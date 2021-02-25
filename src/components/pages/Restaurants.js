@@ -244,17 +244,17 @@ if(restaurants.length === 0){
                   </Button>
                 }
               />
-              <Paper square elevation={0} className={classes.header}>
+              {/* <Paper square elevation={0} className={classes.header}>
                 <Typography>
-                  Category: {yelpJSON[activeStep].businesses[0].categories[0].title}
+                  Category: {restaurants[activeStep].categories[0].title}
                 </Typography>
-              </Paper>
-              <Paper square elevation={0} className={classes.header}>
-                <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly />
-              </Paper>
-              <Paper square elevation={0} className={classes.header}>
-                <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
-              </Paper>
+              </Paper> */}
+              {/* <Paper square elevation={0} className={classes.header}> */}
+                {/* <Rating name="rating" defaultValue={yelpJSON[activeStep].businesses[0].rating} precision={0.5} readOnly /> */}
+              {/* </Paper> */}
+              {/* <Paper square elevation={0} className={classes.header}> */}
+                {/* <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly /> */}
+              {/* </Paper> */}
             
               <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
