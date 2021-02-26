@@ -115,7 +115,7 @@ let frdListJSON =
     return (
       <ListItem>
         <ListItemText primary={name} secondary={email}/>
-        <Button variant="contained" color="secondary" onClick={buttonHandler}>Select Friend</Button>
+        <Button variant="contained" color="secondary" value={email} onClick={props.handleEmail}>Select Friend</Button>
       </ListItem>
     )
   })

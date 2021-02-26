@@ -49,6 +49,10 @@ const Invite = (props) => {
   const handleLocation = e => {
     setLocation(e.target.value)
   }
+  // drilled to friends list to grab the value there
+  const handleFriendListInvite = e => {
+    setEmail(e.target.value)
+  }
 
   const handleWhereto = e => {
     setWhereto({ ...whereto, [e.target.name]: e.target.checked })
@@ -188,7 +192,7 @@ const Invite = (props) => {
                 <Button className={classes.startInvite} variant="contained" color="secondary" onClick={handleSubmit}>Invite</Button>
               </form>
             </Paper>
-            <FriendsList />
+            <FriendsList handleEmail={handleFriendListInvite} />
           </Grid>
         </Grid>
       </ThemeProvider>
