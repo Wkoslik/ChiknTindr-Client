@@ -25,6 +25,7 @@ const InstanceList = (props) => {
   const [test, setTest] = useState('This is a props test')
   const [instanceId, setInstanceId] = useState('')
   const [currentUser, setCurrentUser] = useState('')
+  const [yelpAPIID, setYelpAPIID] = useState('')
 
   useEffect(() => {
     setCurrentUser(props.currentUser.email)
@@ -44,6 +45,7 @@ const InstanceList = (props) => {
   // ------------------------------------------- e.handlers
 
   const buttonHandlerView = e => {
+    setYelpAPIID(e.currentTarget.getAttribute('results'))
     console.log("View button clicked")
     // creatingList();
   }
@@ -114,7 +116,7 @@ const InstanceList = (props) => {
         return (
           <ListItem key={list.instance}>
             <ListItemText primary={placeText} />
-            <Button variant="contained" color="" value2={list._id} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
+            <Button variant="contained" color="" value2={list._id} results={list.results.yelpAPI} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
           </ListItem>
         )
       }
