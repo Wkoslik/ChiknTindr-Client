@@ -23,7 +23,7 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
 import theme from '../../theme/theme';
 import { RestoreRounded } from '@material-ui/icons';
-
+//TODO: Here is stashed code from whitney update!!!!!
 const Restaurants = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
