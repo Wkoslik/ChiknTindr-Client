@@ -93,7 +93,6 @@ const Preference = (props) => {
 
   const classes = useStyles();
 
-//TODO logo not loading
 if (redirect) return <Redirect to='/invite' /> 
   return (
     <div className={classes.root}>

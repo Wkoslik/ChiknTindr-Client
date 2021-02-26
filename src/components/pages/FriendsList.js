@@ -70,13 +70,6 @@ const useStyles = makeStyles((theme) => ({
 
 const classes = useStyles();
 
-console.log(friendJSON[0].friendslist, 'dummy data')
-// ---------------------------------------------- e.handler
-
-const buttonHandler = e => {
-  console.log('clicked button')
-}
-
 // ---------------------------------------------- mapping JSON
 
 let frdListJSON =
@@ -89,7 +82,6 @@ let frdListJSON =
   </>
   :
   friendJSON[0].friendslist.map((friend, i) => {
-    console.log(friend, 'inside map')
     let name = `${friend.name}`;
     let email = `${friend.email}`;
     return (
