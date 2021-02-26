@@ -21,20 +21,28 @@ const Signup = (props) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // TODO: add from password verification
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [matchPw, setMatchPw] = useState(true);
     const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
-        axios.post(
-            `${process.env.REACT_APP_SERVER_URL}/api/signup`,
-            { name, email, password }
-        ).then(response => {
-            localStorage.setItem('jwtToken', response.data.token);
-            setAuthToken(response.data.token);
-            props.handleAuth(response.data.user);
-            setRedirect(true);
-        }).catch(err => console.log(`😖 error`, err));
+        if (password == confirmPassword) {
+            setMatchPw(true);
+
+            e.preventDefault();
+            axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/api/signup`,
+                { name, email, password }
+            ).then(response => {
+                localStorage.setItem('jwtToken', response.data.token); 
+                setAuthToken(response.data.token);
+                props.handleAuth(response.data.user);
+                setRedirect(true);
+            }).catch(err => console.log(`😖 error`, err));
+        } else {
+            setMatchPw(false);
+        }
     }
 
     // material-ui styles
@@ -74,7 +82,7 @@ const Signup = (props) => {
     }));
 
     const classes = useStyles();
-    //TODO logo not loading
+
     if (redirect) return <Redirect to='/preferences' />
     return (
         <section>
@@ -108,19 +116,67 @@ const Signup = (props) => {
                                             value={email}
                                             onChange={e => setEmail(e.target.value)}
                                         />
-                                        <TextField
-                                            hintText="Password"
-                                            floatingLabelText="Password"
-                                            required
-                                            type="password"
-                                            id="password"
-                                            label="password"
-                                            placeholder="password"
-                                            variant="outlined"
-                                            color="secondary"
-                                            value={password}
-                                            onChange={e => setPassword(e.target.value)}
-                                        />
+                                        {matchPw ?
+                                        <>
+                                            <TextField
+                                                hintText="Password"
+                                                floatingLabelText="Password"
+                                                required
+                                                type="password"
+                                                id="password"
+                                                label="Password"
+                                                placeholder="Password"
+                                                variant="outlined"
+                                                color="secondary"
+                                                value={password}
+                                                onChange={e => setPassword(e.target.value)}
+                                            />
+                                            <TextField
+                                                hintText="Confirm Password"
+                                                floatingLabelText="Confirm Password"
+                                                required
+                                                type="password"
+                                                id="password-confirm"
+                                                label="Confirm Password"
+                                                placeholder="Confirm Password"
+                                                variant="outlined"
+                                                color="secondary"
+                                                value={confirmPassword}
+                                                onChange={e => setConfirmPassword(e.target.value)}
+                                            />
+                                        </>
+                                        :
+                                        <>
+                                            <TextField
+                                                hintText="Password"
+                                                floatingLabelText="Password"
+                                                required
+                                                error
+                                                type="password"
+                                                id="password"
+                                                label="Password"
+                                                placeholder="Password"
+                                                variant="outlined"
+                                                color="secondary"
+                                                value={password}
+                                                onChange={e => setPassword(e.target.value)}
+                                            />
+                                            <TextField
+                                                hintText="Confirm Password"
+                                                floatingLabelText="Confirm Password"
+                                                required
+                                                error
+                                                type="password"
+                                                id="password-confirm"
+                                                label="Confirm Password"
+                                                placeholder="Confirm Password"
+                                                variant="outlined"
+                                                color="secondary"
+                                                value={confirmPassword}
+                                                onChange={e => setConfirmPassword(e.target.value)}
+                                            />
+                                        </>
+                                        }
                                     </div>
                                     <Button className={classes.linkButton} variant="contained" color="secondary" type="submit">SignUp</Button>
                                 </form>
