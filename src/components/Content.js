@@ -20,7 +20,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )} />
 }
 
+
 const Content = (props) => {
+
     return (
         //TODO: include handleAuth to Invite, Notice, Result
     <main>
