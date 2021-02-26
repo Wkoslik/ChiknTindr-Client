@@ -17,7 +17,8 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 import themeMain from '../../theme/theme';
 
@@ -142,11 +143,22 @@ const Result = (props) => {
   const [expanded, setExpanded] = useState('');
   const [redirect, setRedirect] = useState(false)
   const [instanceDetails, setInstanceDetails] = useState({})
-  const [instanceId, setInstanceId] = useState('')
+  const [resultId, setResultId] = useState('')
   const [currentUser, setCurrentUser] = useState('')
+ 
 
-  useEffect(() =>{
-    console.log('hi!')
+  console.log(props.location.yelpApi)
+
+  useEffect(() => {
+    setResultId(props.location.yelpApi)
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/game/result/${props.location.yelpApi}`)
+      .then(response => {
+        setInstanceDetails(response.data)
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
   const maxSteps = yelpEndPointJSON[0].photos.length;
@@ -273,8 +285,8 @@ const Result = (props) => {
   // ---------------------------------------------------- changing values from JSON
 
   const priceToNumber = yelpEndPointJSON[0].price.length;
-  
-  const combineAddress = 
+
+  const combineAddress =
     `${yelpEndPointJSON[0].location.address1} 
     ${yelpEndPointJSON[0].location.city} 
     ${yelpEndPointJSON[0].location.state} 
@@ -283,14 +295,14 @@ const Result = (props) => {
 
   let categoryTitles = []
 
-  let gettingCategoryTitles = 
+  let gettingCategoryTitles =
     yelpEndPointJSON[0].categories.map((category, i) => {
       categoryTitles.push(category.title)
     })
 
   let titleString = categoryTitles.join(', ')
 
-  const combineYelpCounts = 
+  const combineYelpCounts =
     `${yelpEndPointJSON[0].review_count} reviews`
 
   // getting the operation hours
@@ -304,28 +316,28 @@ const Result = (props) => {
       if (parseInt(detail.start) > 1200) {
         let intoNum = parseInt(detail.start) - 1200;
         let intoStr = intoNum.toString();
-        let hours = intoStr.substr(0, intoStr.length -2)
-        let mins = intoStr.substr(intoStr.length -2, intoStr.length);
+        let hours = intoStr.substr(0, intoStr.length - 2)
+        let mins = intoStr.substr(intoStr.length - 2, intoStr.length);
         workStart = `${hours} : ${mins} PM`
       } else {
-        let hours = detail.start.substr(0, detail.start.length -2)
-        let mins = detail.start.substr(detail.start.length -2, detail.start.length);
-        workStart = `${hours} : ${mins} AM` 
+        let hours = detail.start.substr(0, detail.start.length - 2)
+        let mins = detail.start.substr(detail.start.length - 2, detail.start.length);
+        workStart = `${hours} : ${mins} AM`
       };
 
       let workEnd
       if (parseInt(detail.end) > 1200) {
         let intoNum = parseInt(detail.end) - 1200;
         let intoStr = intoNum.toString();
-        let hours = intoStr.substr(0, intoStr.length -2)
-        let mins = intoStr.substr(intoStr.length -2, intoStr.length);
+        let hours = intoStr.substr(0, intoStr.length - 2)
+        let mins = intoStr.substr(intoStr.length - 2, intoStr.length);
         workEnd = `${hours} : ${mins} PM`
       } else {
-        let hours = detail.end.substr(0, detail.start.length -2)
-        let mins = detail.end.substr(detail.end.length -2, detail.end.length);
-        workEnd = `${hours} : ${mins} AM` 
+        let hours = detail.end.substr(0, detail.start.length - 2)
+        let mins = detail.end.substr(detail.end.length - 2, detail.end.length);
+        workEnd = `${hours} : ${mins} AM`
       };
-      
+
       let workDay
       if (detail.day == 0) {
         workDay = "Monday"
@@ -349,25 +361,25 @@ const Result = (props) => {
         <ListItemText id="hours-of-op" primary={workDay} secondary={displayTime} />
       )
     })
-    
-    // Yelplink
+
+  // Yelplink
   let yelpLink = <a className="yelplink" href={yelpEndPointJSON[0].url} target="_blank" rel="noopener noreferrer">See this restaurant on Yelp</a>
 
   // phonecall
 
   let phoneNum = `tel:${yelpEndPointJSON[0].phone}`
-
+  if (!props.currentUser) return <Redirect to='/' />
   return (
     <div className={classes.root}>
       <ThemeProvider theme={themeMain}>
         <Grid container spacing={3}>
           <Grid className={classes.firstGrid} item xs={12}>
             <Paper className={classes.paper} elevation={0} >
-                <Paper square elevation={0} className={classes.title}>
-                    <Typography className={classes.title}>
-                      Congratulations!
+              <Paper square elevation={0} className={classes.title}>
+                <Typography className={classes.title}>
+                  Congratulations!
                     </Typography>
-                </Paper>
+              </Paper>
             </Paper>
           </Grid>
           <Grid className={classes.restGrid} item xs={12}>
@@ -387,11 +399,11 @@ const Result = (props) => {
                   <strong>{yelpEndPointJSON[0].name}</strong>
                 </Typography>
               </Paper>
-                <img
-                  className={classes.img}
-                  src={yelpEndPointJSON[0].photos[activeStep]}
-                  alt={yelpEndPointJSON[0].name}
-                />
+              <img
+                className={classes.img}
+                src={yelpEndPointJSON[0].photos[activeStep]}
+                alt={yelpEndPointJSON[0].name}
+              />
               <MobileStepper
                 variant="dots"
                 steps={maxSteps}
@@ -412,11 +424,11 @@ const Result = (props) => {
                   <ListItemText primary="Categories" secondary={titleString}></ListItemText>
                   <ListItemText primary="Ratings" secondary={
                     <Rating name='rating' defaultValue={yelpEndPointJSON[0].rating} precision={0.5} readOnly />
-                    } 
+                  }
                   />
                   <ListItemText primary="Price" secondary={
                     <Rating name="price" defaultValue={priceToNumber} max={4} icon={<AttachMoneyIcon />} readOnly />
-                    }
+                  }
                   />
                   <Accordion square expanded={expanded === 'panel1'} onChange={handlePanel('panel1')}>
                     <AccordionSummary aria-controls="panel1a-content" id="panel1a-header" expandIcon={<ExpandMoreIcon />}>

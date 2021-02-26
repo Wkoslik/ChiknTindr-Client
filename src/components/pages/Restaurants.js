@@ -53,8 +53,8 @@ const Restaurants = (props) => {
     let boolvote = true
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val, vote: boolvote})
       .then(response => {
-        console.log(`route worked vote confirm! 👻 👻 👻`)
-        console.log(response)
+        // console.log(`route worked vote confirm! 👻 👻 👻`)
+        // console.log(response)
       })
       .catch(err =>{
         console.log(err.message)
@@ -78,8 +78,8 @@ const Restaurants = (props) => {
 
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val2, vote: boolvote})
       .then(response => {
-        console.log(`route worked vote nope! 🥵 🥵 🥵`)
-        console.log(response)
+        // console.log(`route worked vote nope! 🥵 🥵 🥵`)
+        // console.log(response)
       })
       .catch(err =>{
         console.log(err.message)

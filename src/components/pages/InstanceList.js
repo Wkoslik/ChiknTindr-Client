@@ -32,7 +32,7 @@ const InstanceList = (props) => {
     setCurrentUser(props.currentUser.email)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plansnew`)
       .then(response => {
-        console.log('💄💄💄💄💄💄💄💄', response)
+        // console.log('💄💄💄💄💄💄💄💄', response)
         let plans = response.data
         // console.log(response.data.userInstances)
         setDinnerPlans(plans)
@@ -47,26 +47,26 @@ const InstanceList = (props) => {
 
   const buttonHandlerView = e => {
     setYelpAPIID(e.currentTarget.getAttribute('results'))
-    console.log("View button clicked")
+    // console.log("View button clicked")
     console.log(e.currentTarget.getAttribute('results'))
     setRedirectToResult(true);
   }
 
   const buttonHandlerStart = e => {
-    console.log("Start button clicked")
+    // console.log("Start button clicked")
     e.preventDefault()
-    console.log(e)
-    console.log(e.target)
-    console.log(e.currentTarget)
+    // console.log(e)
+    // console.log(e.target)
+    // console.log(e.currentTarget)
     let instance = e.currentTarget.value
     setInstanceId(instance)
     let objectId = e.currentTarget.getAttribute('value2')
     setInstanceId(instance)
-    console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
-    console.log(e.currentTarget.value)
+    // console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
+    // console.log(e.currentTarget.value)
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
-        console.log(`⭐️⭐️⭐️⭐️`, response)
+        // console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
         //TODO axios.patch to update userinstance model to have started be true
         setRedirect(true)
@@ -81,21 +81,21 @@ const InstanceList = (props) => {
 
 
   const buttonHandlerFinish = e => {
-    console.log("Finish button clicked")
+    // console.log("Finish button clicked")
     e.preventDefault()
     // console.log(e)
-    console.log(e.target)
-    console.log(e.currentTarget)
+    // console.log(e.target)
+    // console.log(e.currentTarget)
     let instance = e.currentTarget.value
     setInstanceId(instance)
     let objectId = e.currentTarget.getAttribute('value2')
     setInstanceId(instance)
-    console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
-    console.log(e.currentTarget.value)
+    // console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
+    // console.log(e.currentTarget.value)
     //TODO adjust this route so it doesn't add restaurants
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
-        console.log(`⭐️⭐️⭐️⭐️`, response)
+        // console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
         //TODO axios.patch to update userinstance model to have started be true
         setRedirect(true)
@@ -120,7 +120,7 @@ const InstanceList = (props) => {
           return (
             <ListItem key={list.instance}>
               <ListItemText primary={placeText} />
-              <Button variant="contained" color="" value2={list._id} value3={list.result.yelpAPI} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
+              <Button variant="contained" color="" value2={list._id} results={list.result.yelpAPI} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
             </ListItem>
           )
         }
