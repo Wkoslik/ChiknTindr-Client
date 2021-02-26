@@ -114,7 +114,7 @@ const InstanceList = (props) => {
   if (dinnerPlans.length > 0) {
     creatingList =
       dinnerPlans.map((list, i) => {
-        console.log(list)
+        // console.log(list)
         let placeText = `${list.name}`;
         if (list.complete) {
           return (
@@ -196,6 +196,7 @@ const InstanceList = (props) => {
 
 
   const classes = useStyles();
+  
   if (!props.currentUser) return <Redirect to='/' />
   if (redirect) return <Redirect to={{ pathname: '/restaurants', instanceId: instanceId }} />
   if (redirectToResult) return <Redirect to={{ pathname: '/result', yelpApi: yelpAPIID }} />
