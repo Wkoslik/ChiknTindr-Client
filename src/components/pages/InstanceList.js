@@ -36,7 +36,7 @@ const InstanceList = (props) => {
       })
       .catch(err => {
         setMessage(err)
-        console.log(err)
+        setRedirectError(true)
       })
   }, [])
 
@@ -172,9 +172,10 @@ const InstanceList = (props) => {
   const classes = useStyles();
 
   if (!props.currentUser) return <Redirect to='/' />
+  if (redirectError) return <Redirect to='/error' />
   if (redirect) return <Redirect to={{ pathname: '/restaurants', instanceId: instanceId }} />
   if (redirectToResult) return <Redirect to={{ pathname: '/result', yelpApi: yelpAPIID }} />
-  if (redirectError) return <Redirect to={{ pathname: '/profile'}} />
+  
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>

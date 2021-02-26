@@ -16,6 +16,7 @@ import { fontWeight } from '@material-ui/system';
 
 const Profile = (props) => {
     const [message, setMessage] = useState('Loading msg ...');
+    const [redirectError, setRedirectError] = useState(false)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/api/private`)
@@ -23,7 +24,7 @@ const Profile = (props) => {
                 setMessage(response.data.message)
             })
             .catch(err => {
-                console.log('error  in useEffect', err)
+                setRedirectError(true)
                 setMessage(err.message);
                 props.handleAuth(null);
             })
@@ -71,6 +72,7 @@ const Profile = (props) => {
 
 
     if (!props.currentUser) return <Redirect to='/' />
+    if (redirectError) return <Redirect to='/error' />
     return (
         <div className={classes.root}>
             <ThemeProvider theme={theme}>

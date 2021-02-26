@@ -32,6 +32,7 @@ const Result = (props) => {
   const [resultId, setResultId] = useState('')
   const [currentUser, setCurrentUser] = useState('')
   const [maxSteps, setMaxSteps] = useState(0)
+  const [redirectError, setRedirectError] = useState(false)
 
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const Result = (props) => {
         setMaxSteps(response.data.photos.length)
       })
       .catch(err => {
-        console.log(err)
+        setRedirectError(true)
       })
   }, [])
 
@@ -166,6 +167,7 @@ const Result = (props) => {
 
   // ---------------------------------------------------- changing values from JSON
   if (!props.currentUser) return <Redirect to='/' />
+  if (redirectError) return <Redirect to='/error' />
 
   if (JSON.stringify(instanceDetails) === '{}') {
     return (
@@ -180,7 +182,7 @@ const Result = (props) => {
     ${instanceDetails.location.city} 
     ${instanceDetails.location.state} 
     ${instanceDetails.location.zip_code}`
-    // console.log(combineAddress, "full address")
+
 
     let categoryTitles = []
 
