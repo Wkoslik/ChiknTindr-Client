@@ -16,17 +16,16 @@ import { fontWeight } from '@material-ui/system';
 
 const Profile = (props) => {
     const [message, setMessage] = useState('Loading msg ...');
-    console.log(props)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/api/private`)
             .then(response => {
-            setMessage(response.data.message)
+                setMessage(response.data.message)
             })
             .catch(err => {
-            console.log('error  in useEffect', err)
-            setMessage(err.message);
-            props.handleAuth(null);
+                console.log('error  in useEffect', err)
+                setMessage(err.message);
+                props.handleAuth(null);
             })
     }, []);
 
@@ -82,7 +81,7 @@ const Profile = (props) => {
                                 <Typography className={classes.title}>
                                     Welcome to ChiknTindr!
                                 </Typography>
-                                    {/* TODO: add user info here */}
+                                {/* TODO: add user info here */}
                             </Paper>
                         </Paper>
                     </Grid>

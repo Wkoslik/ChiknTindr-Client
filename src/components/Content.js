@@ -26,6 +26,7 @@ const Content = (props) => {
 
     return (
         //TODO: include handleAuth to Invite, Notice, Result
+
     <main>
         <Route exact path='/' component={Home} />
         <Route path='/preferences' render={(renderProps) => (

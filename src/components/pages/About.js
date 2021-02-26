@@ -26,11 +26,11 @@ const About = (props) => {
       paddingBottom: '3em'
     },
     paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        maxWidth: 500,
-        margin: 'auto'
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      maxWidth: 500,
+      margin: 'auto'
     },
     paperBio: {
       padding: theme.spacing(2),
@@ -74,7 +74,7 @@ const About = (props) => {
               <Grid container spacing={2}>
                 <Grid item>
                   <ButtonBase className={classes.image}>
-                    <img src="/img/Whitney.jpg" style={{"maxWidth": "100px"}}/>
+                    <img src="/img/Whitney.jpg" style={{ "maxWidth": "100px" }} />
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={12} sm container>
@@ -112,7 +112,7 @@ const About = (props) => {
                 <Grid item>
                   <ButtonBase className={classes.image}>
                     <Typography>
-                      <img src="/img/Young.jpg" style={{"maxWidth": "100px"}}/>
+                      <img src="/img/Young.jpg" style={{ "maxWidth": "100px" }} />
                     </Typography>
                   </ButtonBase>
                 </Grid>
@@ -123,9 +123,9 @@ const About = (props) => {
                         <strong>Youngsang Kim</strong> <span id="position">- Frontend</span>
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                      Just another full-stack developer / graphic designer.
-Expertise in functional based designs includes producing, branding, and managing with corporate identities, vector/pixel graphics, photo editing, UI/UX design, printed/web deployed materials, and advertisement campaigns. Proficient in delivering visual languages as well as logical mapping in developments.
-Most importantly, living another happy day.
+                        Just another full-stack developer / graphic designer.
+                        Expertise in functional based designs includes producing, branding, and managing with corporate identities, vector/pixel graphics, photo editing, UI/UX design, printed/web deployed materials, and advertisement campaigns. Proficient in delivering visual languages as well as logical mapping in developments.
+                        Most importantly, living another happy day.
                       </Typography>
                     </Grid>
                     <Grid item>
@@ -153,7 +153,7 @@ Most importantly, living another happy day.
                 <Grid item>
                   <ButtonBase className={classes.image}>
                     <Typography>
-                      <img src="/img/Sean_revised.jpg" style={{"maxWidth": "100px"}}/>
+                      <img src="/img/Sean_revised.jpg" style={{ "maxWidth": "100px" }} />
                     </Typography>
                   </ButtonBase>
                 </Grid>
@@ -164,8 +164,8 @@ Most importantly, living another happy day.
                         <strong>Sean Feiner</strong> <span id="position">- Backend</span>
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                      I am a full stack developer and software engineer based in Brooklyn, New York. I have also served outside the tech industry as an educator, writer, curator, and artist with a passion for emergent art and music technologies and the cultures and platforms they generate. As a digital and performative creative my expertise is developed through research, dynamic and agile problem solving, and project development and management between academic, music, nightlife, and tech industries. I have 10 years of experience curating and producing digital, performance, and mixed-media installation art. I am passionate about music cultures and the way in which technology and distribution platforms intersect with particular communities. 
-I am currently interested in modern web full stack application frameworks including descendants of the MEAN/MERN stack architecture and new applications and design implementing Python and GraphQL. While I enjoy full stack engineering, I am most excited about data: its architecture, management, and how it can serve clients and users.
+                        I am a full stack developer and software engineer based in Brooklyn, New York. I have also served outside the tech industry as an educator, writer, curator, and artist with a passion for emergent art and music technologies and the cultures and platforms they generate. As a digital and performative creative my expertise is developed through research, dynamic and agile problem solving, and project development and management between academic, music, nightlife, and tech industries. I have 10 years of experience curating and producing digital, performance, and mixed-media installation art. I am passionate about music cultures and the way in which technology and distribution platforms intersect with particular communities.
+                        I am currently interested in modern web full stack application frameworks including descendants of the MEAN/MERN stack architecture and new applications and design implementing Python and GraphQL. While I enjoy full stack engineering, I am most excited about data: its architecture, management, and how it can serve clients and users.
                       </Typography>
                     </Grid>
                     <Grid item>
@@ -186,7 +186,7 @@ I am currently interested in modern web full stack application frameworks includ
           </Grid>
         </Grid>
       </ThemeProvider>
-      </div>
+    </div>
   );
 }
 export default About;

@@ -19,6 +19,7 @@ import theme from '../../theme/theme';
 import { NoEncryption } from '@material-ui/icons';
 
 // TODO move into own file
+//TODO ^^what are we moving into own file? --WK
 // I will make ternary state to handle this using material-ui. don't need to make another file. - Young
 // const Error = (props) => {
 //     useEffect(() => {
@@ -41,8 +42,8 @@ const Login = (props) => {
     const [error, setError] = useState(null);
 
     const handleSubmit = e => {
-    e.preventDefault();
-    // console.log('am I hitting the submit?')
+        e.preventDefault();
+        // console.log('am I hitting the submit?')
 
         axios.post(
             `${process.env.REACT_APP_SERVER_URL}/api/login`,
@@ -55,7 +56,7 @@ const Login = (props) => {
         }).catch(setError)
     }
 
-//TODO LOGIN PAGE logo not loading
+    //TODO LOGIN PAGE logo not loading
     // material-ui styles
     const useStyles = makeStyles((theme) => ({
         form: {
@@ -94,8 +95,7 @@ const Login = (props) => {
     }));
 
     const classes = useStyles();
-// console.log(email, 'current user 🫁🫁🫁🫁🫁🫁🫁🫁🫁')
-    if (redirect) return <Redirect to={{pathname: '/profile', currentUser: email}} /> 
+    if (redirect) return <Redirect to={{ pathname: '/profile', currentUser: email }} />
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}
@@ -169,7 +169,7 @@ const Login = (props) => {
                                     </div>
                                     <Button variant="contained" color="secondary" type="submit">Log In</Button>
                                 </form>
-                                <Typography className={classes.linkSignUp}> 
+                                <Typography className={classes.linkSignUp}>
                                     New to ChiknTindr? <Link className="signup-text" to="/auth/signup">Signup here</Link>
                                 </Typography>
                             </Paper>
