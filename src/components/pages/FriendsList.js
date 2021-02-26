@@ -44,23 +44,18 @@ const friendJSON = [
 
 const FriendsList = (props) => {
   const [friends, setFriends] = useState([]);
+  const [redirectError, setRedirectError] = useState(false)
   
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/friendslist`)
       .then(response => {
-        console.log(response.data.friendslist)
-        // if (response.data.friendslist.length < 1 ){
-        //   setFriends([
-        //     {
-        //       name: 'You dont have any',
-        //       email: 'Add a friend'
-        //     }
-        //   ])
-        // }
         setFriends(response.data.friendslist);
-        console.log(`frrrrieeeeennnndddzzzzzz ${friends}`)
+      })
+      .catch(err =>{
+        setRedirectError(true)
       })
 }, [])
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -113,7 +108,8 @@ let frdListJSON =
     )
   })
 
-if (!props.currentUser) return <Redirect to='/login' />
+  if (!props.currentUser) return <Redirect to='/' />
+  if (redirectError) return <Redirect to='/error' />
 
   return (
     <div className={classes.root}>

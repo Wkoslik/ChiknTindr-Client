@@ -56,10 +56,10 @@ const Error = (props) => {
             <Paper className={classes.paper} elevation={2}>
               <Paper square elevation={0} className={classes.title}>
                 <Typography className={classes.notice}>
-                  You've got an Error!
+                  Well, this is embarrassing.
                 </Typography>
                 <Typography variant="h6" className={classes.errorMsg}>
-                  Please log in again.
+                  You found an error. Please log in again.
                 </Typography>
                 <Button className={classes.noticeButton}   variant="contained" color="secondary"><Link className="nav-link2" to='/auth/login'>Log In</Link></Button> 
               </Paper>

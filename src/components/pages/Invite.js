@@ -114,9 +114,10 @@ const Invite = (props) => {
 
   const classes = useStyles();
 
-
+  if (!props.currentUser) return <Redirect to='/' />
+  if (redirectError) return <Redirect to='/error' />
   if (redirect) return <Redirect to='/plans' />
-  if (redirectError) return <Redirect to={{ pathname: '/profile'}} />
+  
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
