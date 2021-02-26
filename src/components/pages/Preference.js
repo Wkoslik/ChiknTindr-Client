@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { 
-  Grid, 
-  Paper, 
-  Radio, 
-  RadioGroup, 
-  FormControl, 
-  FormControlLabel, 
-  FormLabel, 
+import {
+  Grid,
+  Paper,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
   Button,
   ThemeProvider,
   Typography
@@ -27,34 +27,28 @@ const Preference = (props) => {
   const [redirect, setRedirect] = useState(false);
 
   const handleDietary = event => {
-    // console.log(event.target.value)
     setDietary(event.target.value)
-    console.log(dietary)
   }
 
   const handleRating = event => {
     setRating(event.target.value.toString())
-    // console.log(event.target.value)
   }
 
   const handlePrice = event => {
-    // console.log(event.target.value)
     setPrice(event.target.value.toString())
-    console.log(price)
   }
 
   const handleFormInput = (e) => {
     e.preventDefault();
-    console.log('handleforminput')
-      axios.put(`${process.env.REACT_APP_SERVER_URL}/user/preferences`, { price, dietary })
-          .then(response => {
-            setRedirect(true)
-          })
-          .catch(err => {
-          console.log('error  in useEffect', err)
-          setMessage(err.message);
-          // props.handleAuth(null);
-          })
+    axios.put(`${process.env.REACT_APP_SERVER_URL}/user/preferences`, { price, dietary })
+      .then(response => {
+        setRedirect(true)
+      })
+      .catch(err => {
+        console.log('error  in useEffect', err)
+        setMessage(err.message);
+        // props.handleAuth(null);
+      })
   }
 
 
@@ -94,6 +88,7 @@ const Preference = (props) => {
   const classes = useStyles();
 
 if (redirect) return <Redirect to='/invite' /> 
+
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>

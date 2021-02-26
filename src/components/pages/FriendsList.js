@@ -10,6 +10,9 @@ import {
   Typography
 } from '@material-ui/core';
 
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 import theme from '../../theme/theme';
 
 import { Redirect, Link } from 'react-router-dom';
@@ -40,7 +43,24 @@ const friendJSON = [
 ];
 
 const FriendsList = (props) => {
-
+  const [friends, setFriends] = useState([]);
+  
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/user/friendslist`)
+      .then(response => {
+        console.log(response.data.friendslist)
+        // if (response.data.friendslist.length < 1 ){
+        //   setFriends([
+        //     {
+        //       name: 'You dont have any',
+        //       email: 'Add a friend'
+        //     }
+        //   ])
+        // }
+        setFriends(response.data.friendslist);
+        console.log(`frrrrieeeeennnndddzzzzzz ${friends}`)
+      })
+}, [])
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -70,10 +90,11 @@ const useStyles = makeStyles((theme) => ({
 
 const classes = useStyles();
 
+
 // ---------------------------------------------- mapping JSON
 
 let frdListJSON =
-  friendJSON[0].friendslist.length == 0 ?
+  friends.length == 0 ?
   <>
       <Typography className={classes.noFriend}>
         There is not any friend registered. Please invite your friend.
@@ -81,13 +102,13 @@ let frdListJSON =
       <Button variant="contained" color="secondary"><Link className="nav-link2" to='/profile'>Profile</Link></Button>
   </>
   :
-  friendJSON[0].friendslist.map((friend, i) => {
+  friends.map((friend, i) => {
     let name = `${friend.name}`;
     let email = `${friend.email}`;
     return (
       <ListItem>
         <ListItemText primary={name} secondary={email}/>
-        <Button variant="contained" color="secondary" onClick={buttonHandler}>Select Friend</Button>
+        <Button variant="contained" color="secondary" value={email} onClick={props.handleEmail}>Select Friend</Button>
       </ListItem>
     )
   })

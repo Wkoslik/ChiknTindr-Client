@@ -58,42 +58,41 @@ const Header = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorLeftEl, setAnchorLeftEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-    
+
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const isLeftMenuOpen = Boolean(anchorLeftEl);
 
     // -------------------------------------------- e.handlers for right side menu
-    
+
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    
+
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
-    
+
     // -------------------------------------------- e.handlers for the left side menu
-    
+
     const handleHamburgerMenuOpen = (event) => {
         setAnchorLeftEl(event.currentTarget);
     };
 
     const handleHamburgerMenuClose = () => {
         setAnchorLeftEl(null);
-    } 
-    
+    }
+
     // -------------------------------------------- e.handler for the mobile menu right side
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-    
+
     const handleMobileMenuOpen = (event) => {
-        console.log(event.currentTarget, 'q123412341234')
         setMobileMoreAnchorEl(event.currentTarget);
     };
-    
+
     // --------------------------------------------- [logged out] right side menu popup desktop
 
     const menuId = 'primary-search-account-menu';
@@ -166,7 +165,7 @@ const Header = (props) => {
     );
 
     // --------------------------------------------- [logged out] right side menu mobile
-    
+
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <Menu
@@ -179,14 +178,14 @@ const Header = (props) => {
             onClose={handleMobileMenuClose}
         >
 
-            <MenuItem>
+            {/* <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
-                <Badge badgeContent={11} color="secondary">
-                    <NotificationsIcon />
-                </Badge>
+                    <Badge badgeContent={11} color="secondary">
+                        <NotificationsIcon />
+                    </Badge>
                 </IconButton>
                 <p>Notifications</p>
-            </MenuItem>
+            </MenuItem> */}
 
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -195,7 +194,7 @@ const Header = (props) => {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                <AccountCircle />
+                    <AccountCircle />
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
@@ -203,15 +202,15 @@ const Header = (props) => {
         </Menu>
     );
 
-    
+
     // ternary according to logged in/out
-    
+
     let conditionalLinks = props.currentUser ?
         <>
             {renderMenuLeftLoggedIn}
             {renderMenuLoggedIn}
         </>
-    :   
+        :
         <>
             {renderMenuLeft}
             {renderMenu}
@@ -266,6 +265,7 @@ const Header = (props) => {
                         </IconButton>
                     </div>
                     </Toolbar>
+
                     </AppBar>
                     {renderMobileMenu}
                     {conditionalLinks}

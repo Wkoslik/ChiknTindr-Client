@@ -27,27 +27,22 @@ const Signup = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // confirm password
         if (password == confirmPassword) {
             setMatchPw(true);
-            // sending data
+
             e.preventDefault();
             axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/signup`,
                 { name, email, password }
             ).then(response => {
-                console.log(response.data)
                 localStorage.setItem('jwtToken', response.data.token); 
                 setAuthToken(response.data.token);
                 props.handleAuth(response.data.user);
                 setRedirect(true);
             }).catch(err => console.log(`😖 error`, err));
         } else {
-            // change form entry
-            console.log('pw not matching')
             setMatchPw(false);
         }
-
     }
 
     // material-ui styles
@@ -87,6 +82,7 @@ const Signup = (props) => {
     }));
 
     const classes = useStyles();
+
     if (redirect) return <Redirect to='/preferences' />
     return (
         <section>

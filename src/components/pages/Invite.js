@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import FriendsList from './FriendsList'
 
 import {
   Grid,
@@ -48,6 +49,10 @@ const Invite = (props) => {
   const handleLocation = e => {
     setLocation(e.target.value)
   }
+  // drilled to friends list to grab the value there
+  const handleFriendListInvite = e => {
+    setEmail(e.currentTarget.value)
+  }
 
   const handleWhereto = e => {
     setWhereto({ ...whereto, [e.target.name]: e.target.checked })
@@ -55,7 +60,6 @@ const Invite = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('button clicked')
     axios.post(
       `${process.env.REACT_APP_SERVER_URL}/user/invite`,
       { description, email, categoryInput, location, whereto }
@@ -99,7 +103,7 @@ const Invite = (props) => {
       paddingTop: '1.5em',
       marginBottom: '1em'
     },
-    startInvite:{
+    startInvite: {
       marginTop: '1.5em',
       marginBottom: '2em'
     }
@@ -188,6 +192,7 @@ const Invite = (props) => {
                 <Button className={classes.startInvite} variant="contained" color="secondary" onClick={handleSubmit}>Invite</Button>
               </form>
             </Paper>
+            <FriendsList handleEmail={handleFriendListInvite} />
           </Grid>
         </Grid>
       </ThemeProvider>
