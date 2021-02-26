@@ -33,6 +33,7 @@ const Invite = (props) => {
     OutsideSeating: false
   })
   const [redirect, setRedirect] = useState(false);
+  const [redirectError, setRedirectError] = useState(false)
 
   const handleDescription = e => {
     setDescription(e.target.value)
@@ -65,7 +66,9 @@ const Invite = (props) => {
       { description, email, categoryInput, location, whereto }
     ).then(response => {
       setRedirect(true)
-    }).catch(err => console.log(`😖 error in invite handlesubmit`, err));
+    }).catch(err => {
+      setRedirectError(true)
+    });
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -111,8 +114,9 @@ const Invite = (props) => {
 
   const classes = useStyles();
 
-  //TODO Change redirect to list of instances
+
   if (redirect) return <Redirect to='/plans' />
+  if (redirectError) return <Redirect to={{ pathname: '/profile'}} />
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>

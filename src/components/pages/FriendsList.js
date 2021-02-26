@@ -113,8 +113,8 @@ let frdListJSON =
     )
   })
 
-// if (!props.currentUser) return <Redirect to='/login' />
-// TODO: uncomment above after merge
+if (!props.currentUser) return <Redirect to='/login' />
+
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>

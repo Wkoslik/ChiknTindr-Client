@@ -25,6 +25,7 @@ const InstanceList = (props) => {
   const [currentUser, setCurrentUser] = useState('')
   const [yelpAPIID, setYelpAPIID] = useState('')
   const [redirectToResult, setRedirectToResult] = useState(false)
+  const [redirectError, setRedirectError] = useState(false)
 
   useEffect(() => {
     setCurrentUser(props.currentUser.email)
@@ -55,12 +56,11 @@ const InstanceList = (props) => {
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
         setInstanceDetails(response.data)
-        //TODO axios.patch to update userinstance model to have started be true
         setRedirect(true)
       })
       .catch(err => {
-        console.log('error in trying to start the game', err)
         setMessage(err.message);
+        setRedirectError(true);
       })
   }
 
@@ -71,16 +71,14 @@ const InstanceList = (props) => {
     setInstanceId(instance)
     let objectId = e.currentTarget.getAttribute('value2')
     setInstanceId(instance)
-    //TODO adjust this route so it doesn't add restaurants
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
         setInstanceDetails(response.data)
-        //TODO axios.patch to update userinstance model to have started be true
         setRedirect(true)
       })
       .catch(err => {
-        console.log('error in trying to start the game', err)
         setMessage(err.message);
+        setRedirectError(true);
       })
   }
 
@@ -176,6 +174,7 @@ const InstanceList = (props) => {
   if (!props.currentUser) return <Redirect to='/' />
   if (redirect) return <Redirect to={{ pathname: '/restaurants', instanceId: instanceId }} />
   if (redirectToResult) return <Redirect to={{ pathname: '/result', yelpApi: yelpAPIID }} />
+  if (redirectError) return <Redirect to={{ pathname: '/profile'}} />
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>

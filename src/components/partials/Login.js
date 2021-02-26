@@ -27,8 +27,6 @@ const Login = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // console.log('am I hitting the submit?')
-
         axios.post(
             `${process.env.REACT_APP_SERVER_URL}/api/login`,
             { email, password }
@@ -40,7 +38,6 @@ const Login = (props) => {
         }).catch(setError)
     }
 
-    //TODO LOGIN PAGE logo not loading
     // material-ui styles
     const useStyles = makeStyles((theme) => ({
         form: {
@@ -79,11 +76,10 @@ const Login = (props) => {
     }));
 
     const classes = useStyles();
-// console.log(email, 'current user 🫁🫁🫁🫁🫁🫁🫁🫁🫁')
+
     if (redirect) return <Redirect to={{pathname: '/profile', currentUser: email}} /> 
     return (
         <section>
-            {/* {error ? <Error error={error} /> : null} */}
             <div className={classes.root}>
                 <ThemeProvider theme={theme}>
                     <Grid container spacing={3} direction="column" justify="center" alignItems="center">

@@ -81,7 +81,6 @@ const Profile = (props) => {
                                 <Typography className={classes.title}>
                                     Welcome to ChiknTindr!
                                 </Typography>
-                                {/* TODO: add user info here */}
                             </Paper>
                         </Paper>
                     </Grid>
