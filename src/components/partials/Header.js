@@ -238,11 +238,11 @@ const Header = (props) => {
                     <img src="/img/Logowhite.png" style={{maxHeight: "30px"}} />
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
+                        {/* <IconButton aria-label="show 17 new notifications" color="inherit">
                             <Badge badgeContent={17} color="secondary">
                             <NotificationsIcon />
                             </Badge>
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton
                             edge="end"
                             aria-label="account of current user"

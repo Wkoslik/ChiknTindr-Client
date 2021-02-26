@@ -378,7 +378,6 @@ const Result = (props) => {
                   {/* TODO: get user, and friend name above */}
                 </Typography>
                 <Button href={phoneNum} className={classes.firstButton} color="secondary" variant="contained"> Call for reservation</Button>
-                {/* TODO: add phone calling function */}
               </Paper>
             </Paper>
             <Paper className={classes.paper}>

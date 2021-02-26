@@ -125,7 +125,7 @@ const Invite = (props) => {
                 <div>
                   <TextField
                     required
-                    id="friend-name" //TODO where else will we need to change this id? 
+                    id="friend-name"
                     label="Dine plan description"
                     defaultValue="Dinner Plans Description"
                     variant="outlined"

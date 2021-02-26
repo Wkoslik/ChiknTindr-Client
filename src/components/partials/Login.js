@@ -18,21 +18,6 @@ import {
 import theme from '../../theme/theme';
 import { NoEncryption } from '@material-ui/icons';
 
-// TODO move into own file
-// I will make ternary state to handle this using material-ui. don't need to make another file. - Young
-// const Error = (props) => {
-//     useEffect(() => {
-//         console.log(props.error);
-//     }, []);
-
-//     return (
-//         <div className="error-card">
-//             <h3>ERROR!</h3>
-//             <p>{props.error.message}</p>
-//         </div>
-//     )
-// }
-
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
