@@ -40,7 +40,6 @@ function App() {
     <>
     </>
 
-  // TODO: setFriendsReq from axios
 
   return (
     <Router>
