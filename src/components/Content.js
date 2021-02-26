@@ -25,6 +25,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const Content = (props) => {
 
     return (
+
     <main>
         <Route exact path='/' component={Home} />
         <Route path='/preferences' render={(renderProps) => (

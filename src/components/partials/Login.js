@@ -26,8 +26,8 @@ const Login = (props) => {
     const [error, setError] = useState(null);
 
     const handleSubmit = e => {
-    e.preventDefault();
-    // console.log('am I hitting the submit?')
+        e.preventDefault();
+        // console.log('am I hitting the submit?')
 
         axios.post(
             `${process.env.REACT_APP_SERVER_URL}/api/login`,
@@ -40,7 +40,7 @@ const Login = (props) => {
         }).catch(setError)
     }
 
-//TODO LOGIN PAGE logo not loading
+    //TODO LOGIN PAGE logo not loading
     // material-ui styles
     const useStyles = makeStyles((theme) => ({
         form: {
@@ -154,7 +154,7 @@ const Login = (props) => {
                                     </div>
                                     <Button variant="contained" color="secondary" type="submit">Log In</Button>
                                 </form>
-                                <Typography className={classes.linkSignUp}> 
+                                <Typography className={classes.linkSignUp}>
                                     New to ChiknTindr? <Link className="signup-text" to="/auth/signup">Signup here</Link>
                                 </Typography>
                             </Paper>
