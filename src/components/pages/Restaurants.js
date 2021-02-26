@@ -31,6 +31,10 @@ const Restaurants = (props) => {
   const [redirect, setRedirect] = useState(false)
   const [instanceId, setInstanceId] = useState('')
   const [restaurants, setRestaurants] = useState([])
+  const [userEmail, setUserEmail] = useState(props.currentUser.Email)
+  const [isCreator, setIsCreator] = useState(false)
+  const [resultRedirect, setResultRedirect] = useState(false)
+  const [yelpId, setYelpId] = useState('')
 
 
   useEffect(() => {
@@ -38,6 +42,11 @@ const Restaurants = (props) => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/game/restaurants/${props.location.instanceId}`)
       .then(response => {
         setRestaurants(response.data.restaurants)
+        // console.log(response.data)
+        if(userEmail === response.data.creator){
+          
+          setIsCreator(true)
+        }
       })
       .catch(err =>{
         console.log('There was an error in useeffect in restaurant.js')
@@ -51,6 +60,14 @@ const Restaurants = (props) => {
     let boolvote = true
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val, vote: boolvote})
       .then(response => {
+        console.log(response.data)
+        let details = response.data
+        console.log(activeStep)
+        if(response.data.creatorArr[activeStep] === response.data.playerArr[activeStep]){
+          console.log(response.data.restaurants[activeStep].yelpNum)
+          setYelpId(response.data.result.yelpAPI)
+          setResultRedirect(true)
+        }
       })
       .catch(err =>{
         console.log(err.message)
@@ -59,15 +76,13 @@ const Restaurants = (props) => {
     if(activeStep === maxSteps){
       setRedirect(true)
     }
-    // TODO: push like to db - false true axios call
   };
 
+  console.log(yelpId)
   const handleNext = (e) => {
 
     let val2 = e.currentTarget.value
     let boolvote = false
-    //TODO push dislike to db axios call
-    // TODO: push no to db - false
 
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val2, vote: boolvote})
       .then(response => {
@@ -184,6 +199,7 @@ const Restaurants = (props) => {
 
 if (!props.currentUser) return <Redirect to='/' />
 if (redirect) return <Redirect to='/plans' />
+if (resultRedirect) return <Redirect to={{ pathname: '/result', yelpApi: yelpId }} />
 
 
 if(restaurants.length === 0){
