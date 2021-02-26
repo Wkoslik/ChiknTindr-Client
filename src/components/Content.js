@@ -10,6 +10,7 @@ import Result from './pages/Result';
 import About from './pages/About';
 import FriendsList from './pages/FriendsList';
 import Footer from '../components/partials/Footer';
+import Error from './pages/Error';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -50,6 +51,7 @@ const Content = (props) => {
             <Auth handleAuth={props.handleAuth} {...renderProps} />
         )} />
         <Route exact path='/about' component={About} />
+        <Route exact path='/error' component={Error} />
         <PrivateRoute 
             path='/profile' 
             component={Profile} 
