@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import FriendsList from './FriendsList'
 
 import {
   Grid,
@@ -187,6 +188,7 @@ const Invite = (props) => {
                 <Button className={classes.startInvite} variant="contained" color="secondary" onClick={handleSubmit}>Invite</Button>
               </form>
             </Paper>
+            <FriendsList />
           </Grid>
         </Grid>
       </ThemeProvider>
