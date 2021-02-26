@@ -341,12 +341,12 @@ const Result = (props) => {
                 </List>
               </Paper>
             </Grid>
-          </Grid>
         </Grid>
       </ThemeProvider>
       <Footer />
     </div>
   );
+}
 }
 
 export default Result;
