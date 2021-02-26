@@ -45,7 +45,7 @@ const InstanceList = (props) => {
 
   const buttonHandlerView = e => {
     console.log("View button clicked")
-    // creatingList();
+    console.log(e.target.value)
   }
 
   const buttonHandlerStart = e => {
@@ -89,7 +89,7 @@ const InstanceList = (props) => {
     console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
     console.log(e.currentTarget.value)
     //TODO adjust this route so it doesn't add restaurants
-    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/resume`, { _id: instance, objectId: objectId })
+    axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
         console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
