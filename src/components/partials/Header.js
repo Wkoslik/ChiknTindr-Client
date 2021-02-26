@@ -234,7 +234,7 @@ const Header = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <img src="/img/Logowhite.png" style={{maxHeight: "30px"}} />
+                    <Link to="/profile"><img src="/img/Logowhite.png" style={{maxHeight: "30px"}} /></Link>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         {/* <IconButton aria-label="show 17 new notifications" color="inherit">
