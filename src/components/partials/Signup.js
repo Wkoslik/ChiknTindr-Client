@@ -30,8 +30,7 @@ const Signup = (props) => {
             `${process.env.REACT_APP_SERVER_URL}/api/signup`,
             { name, email, password }
         ).then(response => {
-            console.log(response.data)
-            localStorage.setItem('jwtToken', response.data.token); 
+            localStorage.setItem('jwtToken', response.data.token);
             setAuthToken(response.data.token);
             props.handleAuth(response.data.user);
             setRedirect(true);
@@ -75,7 +74,7 @@ const Signup = (props) => {
     }));
 
     const classes = useStyles();
-//TODO logo not loading
+    //TODO logo not loading
     if (redirect) return <Redirect to='/preferences' />
     return (
         <section>

@@ -22,120 +22,6 @@ import axios from 'axios';
 
 import themeMain from '../../theme/theme';
 
-const yelpEndPointJSON = [
-  {
-    "id": "WavvLdfdP6g8aZTtbBQHTw",
-    "alias": "gary-danko-san-francisco",
-    "name": "Gary Danko",
-    "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/CPc91bGzKBe95aM5edjhhQ/o.jpg",
-    "is_claimed": true,
-    "is_closed": false,
-    "url": "https://www.yelp.com/biz/gary-danko-san-francisco?adjust_creative=wpr6gw4FnptTrk1CeT8POg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=wpr6gw4FnptTrk1CeT8POg",
-    "phone": "+14157492060",
-    "display_phone": "(415) 749-2060",
-    "review_count": 5296,
-    "categories": [
-      {
-        "alias": "newamerican",
-        "title": "American (New)"
-      },
-      {
-        "alias": "french",
-        "title": "French"
-      },
-      {
-        "alias": "wine_bars",
-        "title": "Wine Bars"
-      }
-    ],
-    "rating": 4.5,
-    "location": {
-      "address1": "800 N Point St",
-      "address2": "",
-      "address3": "",
-      "city": "San Francisco",
-      "zip_code": "94109",
-      "country": "US",
-      "state": "CA",
-      "display_address": [
-        "800 N Point St",
-        "San Francisco, CA 94109"
-      ],
-      "cross_streets": ""
-    },
-    "coordinates": {
-      "latitude": 37.80587,
-      "longitude": -122.42058
-    },
-    "photos": [
-      "https://s3-media2.fl.yelpcdn.com/bphoto/CPc91bGzKBe95aM5edjhhQ/o.jpg",
-      "https://s3-media4.fl.yelpcdn.com/bphoto/FmXn6cYO1Mm03UNO5cbOqw/o.jpg",
-      "https://s3-media4.fl.yelpcdn.com/bphoto/HZVDyYaghwPl2kVbvHuHjA/o.jpg"
-    ],
-    "price": "$$$$",
-    "hours": [
-      {
-        "open": [
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 0
-          },
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 1
-          },
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 2
-          },
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 3
-          },
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 4
-          },
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 5
-          },
-          {
-            "is_overnight": false,
-            "start": "1730",
-            "end": "2200",
-            "day": 6
-          }
-        ],
-        "hours_type": "REGULAR",
-        "is_open_now": false
-      }
-    ],
-    "transactions": [],
-    "special_hours": [
-      {
-        "date": "2019-02-07",
-        "is_closed": null,
-        "start": "1600",
-        "end": "2000",
-        "is_overnight": false
-      }
-    ]
-  }
-]
-
 const Result = (props) => {
 
   // --------------------------------------------------------------- set states
@@ -147,7 +33,6 @@ const Result = (props) => {
   const [currentUser, setCurrentUser] = useState('')
   const [maxSteps, setMaxSteps] = useState(0)
 
-  // console.log(props.location.yelpApi)
 
   useEffect(() => {
     setResultId(props.location.yelpApi)
@@ -155,8 +40,6 @@ const Result = (props) => {
       .then(response => {
         setInstanceDetails(response.data)
         setMaxSteps(response.data.photos.length)
-        console.log(response.data)
-        console.log(response.data.photos.length)
       })
       .catch(err => {
         console.log(err)
@@ -267,17 +150,13 @@ const Result = (props) => {
 
   const classes = useStyles();
 
-  // console.log(yelpEndPointJSON[0], "getting the JSON");
-
   // --------------------------------------------------------------- e. handlers
 
   const handleNext = () => {
-    console.log('is next img showing?')
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handlePrev = () => {
-    console.log('is prev img showing?')
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -294,7 +173,6 @@ const Result = (props) => {
     )
   } else {
 
-    console.log(instanceDetails)
     const priceToNumber = instanceDetails.price.length;
 
     const combineAddress =
@@ -317,8 +195,6 @@ const Result = (props) => {
       `${instanceDetails.review_count} reviews`
 
     // getting the operation hours
-
-    // console.log(instanceDetails.hours[0].open, "before map")
 
     let gettingHours =
       instanceDetails.hours[0].open.map((detail, i) => {
@@ -399,10 +275,10 @@ const Result = (props) => {
               <Paper elevation={0} className={classes.paper}>
                 <Paper square elevation={0} className={classes.title2}>
                   <Typography>
-                    You and Your friend has matched to <br /> <span className="chosen-restaurant"><strong>{instanceDetails.name} !</strong></span>
+                    You and your friend have matched to <br /> <span className="chosen-restaurant"><strong>{instanceDetails.name} !</strong></span>
                     {/* TODO: get user, and friend name above */}
                   </Typography>
-                  <Button href={phoneNum} className={classes.firstButton} color="secondary" variant="contained"> Call for reservation</Button>
+                  <Button href={phoneNum} className={classes.firstButton} color="secondary" variant="contained"> Call for reservations</Button>
                   {/* TODO: add phone calling function */}
                 </Paper>
               </Paper>
@@ -473,16 +349,3 @@ const Result = (props) => {
 }
 
 export default Result;
-
-
-
-// coming back users (after log in redirect to =? )
-// -Profile page
-//  -dinner plans
-//  -invite - preference
-//  -see friends (stretch goal)
-
-// tonight
-// landing page (profile)
-// home page
-// friends list page (stretch)

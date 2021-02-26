@@ -14,15 +14,13 @@ import {
 import theme from '../../theme/theme';
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import Restaurants from './Restaurants'
+import { Redirect } from 'react-router-dom'
 
 const InstanceList = (props) => {
   const [messsage, setMessage] = useState('')
   const [dinnerPlans, setDinnerPlans] = useState([])
   const [redirect, setRedirect] = useState(false)
   const [instanceDetails, setInstanceDetails] = useState({})
-  const [test, setTest] = useState('This is a props test')
   const [instanceId, setInstanceId] = useState('')
   const [currentUser, setCurrentUser] = useState('')
   const [yelpAPIID, setYelpAPIID] = useState('')
@@ -32,9 +30,7 @@ const InstanceList = (props) => {
     setCurrentUser(props.currentUser.email)
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/plansnew`)
       .then(response => {
-        // console.log('💄💄💄💄💄💄💄💄', response)
         let plans = response.data
-        // console.log(response.data.userInstances)
         setDinnerPlans(plans)
       })
       .catch(err => {
@@ -47,26 +43,17 @@ const InstanceList = (props) => {
 
   const buttonHandlerView = e => {
     setYelpAPIID(e.currentTarget.getAttribute('results'))
-    // console.log("View button clicked")
-    console.log(e.currentTarget.getAttribute('results'))
     setRedirectToResult(true);
   }
 
   const buttonHandlerStart = e => {
-    // console.log("Start button clicked")
     e.preventDefault()
-    // console.log(e)
-    // console.log(e.target)
-    // console.log(e.currentTarget)
     let instance = e.currentTarget.value
     setInstanceId(instance)
     let objectId = e.currentTarget.getAttribute('value2')
     setInstanceId(instance)
-    // console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
-    // console.log(e.currentTarget.value)
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
-        // console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
         //TODO axios.patch to update userinstance model to have started be true
         setRedirect(true)
@@ -74,28 +61,19 @@ const InstanceList = (props) => {
       .catch(err => {
         console.log('error in trying to start the game', err)
         setMessage(err.message);
-        // props.handleAuth(null);
       })
-
   }
 
 
   const buttonHandlerFinish = e => {
-    // console.log("Finish button clicked")
     e.preventDefault()
-    // console.log(e)
-    // console.log(e.target)
-    // console.log(e.currentTarget)
     let instance = e.currentTarget.value
     setInstanceId(instance)
     let objectId = e.currentTarget.getAttribute('value2')
     setInstanceId(instance)
-    // console.log('aaahhhhh', e.currentTarget.getAttribute('value2'))
-    // console.log(e.currentTarget.value)
     //TODO adjust this route so it doesn't add restaurants
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/start`, { _id: instance, objectId: objectId })
       .then(response => {
-        // console.log(`⭐️⭐️⭐️⭐️`, response)
         setInstanceDetails(response.data)
         //TODO axios.patch to update userinstance model to have started be true
         setRedirect(true)
@@ -103,7 +81,6 @@ const InstanceList = (props) => {
       .catch(err => {
         console.log('error in trying to start the game', err)
         setMessage(err.message);
-        // props.handleAuth(null);
       })
   }
 
@@ -114,7 +91,6 @@ const InstanceList = (props) => {
   if (dinnerPlans.length > 0) {
     creatingList =
       dinnerPlans.map((list, i) => {
-        // console.log(list)
         let placeText = `${list.name}`;
         if (list.complete) {
           return (
@@ -196,7 +172,7 @@ const InstanceList = (props) => {
 
 
   const classes = useStyles();
-  
+
   if (!props.currentUser) return <Redirect to='/' />
   if (redirect) return <Redirect to={{ pathname: '/restaurants', instanceId: instanceId }} />
   if (redirectToResult) return <Redirect to={{ pathname: '/result', yelpApi: yelpAPIID }} />

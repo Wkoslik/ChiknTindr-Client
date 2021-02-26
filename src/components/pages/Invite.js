@@ -55,7 +55,6 @@ const Invite = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('button clicked')
     axios.post(
       `${process.env.REACT_APP_SERVER_URL}/user/invite`,
       { description, email, categoryInput, location, whereto }
@@ -99,7 +98,7 @@ const Invite = (props) => {
       paddingTop: '1.5em',
       marginBottom: '1em'
     },
-    startInvite:{
+    startInvite: {
       marginTop: '1.5em',
       marginBottom: '2em'
     }

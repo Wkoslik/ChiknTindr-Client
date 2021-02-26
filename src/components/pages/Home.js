@@ -19,7 +19,7 @@ const Home = (props) => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            
+
         },
         home_container: {
             height: "100%",
