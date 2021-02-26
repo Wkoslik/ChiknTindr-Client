@@ -276,10 +276,8 @@ const Result = (props) => {
                 <Paper square elevation={0} className={classes.title2}>
                   <Typography>
                     You and your friend have matched to <br /> <span className="chosen-restaurant"><strong>{instanceDetails.name} !</strong></span>
-                    {/* TODO: get user, and friend name above */}
                   </Typography>
                   <Button href={phoneNum} className={classes.firstButton} color="secondary" variant="contained"> Call for reservations</Button>
-                  {/* TODO: add phone calling function */}
                 </Paper>
               </Paper>
               <Paper className={classes.paper}>

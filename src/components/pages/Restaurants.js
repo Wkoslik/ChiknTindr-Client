@@ -24,7 +24,7 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Footer from '../partials/Footer';
 import theme from '../../theme/theme';
 import { RestoreRounded } from '@material-ui/icons';
-//TODO: Here is stashed code from whitney update!!!!!
+
 const Restaurants = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [expanded, setExpanded] = useState('');
@@ -42,9 +42,7 @@ const Restaurants = (props) => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/game/restaurants/${props.location.instanceId}`)
       .then(response => {
         setRestaurants(response.data.restaurants)
-        // console.log(response.data)
         if(userEmail === response.data.creator){
-          
           setIsCreator(true)
         }
       })
@@ -60,12 +58,9 @@ const Restaurants = (props) => {
     let boolvote = true
     axios.patch(`${process.env.REACT_APP_SERVER_URL}/game/gameVote`, {instanceId: instanceId, restId: val, vote: boolvote})
       .then(response => {
-        console.log(response.data)
         let details = response.data
-        console.log(activeStep)
-        if(response.data.creatorArr[activeStep] === response.data.playerArr[activeStep]){
-          console.log(response.data.restaurants[activeStep].yelpNum)
-          setYelpId(response.data.result.yelpAPI)
+        if(details.creatorArr[activeStep] === details.playerArr[activeStep]){
+          setYelpId(details.result.yelpAPI)
           setResultRedirect(true)
         }
       })
@@ -78,7 +73,7 @@ const Restaurants = (props) => {
     }
   };
 
-  console.log(yelpId)
+
   const handleNext = (e) => {
 
     let val2 = e.currentTarget.value
