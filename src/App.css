@@ -50,4 +50,26 @@
   color: #ED1C24;
 }
 
+.footer {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.YelpLogo {
+  display: block;
+  max-height: 4.5vh;
+  /* max-width: 6vw; */
+}
+
+.yelpDescription {
+  display: block;
+  width: 70px;
+  color: gray;
+  font-size: 12px;
+  font-style: italic;
+  padding-top: vh;
+}
+
 /* FBB03B - yellow, ED1C24 - red, 39B54A - green */

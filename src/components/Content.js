@@ -9,6 +9,7 @@ import InstanceList from './pages/InstanceList';
 import Result from './pages/Result';
 import About from './pages/About';
 import FriendsList from './pages/FriendsList';
+import Footer from '../components/partials/Footer';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -20,7 +21,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )} />
 }
 
+
 const Content = (props) => {
+
     return (
         //TODO: include handleAuth to Invite, Notice, Result
     <main>

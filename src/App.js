@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Content from './components/Content';
 import Header from './components/partials/Header';
+import Popup from './components/partials/Popup';
+
 
 function App() {
   // current user
@@ -23,6 +25,22 @@ function App() {
       localStorage.removeItem('jwtToke');
     }
   }
+  // --------------------------------------------------------popup function 
+
+  const [friendsReq, setFriendsReq] = useState(false);
+
+  let showPop = friendsReq ?
+    <Popup
+      currentUser={currentUser}
+      handleAuth={handleAuth}
+      friendsReq={friendsReq}
+      setFriendsReq={setFriendsReq}
+    />
+  :
+    <>
+    </>
+
+  // TODO: setFriendsReq from axios
 
   return (
     <Router>
@@ -32,6 +50,7 @@ function App() {
           currentUser={currentUser} 
           handleAuth={handleAuth} 
         />
+        {showPop}
         <Content 
           currentUser={currentUser}
           isAuthenticated={isAuthenticated}

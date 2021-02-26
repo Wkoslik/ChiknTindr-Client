@@ -18,7 +18,7 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-
+import Footer from '../partials/Footer';
 import themeMain from '../../theme/theme';
 
 const yelpEndPointJSON = [
@@ -442,6 +442,7 @@ const Result = (props) => {
           </Grid>
         </Grid>
       </ThemeProvider>
+      <Footer />
     </div>
   );
 }
