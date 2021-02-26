@@ -77,8 +77,8 @@ const InstanceList = (props) => {
         setRedirect(true)
       })
       .catch(err => {
-        console.log('error in trying to start the game', err)
         setMessage(err.message);
+        setRedirectError(true);
       })
   }
 
@@ -174,7 +174,7 @@ const InstanceList = (props) => {
   if (!props.currentUser) return <Redirect to='/' />
   if (redirect) return <Redirect to={{ pathname: '/restaurants', instanceId: instanceId }} />
   if (redirectToResult) return <Redirect to={{ pathname: '/result', yelpApi: yelpAPIID }} />
-  if (redirectError) return <Redirect to={{ pathname: '/plans'}} />
+  if (redirectError) return <Redirect to={{ pathname: '/profile'}} />
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
