@@ -47,7 +47,7 @@ const Preference = (props) => {
       })
       .catch(err => {
         setRedirectError(true)
-        setMessage(err.message);
+        setMessage(err);
         // props.handleAuth(null);
       })
   }

@@ -197,7 +197,7 @@ const Invite = (props) => {
                 <Button className={classes.startInvite} variant="contained" color="secondary" onClick={handleSubmit}>Invite</Button>
               </form>
             </Paper>
-            <FriendsList handleEmail={handleFriendListInvite} />
+            <FriendsList handleEmail={handleFriendListInvite} currentUser={props.currentUser} />
           </Grid>
         </Grid>
       </ThemeProvider>

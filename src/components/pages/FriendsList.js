@@ -19,28 +19,6 @@ import { Redirect, Link } from 'react-router-dom';
 
 // ------------------------------------------ mock JSON data
 
-const friendJSON = [
-  {
-    "friendslist": [
-      {
-        "name": "Wally the Whale",
-        "email": "testwhale@test.com"
-      },
-      {
-        "name": "Roger Rabbit",
-        "email": "test20@test.com"
-      },
-      {
-        "name": "Scooba Steve",
-        "email": "test666@test.com"
-      },
-      {
-        "name": "Wally the Whale",
-        "email": "testwhale@test.com"
-      }
-    ]
-  }
-];
 
 const FriendsList = (props) => {
   const [friends, setFriends] = useState([]);
