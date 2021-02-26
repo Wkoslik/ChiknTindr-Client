@@ -59,7 +59,7 @@
 
 .YelpLogo {
   display: block;
-  max-height: 5vh;
+  max-height: 4.5vh;
   /* max-width: 6vw; */
 }
 
@@ -69,7 +69,7 @@
   color: gray;
   font-size: 12px;
   font-style: italic;
-  padding-top: 0.5vh;
+  padding-top: vh;
 }
 
 /* FBB03B - yellow, ED1C24 - red, 39B54A - green */
