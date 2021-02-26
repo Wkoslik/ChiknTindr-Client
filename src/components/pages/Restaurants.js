@@ -21,6 +21,7 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 
+import Footer from '../partials/Footer';
 import theme from '../../theme/theme';
 import { RestoreRounded } from '@material-ui/icons';
 //TODO: Here is stashed code from whitney update!!!!!
@@ -284,6 +285,7 @@ if(restaurants.length === 0){
           </Grid>
         </Grid>
       </ThemeProvider>
+      <Footer />
     </div>
   );
 }

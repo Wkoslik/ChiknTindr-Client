@@ -41,7 +41,7 @@ const Home = (props) => {
                             <Box fontWeight={900} style={{ color: "white", marginBottom: "4rem" }}>MATCH, <br></br>Enjoy your meal</Box>
                         </Typography>
                     </Grid>
-                    <Button color="secondary" variant="contained" size="large" ><Link to="/auth/login">to login/signup</Link></Button>
+                    <Button color="secondary" variant="contained" size="large" ><Link className="nav-link2" to="/auth/login">to login/signup</Link></Button>
                 </Grid>
             </ThemeProvider>
         </div>

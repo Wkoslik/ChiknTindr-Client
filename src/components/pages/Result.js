@@ -19,7 +19,7 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
+import Footer from '../partials/Footer';
 import themeMain from '../../theme/theme';
 
 const Result = (props) => {
@@ -342,10 +342,11 @@ const Result = (props) => {
               </Paper>
             </Grid>
           </Grid>
-        </ThemeProvider>
-      </div>
-    );
-  }
+        </Grid>
+      </ThemeProvider>
+      <Footer />
+    </div>
+  );
 }
 
 export default Result;
