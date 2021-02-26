@@ -51,7 +51,7 @@ const Invite = (props) => {
   }
   // drilled to friends list to grab the value there
   const handleFriendListInvite = e => {
-    setEmail(e.target.value)
+    setEmail(e.currentTarget.value)
   }
 
   const handleWhereto = e => {
