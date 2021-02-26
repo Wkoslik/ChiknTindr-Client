@@ -26,6 +26,7 @@ const InstanceList = (props) => {
   const [instanceId, setInstanceId] = useState('')
   const [currentUser, setCurrentUser] = useState('')
   const [yelpAPIID, setYelpAPIID] = useState('')
+  const [redirectToResult, setRedirectToResult] = useState(false)
 
   useEffect(() => {
     setCurrentUser(props.currentUser.email)
@@ -47,7 +48,8 @@ const InstanceList = (props) => {
   const buttonHandlerView = e => {
     setYelpAPIID(e.currentTarget.getAttribute('results'))
     console.log("View button clicked")
-    console.log(e.target.value)
+    console.log(e.currentTarget.getAttribute('results'))
+    setRedirectToResult(true);
   }
 
   const buttonHandlerStart = e => {
@@ -76,7 +78,7 @@ const InstanceList = (props) => {
       })
 
   }
-  
+
 
   const buttonHandlerFinish = e => {
     console.log("Finish button clicked")
@@ -105,47 +107,50 @@ const InstanceList = (props) => {
       })
   }
 
-  
+
   // ---------------------------------------- mapping JSON
 
-  let creatingList =
-    dinnerPlans.map((list, i) => {
-      console.log(list)
-      let placeText = `${list.name}`;
-      if (list.complete) {
-        return (
-          <ListItem key={list.instance}>
-            <ListItemText primary={placeText} />
-            <Button variant="contained" color="" value2={list._id} results={list.results.yelpAPI} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
-          </ListItem>
-        )
-      }
-      else if (!list.started) {
-        return (
-          <ListItem key={list.instance}>
-            <ListItemText primary={placeText} />
-            <Button variant="contained" color="secondary" value2={list._id} value={list.instance} onClick={buttonHandlerStart}>Start Matching</Button>
-          </ListItem>
-        )
-      }
-      else if (list.started) {
-        if(currentUser === list.creator && !list.creatorFinished || currentUser ===list.player && !list.playerFinished){
-        return (
-          <ListItem key={list.instance}>
-            <ListItemText primary={placeText} />
-            <Button variant="contained" color="primary" value2={list._id} value={list.instance} onClick={buttonHandlerFinish}>Finish Matching</Button>
-          </ListItem>
-        )
-      } else {
-        return (
-          <ListItem key={list.instance}>
-            <ListItemText primary={placeText} />
-            <Button variant="contained" color="primary" value2={list._id} value={list.instance}>Waiting on your friend</Button>
-          </ListItem>
-        )
-      }
-      }
-    })
+  let creatingList = 'Loading...'
+  if (dinnerPlans.length > 0) {
+    creatingList =
+      dinnerPlans.map((list, i) => {
+        console.log(list)
+        let placeText = `${list.name}`;
+        if (list.complete) {
+          return (
+            <ListItem key={list.instance}>
+              <ListItemText primary={placeText} />
+              <Button variant="contained" color="" value2={list._id} value3={list.result.yelpAPI} value={list.instance} onClick={buttonHandlerView}>View Selected Restaurant</Button>
+            </ListItem>
+          )
+        }
+        else if (!list.started) {
+          return (
+            <ListItem key={list.instance}>
+              <ListItemText primary={placeText} />
+              <Button variant="contained" color="secondary" value2={list._id} value={list.instance} onClick={buttonHandlerStart}>Start Matching</Button>
+            </ListItem>
+          )
+        }
+        else if (list.started) {
+          if (currentUser === list.creator && !list.creatorFinished || currentUser === list.player && !list.playerFinished) {
+            return (
+              <ListItem key={list.instance}>
+                <ListItemText primary={placeText} />
+                <Button variant="contained" color="primary" value2={list._id} value={list.instance} onClick={buttonHandlerFinish}>Finish Matching</Button>
+              </ListItem>
+            )
+          } else {
+            return (
+              <ListItem key={list.instance}>
+                <ListItemText primary={placeText} />
+                <Button variant="contained" color="primary" value2={list._id} value={list.instance}>Waiting on your friend</Button>
+              </ListItem>
+            )
+          }
+        }
+      })
+  }
 
   // material-ui styles
   const useStyles = makeStyles((theme) => ({
@@ -192,14 +197,8 @@ const InstanceList = (props) => {
 
   const classes = useStyles();
   if (!props.currentUser) return <Redirect to='/' />
-  if (redirect) return <Redirect to={{pathname:'/restaurants', instanceId: instanceId}}
-  // render={(props) => {
-  //   // let instance = instanceDetails.find(({ created }) => created == props.match.params.id)
-  //   // props = { ...instance, ...props }
-  //   return <Restaurants instanceDetails={instanceDetails} propsTest={test} {...props} />
-  // }} 
-
-  />
+  if (redirect) return <Redirect to={{ pathname: '/restaurants', instanceId: instanceId }} />
+  if (redirectToResult) return <Redirect to={{ pathname: '/result', yelpApi: yelpAPIID }} />
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
