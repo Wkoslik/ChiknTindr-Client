@@ -44,7 +44,6 @@ function App() {
 
   return (
     <Router>
-      {/* TODO remove div, and add some styling */}
       <div className="App">
         <Header 
           currentUser={currentUser} 

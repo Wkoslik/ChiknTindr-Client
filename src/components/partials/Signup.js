@@ -23,7 +23,6 @@ const Signup = (props) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [matchPw, setMatchPw] = useState(true);
-    // TODO: add from password verification
     const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = e => {
