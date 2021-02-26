@@ -48,7 +48,7 @@ const FriendsList = (props) => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/friendslist`)
       .then(response => {
-        console.log(`friends list ${response}`)
+        console.log(response.data.friendslist)
         // if (response.data.friendslist.length < 1 ){
         //   setFriends([
         //     {
@@ -57,8 +57,8 @@ const FriendsList = (props) => {
         //     }
         //   ])
         // }
-        // setFriends(response.data.friendslist);
-        // console.log(`frrrrieeeeennnndddzzzzzz ${friends}`)
+        setFriends(response.data.friendslist);
+        console.log(`frrrrieeeeennnndddzzzzzz ${friends}`)
       })
 }, [])
 const useStyles = makeStyles((theme) => ({

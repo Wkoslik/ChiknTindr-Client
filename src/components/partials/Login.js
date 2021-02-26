@@ -95,7 +95,7 @@ const Login = (props) => {
 
     const classes = useStyles();
 // console.log(email, 'current user 🫁🫁🫁🫁🫁🫁🫁🫁🫁')
-    if (redirect) return <Redirect to={{pathname: '/profile', currentUser: email}} /> 
+    if (redirect) return <Redirect to={{pathname: '/friends', currentUser: email}} /> 
     return (
         <section>
             {/* {error ? <Error error={error} /> : null} */}
