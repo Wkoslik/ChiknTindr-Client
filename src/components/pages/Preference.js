@@ -25,6 +25,7 @@ const Preference = (props) => {
   const [dietary, setDietary] = useState('');
   const [messsage, setMessage] = useState('')
   const [redirect, setRedirect] = useState(false);
+  const [redirectError, setRedirectError] = useState(false);
 
   const handleDietary = event => {
     setDietary(event.target.value)
@@ -45,8 +46,8 @@ const Preference = (props) => {
         setRedirect(true)
       })
       .catch(err => {
-        console.log('error  in useEffect', err)
-        setMessage(err.message);
+        setRedirectError(true)
+        setMessage(err);
         // props.handleAuth(null);
       })
   }
@@ -87,7 +88,9 @@ const Preference = (props) => {
 
   const classes = useStyles();
 
-if (redirect) return <Redirect to='/invite' /> 
+  if (!props.currentUser) return <Redirect to='/' />
+  if (redirect) return <Redirect to='/invite' />
+  if (redirectError) return <Redirect to='/error' />
 
   return (
     <div className={classes.root}>

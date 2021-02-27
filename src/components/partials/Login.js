@@ -23,7 +23,7 @@ const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -35,7 +35,9 @@ const Login = (props) => {
             setAuthToken(response.data.token);
             props.handleAuth(response.data.user);
             setRedirect(true);
-        }).catch(setError)
+        }).catch(err =>{
+            setError(true)
+        })
     }
 
     // material-ui styles
@@ -78,6 +80,7 @@ const Login = (props) => {
     const classes = useStyles();
 
     if (redirect) return <Redirect to={{pathname: '/profile', currentUser: email}} /> 
+    if (error) return <Redirect to='/error' /> 
     return (
         <section>
             <div className={classes.root}>

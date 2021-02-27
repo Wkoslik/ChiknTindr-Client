@@ -24,6 +24,7 @@ const Signup = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [matchPw, setMatchPw] = useState(true);
     const [redirect, setRedirect] = useState(false);
+    const [redirectError, setRedirectError] = useState(false)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -39,7 +40,9 @@ const Signup = (props) => {
                 setAuthToken(response.data.token);
                 props.handleAuth(response.data.user);
                 setRedirect(true);
-            }).catch(err => console.log(`😖 error`, err));
+            }).catch(err => {
+                setRedirectError(true)
+            });
         } else {
             setMatchPw(false);
         }
@@ -84,6 +87,7 @@ const Signup = (props) => {
     const classes = useStyles();
 
     if (redirect) return <Redirect to='/preferences' />
+    if (redirectError) return <Redirect to='/error' />
     return (
         <section>
             <div className={classes.root}>

@@ -19,48 +19,21 @@ import { Redirect, Link } from 'react-router-dom';
 
 // ------------------------------------------ mock JSON data
 
-const friendJSON = [
-  {
-    "friendslist": [
-      {
-        "name": "Wally the Whale",
-        "email": "testwhale@test.com"
-      },
-      {
-        "name": "Roger Rabbit",
-        "email": "test20@test.com"
-      },
-      {
-        "name": "Scooba Steve",
-        "email": "test666@test.com"
-      },
-      {
-        "name": "Wally the Whale",
-        "email": "testwhale@test.com"
-      }
-    ]
-  }
-];
 
 const FriendsList = (props) => {
   const [friends, setFriends] = useState([]);
+  const [redirectError, setRedirectError] = useState(false)
   
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/user/friendslist`)
       .then(response => {
-        console.log(response.data.friendslist)
-        // if (response.data.friendslist.length < 1 ){
-        //   setFriends([
-        //     {
-        //       name: 'You dont have any',
-        //       email: 'Add a friend'
-        //     }
-        //   ])
-        // }
         setFriends(response.data.friendslist);
-        console.log(`frrrrieeeeennnndddzzzzzz ${friends}`)
+      })
+      .catch(err =>{
+        setRedirectError(true)
       })
 }, [])
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -113,7 +86,8 @@ let frdListJSON =
     )
   })
 
-if (!props.currentUser) return <Redirect to='/login' />
+  if (!props.currentUser) return <Redirect to='/' />
+  if (redirectError) return <Redirect to='/error' />
 
   return (
     <div className={classes.root}>

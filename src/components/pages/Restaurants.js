@@ -35,6 +35,7 @@ const Restaurants = (props) => {
   const [isCreator, setIsCreator] = useState(false)
   const [resultRedirect, setResultRedirect] = useState(false)
   const [yelpId, setYelpId] = useState('')
+  const [redirectError, setRedirectError] = useState(false)
 
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Restaurants = (props) => {
         }
       })
       .catch(err =>{
-        console.log('There was an error in useeffect in restaurant.js')
+        setRedirectError(true)
       })
   }, [])
 
@@ -65,7 +66,7 @@ const Restaurants = (props) => {
         }
       })
       .catch(err =>{
-        console.log(err.message)
+        setRedirectError(true)
       })
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if(activeStep === maxSteps){
@@ -83,7 +84,7 @@ const Restaurants = (props) => {
       .then(response => {
       })
       .catch(err =>{
-        console.log(err.message)
+        setRedirectError(true)
       })
     // hit same pipeline  push the vote
 
@@ -195,7 +196,7 @@ const Restaurants = (props) => {
 if (!props.currentUser) return <Redirect to='/' />
 if (redirect) return <Redirect to='/plans' />
 if (resultRedirect) return <Redirect to={{ pathname: '/result', yelpApi: yelpId }} />
-
+if (redirectError) return <Redirect to='/error' />
 
 if(restaurants.length === 0){
   return(
